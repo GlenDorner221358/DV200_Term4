@@ -3,7 +3,7 @@ const express = require('express')
 const app = express();
 const cors = require('cors')
 const mongoose = require('mongoose')
-
+const QuestionRoutes = require('./routes/questions')
 const userRoutes = require('./routes/users')
 const authRoutes = require('./routes/auth')
 
@@ -15,7 +15,7 @@ app.use(cors({
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-// app.use(ProductRoute)
+app.use(QuestionRoutes)
 app.use("/api/users", userRoutes)
 app.use("/api/auth", authRoutes)
 
@@ -23,7 +23,7 @@ app.use("/api/auth", authRoutes)
 mongoose.connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    dbName: 'Open-Window-Overflow' //Collection Name
+    dbName: 'Whirlpool' //Collection Name
 }).then(() => {
     console.log("Connected to DB")
 }).catch((err) => {
