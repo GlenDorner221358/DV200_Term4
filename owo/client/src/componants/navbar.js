@@ -13,7 +13,7 @@ function BasicNav() {
   return (
     <Navbar className="bg-body-warning">
       <Container>
-        <Navbar.Brand href="/">Open Window Overflow</Navbar.Brand>
+        <Navbar.Brand href="/">Whirlpool</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
