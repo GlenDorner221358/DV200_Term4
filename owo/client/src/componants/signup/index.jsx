@@ -48,6 +48,7 @@ const Signup = () => {
 				</div>
 				<div className={styles.right}>
 					<form className={styles.form_container} onSubmit={handleSubmit}>
+					<div className={styles.logo}></div>
 						<h1>Create Account</h1>
 						<input
 							type="text"

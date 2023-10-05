@@ -111,3 +111,11 @@
 	color: white;
 	margin: 10px;
 }
+
+.logo{
+	width: 60px;
+	height: 60px;
+	background: red;
+	margin-left: -450px;
+	margin-top: -70px;
+}
