@@ -115,7 +115,9 @@
 .logo{
 	width: 60px;
 	height: 60px;
-	background: red;
+	background-image: url('../../../Assets/Whirlpool.svg');
+	background-position: center;
+	background-size: cover;
 	margin-left: 450px;
 	margin-top: -50px;
 	float: left;
