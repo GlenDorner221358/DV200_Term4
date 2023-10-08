@@ -3,8 +3,8 @@ import React from "react";
 import BasicNav from '../components/navbar';
 =======
 
-import BasicNav from '../componants/navbar'
-import HomeQuestion from "../componants/cards";
+import BasicNav from '../components/navbar'
+import HomeQuestion from "../components/cards";
 import styles from './landing.module.css'
 
 import Form from 'react-bootstrap/Form';
