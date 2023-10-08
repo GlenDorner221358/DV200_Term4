@@ -1,11 +1,88 @@
 import React from "react";
+<<<<<<< Updated upstream:whirlpool/client/src/pages/landing.js
 import BasicNav from '../components/navbar';
+=======
+
+import BasicNav from '../componants/navbar'
+import HomeQuestion from "../componants/cards";
+import styles from './landing.module.css'
+
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+>>>>>>> Stashed changes:owo/client/src/pages/landing.js
 
 function Landing() {
     return (
         <div>
             <BasicNav />
-            <h3 style={{textAlign:'center', margin:'2%'}}>Welcome to Whirlpool where you can ask your dev questions and people can give solutions.</h3>
+            <hr />
+            <div className={styles.body_container}>
+
+                <div className={styles.left_col}>
+                    <div style={{ width: "99%", display:"block", marginLeft:"2%" }}>
+                        <Form >
+                        <Row>
+                            <Col>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Search Topics"
+                                    className=" mr-sm-2"
+                                />
+                            </Col>
+                            <Col>
+                                <Button type="submit">Submit</Button>
+                            </Col>
+                        </Row>
+                    </Form>
+                    </div>
+                    <br/>
+                    <HomeQuestion />
+                    <HomeQuestion />
+                    <HomeQuestion />
+                    <HomeQuestion />
+                    <HomeQuestion />
+                    <HomeQuestion />
+                    <HomeQuestion />
+                    <HomeQuestion />
+                </div>
+
+
+                <div className={styles.right_col}>
+                    <Form>
+                        <Form.Label><b>Filter by tags:</b></Form.Label>
+                        <Form.Check // prettier-ignore
+                            type="checkbox"
+                            label="AllTags"
+                        />
+                        <Form.Check // prettier-ignore
+                            type="checkbox"
+                            label="React"
+                        />
+                        <Form.Check // prettier-ignore
+                            type="checkbox"
+                            label="Bootstrap"
+                        />
+                        <Form.Check // prettier-ignore
+                            type="checkbox"
+                            label="JavaScript"
+                        /><Form.Check // prettier <Form.Check // prettier-ignore
+                            type="checkbox"
+                            label="Python"
+                        />
+                        <Form.Check // prettier-ignore
+                            type="checkbox"
+                            label="Insomnia"
+                        /><br />
+                        <Button variant="primary" type="submit">
+                            Submit
+                        </Button>
+                    </Form>
+
+                </div>
+            </div>
+
         </div>
     )
 }
