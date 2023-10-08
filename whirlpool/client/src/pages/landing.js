@@ -1,9 +1,6 @@
 import React from "react";
-<<<<<<< Updated upstream:whirlpool/client/src/pages/landing.js
 import BasicNav from '../components/navbar';
-=======
 
-import BasicNav from '../components/navbar'
 import HomeQuestion from "../components/cards";
 import styles from './landing.module.css'
 
@@ -11,7 +8,6 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
->>>>>>> Stashed changes:owo/client/src/pages/landing.js
 
 function Landing() {
     return (

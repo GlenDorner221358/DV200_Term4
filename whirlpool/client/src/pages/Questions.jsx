@@ -1,5 +1,5 @@
 import React from 'react';
-import BasicNav from '../componants/navbar'
+import BasicNav from '../components/navbar'
 import styles from '../pages/Questions.module.css'
 import Button from 'react-bootstrap/Button';
 function Questions() {
