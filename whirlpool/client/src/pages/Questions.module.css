@@ -1,0 +1,47 @@
+.main_container{
+    width: 100vw;
+    height: 95vh;
+    background: white;
+}
+
+.left_panel{
+    width: 15vw;
+    height: 50vh;
+    background: blue;
+    margin-left: 30px;
+    float: left;
+}
+
+.questions_section{
+    width: 60vw;
+    height: 95vh;
+    margin-left: 30px;
+    background: red;
+    float: left;
+}
+
+.top_container{
+    width: 100%;
+    height: 10%;
+    background: green;
+}
+
+.question_heading{
+    margin-left: 30px;
+    margin-top: 15px;
+    float: left;
+}
+
+.right_panel{
+    width: 15vw;
+    height: 50vh;
+    background: blue;
+    margin-left: 30px;
+    float: left;
+}
+
+.questions_box{
+    width: 87%;
+    height: 20%;
+    background: blue;
+}
