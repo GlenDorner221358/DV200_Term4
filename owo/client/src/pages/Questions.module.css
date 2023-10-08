@@ -16,14 +16,15 @@
     width: 60vw;
     height: 95vh;
     margin-left: 30px;
-    background: red;
+    /* background: red; */
     float: left;
 }
 
 .top_container{
     width: 100%;
     height: 10%;
-    background: green;
+
+    /* background: green; */
 }
 
 .question_heading{
@@ -44,4 +45,17 @@
     width: 87%;
     height: 20%;
     background: blue;
+}
+.ask_btn{
+    margin-top: 15px;
+    margin-right: 30px;
+    float: right;
+}
+
+.questions_group_container{
+    width: 100%;
+    height: 50%;
+    margin-top: 50px;
+    background: blue;
+    float: left;
 }

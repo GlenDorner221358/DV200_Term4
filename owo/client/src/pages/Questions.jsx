@@ -1,6 +1,7 @@
 import React from 'react';
 import BasicNav from '../componants/navbar'
 import styles from '../pages/Questions.module.css'
+import Button from 'react-bootstrap/Button';
 function Questions() {
   return (
     <>
@@ -11,11 +12,11 @@ function Questions() {
         <div className={styles.questions_section}>
             <div className={styles.top_container}>
                 <h1 className={styles.question_heading}>Questions</h1>
+                <Button className={styles.ask_btn} variant="primary">Ask Question</Button>{''}
             </div>
             <div className={styles.questions_box}>
-                
             </div>
-
+            <div className={styles.questions_group_container}></div>
         </div>
         <div className={styles.right_panel}></div>
 
