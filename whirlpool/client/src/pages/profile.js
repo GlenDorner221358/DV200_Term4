@@ -19,7 +19,7 @@ function Profile() {
                         <div class="cardEspesiale">
                             <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img src="https://i.ytimg.com/vi/8Scm09bwT_s/hqdefault.jpg" alt="Admin" class="rounded-circle" width="150" />
+                                <img src="https://i.ytimg.com/vi/8Scm09bwT_s/hqdefault.jpg" alt="Admin" class="rounded-circle" width="150" height="150px" style={{marginTop:"5%"}}/>
                                 <div class="mt-3">
                                 <h4>John Bobba</h4>
                                 <p class="mb-1">Full time gamer</p>
