@@ -2,7 +2,7 @@ import React from "react";
 import BasicNav from '../components/navbar';
 
 import HomeQuestion from "../components/cards";
-import styles from './landing.module.css'
+import styles from './css/landing.module.css'
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';

@@ -5,7 +5,7 @@ import VoteImage from '../icons/package.svg';
 import LikeImage from '../icons/thumbs-up.svg';
 import DislikeImage from '../icons/thumbs-down.svg';
 
-import styles from '../pages/landing.module.css'
+import styles from '../pages/css/landing.module.css'
 
 function HomeQuestion() {
     return (
@@ -33,7 +33,7 @@ function HomeQuestion() {
                     <Card.Text >
                         Brief description on what the topic is about...
                     </Card.Text>
-                    <Button style={{float: "right"}}>View Question</Button>
+                    <Button style={{float: "right"}} href="/single">View Question</Button>
                 </div>
             </Card.Body>
 
