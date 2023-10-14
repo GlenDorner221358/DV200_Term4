@@ -26,8 +26,8 @@ function BasicNav() {
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">
-          <Nav.Link href='/profile'>{username}</Nav.Link>
-          <Button variant='light' onClick={handleLogout}>Logout</Button>
+          <Nav.Link href='/profile' style={{marginRight:"2%"}}>{username}</Nav.Link>
+          <Button variant='danger' onClick={handleLogout}>Logout</Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>

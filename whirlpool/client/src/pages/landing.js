@@ -1,6 +1,8 @@
 import React from "react";
-import BasicNav from '../components/navbar';
+import { useState, useEffect } from "react";
+import Axios from 'axios'
 
+import BasicNav from '../components/navbar';
 import HomeQuestion from "../components/cards";
 import styles from './css/landing.module.css'
 
@@ -9,7 +11,27 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+
+
 function Landing() {
+
+    //Read Questions
+const [product, setProducts] = useState();
+const [updateProducts, setUpdateProducts] = useState(false);
+
+useEffect(() => {
+    Axios.get('http://localhost:5000/api/allQuestions')
+        .then(res => {
+            let productData = res.data;
+            let slicedArray = [];
+            slicedArray = productData.slice(0, 4);
+            let renderProducts = slicedArray.map((item) => <HomeQuestion key={item._id} productId={item._id} name={item.name} title={item.title} question={item.question} total={item.votes.total} likes={item.votes.likes} dislikes={item.votes.dislikes} tagOne={item.tags.tagOne} tagTwo={item.tags.tagTwo} tagThree={item.tags.tagThree} editRender={setUpdateProducts} />);
+            setProducts(renderProducts);
+            setUpdateProducts(false);
+        })
+        .catch(err => console.log(err))
+}, [updateProducts])
+
     return (
         <div>
             <BasicNav />
@@ -17,31 +39,26 @@ function Landing() {
             <div className={styles.body_container}>
 
                 <div className={styles.left_col}>
-                    <div style={{ width: "99%", display:"block", marginLeft:"2%" }}>
+                    <div style={{ width: "99%", display: "block", marginLeft: "2%" }}>
                         <Form >
-                        <Row>
-                            <Col>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Search Topics"
-                                    className=" mr-sm-2"
-                                />
-                            </Col>
-                            <Col>
-                                <Button type="submit">Submit</Button>
-                            </Col>
-                        </Row>
-                    </Form>
+                            <Row>
+                                <Col>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Search Topics"
+                                        className=" mr-sm-2"
+                                    />
+                                </Col>
+                                <Col>
+                                    <Button type="submit">Submit</Button>
+                                </Col>
+                            </Row>
+                        </Form>
                     </div>
-                    <br/>
-                    <HomeQuestion />
-                    <HomeQuestion />
-                    <HomeQuestion />
-                    <HomeQuestion />
-                    <HomeQuestion />
-                    <HomeQuestion />
-                    <HomeQuestion />
-                    <HomeQuestion />
+                    <br />
+                    <div className="row row-cols-1 row-cols-md-4 g-4" style={{ margin: "1%" }} > {/* Determine how many I want to display --> row-cols-md-5*/}
+                        {product}
+                    </div>
                 </div>
 
 
