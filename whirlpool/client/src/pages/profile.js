@@ -13,7 +13,7 @@ function Profile() {
     const [userData, setUserData] = useState(); 
 
     useEffect(() => {
-        Axios.get('http://localhost:5000/api/users:' + userMail)
+        Axios.get('http://localhost:5001/api/users:' + userMail)
             .then(res => {
                 let data = res.data;
                 setUserData(data);
