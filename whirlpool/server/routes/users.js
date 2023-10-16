@@ -2,9 +2,25 @@ const express = require('express')
 const router = express()
 const { User, validate } = require('../models/users')
 const bcrypt = require("bcrypt")
+const multer = require('multer')
+const path = require('path')
 
+//Multer Middleware Prep
+const userImgStore = multer.diskStorage({
+    destination: ( req, file, callBack ) => {
+        callBack(null, path.join( __dirname, '../userImages'));
+    },
 
-router.post("/", async (req, res) => {
+    filename: ( req, file, callBack) => {
+        console.log(file)
+        callBack(null, Date.now() + path.extname(file.originalname));
+    }
+});
+
+//Run Middleware
+const uploadUserImage = multer({storage: userImgStore});
+
+router.post("/", uploadUserImage.single('image'), async (req, res) => {
     try {
         const { error } = validate(req.body)
         if (error) {
@@ -25,6 +41,23 @@ router.post("/", async (req, res) => {
     } catch (error) {
         res.status(500).send({ message: "Internal Server Error" })
     }
+})
+
+router.get('/api/users:email', async (req, res) => {
+    const findUser = await User.findByEmail(req.params.email)
+    res.json(findUser)
+})
+
+router.put('/api/updateUserImg/:email', async(req, res) => {
+    console.log(req.body)
+
+    const findProduct = await User.updateOne(
+        { email: req.params.email }, 
+        {$set: {
+           profilePic: req.body.profilePic
+        }}
+    )
+    res.json(findUser)
 })
 
 //End

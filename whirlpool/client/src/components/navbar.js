@@ -2,14 +2,27 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/esm/Button';
+import { useState, useEffect } from "react";
+import Axios from 'axios'
 
 function BasicNav() {
 
-  const username = localStorage.getItem("username")
+  const userEmail = sessionStorage.getItem("username")
+
+  useEffect(() => {
+      Axios.get('http://localhost:5000/api/users:' + userEmail)
+          .then(res => {
+              sessionStorage.setItem("user", res.data.firstName);
+          })
+          .catch(err => console.log(err))
+  })
+
+  const user = sessionStorage.getItem("user")
 
   const handleLogout = () =>{
     localStorage.removeItem("token")
-    localStorage.removeItem('username')
+    sessionStorage.removeItem('username')
+    sessionStorage.removeItem('user')
     window.location = "/";
   }
 
@@ -26,7 +39,7 @@ function BasicNav() {
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">
-          <Nav.Link href='/profile' style={{marginRight:"2%"}}>{username}</Nav.Link>
+          <Nav.Link href='/profile' style={{marginRight:"2%"}}>{user}</Nav.Link>
           <Button variant='danger' onClick={handleLogout}>Logout</Button>
         </Navbar.Collapse>
       </Container>

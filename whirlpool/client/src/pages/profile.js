@@ -1,8 +1,58 @@
 import React from "react";
 import BasicNav from '../components/navbar';
 import './css/profile.css';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import { useState, useEffect } from "react";
+import Axios from 'axios'
 
 function Profile() {
+    const [imageName, setImageName] = useState("Name of file")
+    const [userImage, setUserImage] = useState()
+    const userMail = sessionStorage.getItem("username")
+    const [userData, setUserData] = useState(); 
+
+    useEffect(() => {
+        Axios.get('http://localhost:5000/api/users:' + userMail)
+            .then(res => {
+                let data = res.data;
+                setUserData(data);
+            })
+            .catch(err => console.log(err))
+    })
+
+    const getImage = (e) => {
+        //This is where Multer comes in
+        let imagefile = e.target.files[0];
+        setUserImage(imagefile);
+
+        let value = e.target.value;
+        let imageName = value.substring(12);
+        setImageName(imageName);
+
+        let reader = new FileReader();
+        reader.onload = () => {
+            let output = document.getElementById('imgPrev');
+            output.src = reader.result;
+        }
+
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+    const changeImg = (e) => {
+        const payloadData = new FormData();
+
+        payloadData.append("image", userImage);
+
+        Axios.put("http://localhost:5000/api/users:", payloadData)
+            .then((res) => {
+                if (res) {
+                    console.log("Item Added");
+                }
+            })
+            .catch(err => console.log(err))
+    }
+
     return(
         <div id="daBigOne">
 
@@ -19,11 +69,14 @@ function Profile() {
                         <div class="cardEspesiale">
                             <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img src="https://i.ytimg.com/vi/8Scm09bwT_s/hqdefault.jpg" alt="Admin" class="rounded-circle" width="150" height="150px" style={{marginTop:"5%"}}/>
+                                <img
+                                //  src={userData.profilePic} 
+                                 alt="not working :(" class="rounded-circle" width="150" height="150px" style={{marginTop:"5%"}}/>
                                 <div class="mt-3">
-                                <h4>John Bobba</h4>
-                                <p class="mb-1">Full time gamer</p>
-                                <p class="text-muted font-size-sm">Cape flats</p>
+                                <h4>
+                                    {/* {userData.firstName} */}
+                                </h4>
+
                                 </div>
                             </div>
                             </div>
@@ -37,7 +90,7 @@ function Profile() {
                                 <h6 class="mb-0">Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                Kenneth
+                                {/* {userData.firstName} */}
                                 </div>
                             </div>
                             <hr />
@@ -46,7 +99,7 @@ function Profile() {
                                 <h6 class="mb-0">Surname</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                Bababooie
+                                {/* {userData.lastName} */}
                                 </div>
                             </div>
                             <hr />
@@ -55,7 +108,7 @@ function Profile() {
                                 <h6 class="mb-0">Email</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                baba12@booie.com
+                                {/* {userData.email} */}
                                 </div>
                             </div>
                             <hr />
@@ -81,7 +134,20 @@ function Profile() {
                             <hr />
                             <div class="row">
                                 <div class="col-sm-12">
-                                <a class="btn btn-info " target="__blank" href="/profile">Edit</a>
+                                <Form onSubmit={changeImg} style={{ marginTop: "2%", marginLeft: "auto", marginRight: "auto" }}>
+                                <Form.Group controlId="formFile" className="mb-3" style={{ display: "inline-block", width: "100%" }}>
+                                    <Form.Control type="file" style={{ marginBottom: "2%" }} onChange={getImage} />
+                                    <div>
+                                        <p>{imageName}</p>
+                                    </div>
+                                    <div>
+                                        <img id="imgPrev" style={{ backgroundColor: "lightgrey", height: "200px", width: "200px", float: "left" }} />
+                                    </div>
+                                </Form.Group >
+                                    <Button variant="warning" type="submit" style={{ width: "100%", marginTop: "2%", marginBottom: "2%" }}>
+                                        Upload image
+                                    </Button>
+                                </Form>
                                 </div>
                             </div>
                             </div>
