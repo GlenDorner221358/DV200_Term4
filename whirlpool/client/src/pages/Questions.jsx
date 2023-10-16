@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import { Button, Modal, Form } from 'react-bootstrap';
+import MyModal from '../components/createQuestionModal';
 
 import styles from '../pages/css/Questions.module.css'
 
@@ -11,6 +11,11 @@ import Group from '../components/groupbtn';
 import Tagcard from '../components/tagcard';
 
 function Questions() {
+
+  const [showModal, setShowModal] = useState(false);
+
+  const handleShow = () => setShowModal(true);
+  const handleClose = () => setShowModal(false);
 
   const [Question, setQuestions] = useState();
   const [updateQuestions, setUpdateQuestions] = useState(false);
@@ -72,39 +77,8 @@ function Questions() {
   return (
     <>
       <BasicNav />
+      <MyModal showModal={showModal} handleClose={handleClose} />
 
-    <div className={styles.create}>
-      {/* new question form */}
-      <Form onSubmit={addQuestion} style={{ marginTop: "2%", width: "56%", marginLeft: "auto", marginRight: "auto" }}>
-        <Form.Group className="mb-3">
-          <Form.Label>Name</Form.Label>
-          <Form.Control name="name" type="string" placeholder="User"  onChange={getValues} />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Title</Form.Label>
-          <Form.Control name="title" type="string" placeholder="Title" onChange={getValues} />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Question</Form.Label>
-          <Form.Control name="question" as="textarea" rows={3} placeholder="Question Here..." onChange={getValues} />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Tag One</Form.Label>
-          <Form.Control name="tagOne" type="text" onChange={getValues} />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Tag Two (optional)</Form.Label>
-          <Form.Control name="tagTwo" type="text" onChange={getValues} />
-        </Form.Group>
-        <Form.Group className="mb-2">
-          <Form.Label>Tag Three (optional)</Form.Label>
-          <Form.Control name="tagThree" type="text" onChange={getValues} />
-        </Form.Group>
-        <Button variant="primary" type="submit" style={{ width: "100%", marginTop: "2%", marginBottom: "2%" }}>
-          Submit
-        </Button>
-      </Form>
-    </div>
 
       <div className={styles.main_container}>
 
@@ -119,7 +93,7 @@ function Questions() {
               <Group />
             </div>
 
-            <Button className={styles.ask_btn} variant="primary">Ask Question</Button>{''}
+            <Button className={styles.ask_btn} variant="primary" onClick={handleShow}>Ask Question</Button>{''}
 
             <div className={styles.more_info_row}>
               <h5 className={styles.totalQ}>Total Questions:</h5>
