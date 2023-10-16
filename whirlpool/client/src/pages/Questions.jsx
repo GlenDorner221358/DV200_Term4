@@ -12,7 +12,7 @@ import Tagcard from '../components/tagcard';
 
 function Questions() {
 
-  const [Question, setQuestions] = useState();
+  const [Question, setQuestions] = useState([]);
   const [updateQuestions, setUpdateQuestions] = useState(false);
 
   //Read Questions
@@ -20,10 +20,7 @@ function Questions() {
     axios.get('http://localhost:5000/api/allQuestions')
       .then(res => {
         let QuestionData = res.data;
-        console.log(QuestionData)
-        let slicedArray = [];
-        slicedArray = QuestionData.slice(0, 4);
-        let renderQuestions = slicedArray.map((item) => <HomeQuestion key={item._id} QuestionId={item._id} name={item.name} title={item.title} question={item.question} total={item.votes.total} likes={item.votes.likes} dislikes={item.votes.dislikes} tagOne={item.tags.tagOne} tagTwo={item.tags.tagTwo} tagThree={item.tags.tagThree} editRender={setUpdateQuestions} />);
+        let renderQuestions = QuestionData.map((item) => <HomeQuestion key={item._id} QuestionId={item._id} name={item.name} title={item.title} question={item.question} total={item.votes.total} likes={item.votes.likes} dislikes={item.votes.dislikes} tagOne={item.tags.tagOne} tagTwo={item.tags.tagTwo} tagThree={item.tags.tagThree} editRender={setUpdateQuestions} />);
         setQuestions(renderQuestions);
         setUpdateQuestions(false);
       })

@@ -16,21 +16,19 @@ import Col from 'react-bootstrap/Col';
 function Landing() {
 
     //Read Questions
-const [product, setProducts] = useState();
-const [updateProducts, setUpdateProducts] = useState(false);
+    const [Question, setQuestions] = useState();
+    const [updateQuestions, setUpdateQuestions] = useState(false);
 
-useEffect(() => {
-    Axios.get('http://localhost:5000/api/allQuestions')
-        .then(res => {
-            let productData = res.data;
-            let slicedArray = [];
-            slicedArray = productData.slice(0, 4);
-            let renderProducts = slicedArray.map((item) => <HomeQuestion key={item._id} productId={item._id} name={item.name} title={item.title} question={item.question} total={item.votes.total} likes={item.votes.likes} dislikes={item.votes.dislikes} tagOne={item.tags.tagOne} tagTwo={item.tags.tagTwo} tagThree={item.tags.tagThree} editRender={setUpdateProducts} />);
-            setProducts(renderProducts);
-            setUpdateProducts(false);
-        })
-        .catch(err => console.log(err))
-}, [updateProducts])
+    useEffect(() => {
+        Axios.get('http://localhost:5000/api/allQuestions')
+            .then(res => {
+                let QuestionData = res.data;
+                let renderQuestions = QuestionData.map((item) => <HomeQuestion key={item._id} QuestionId={item._id} name={item.name} title={item.title} question={item.question} total={item.votes.total} likes={item.votes.likes} dislikes={item.votes.dislikes} tagOne={item.tags.tagOne} tagTwo={item.tags.tagTwo} tagThree={item.tags.tagThree} editRender={setUpdateQuestions} />);
+                setQuestions(renderQuestions);
+                setUpdateQuestions(false);
+            })
+            .catch(err => console.log(err))
+    }, [updateQuestions])
 
     return (
         <div>
@@ -57,7 +55,7 @@ useEffect(() => {
                     </div>
                     <br />
                     <div className="row row-cols-1 row-cols-md-4 g-4" style={{ margin: "1%" }} > {/* Determine how many I want to display --> row-cols-md-5*/}
-                        {product}
+                        {Question}
                     </div>
                 </div>
 
