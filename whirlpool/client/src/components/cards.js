@@ -7,7 +7,7 @@ import DislikeImage from '../icons/thumbs-down.svg';
 
 import styles from '../pages/css/landing.module.css'
 
-function HomeQuestion(props) {
+const HomeQuestion = (props) => {
 
 
     return (

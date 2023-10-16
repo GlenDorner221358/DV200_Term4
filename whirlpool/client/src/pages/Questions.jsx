@@ -15,16 +15,12 @@ function Questions() {
   const [Question, setQuestions] = useState();
   const [updateQuestions, setUpdateQuestions] = useState(false);
 
-  let defaultFormVals = ["name", "title", "question", "tagOne", "tagTwo", "tagThree"];
-
-  const [formValues, setFormValues] = useState(defaultFormVals);
-
-
   //Read Questions
   useEffect(() => {
     axios.get('http://localhost:5000/api/allQuestions')
       .then(res => {
         let QuestionData = res.data;
+        console.log(QuestionData)
         let slicedArray = [];
         slicedArray = QuestionData.slice(0, 4);
         let renderQuestions = slicedArray.map((item) => <HomeQuestion key={item._id} QuestionId={item._id} name={item.name} title={item.title} question={item.question} total={item.votes.total} likes={item.votes.likes} dislikes={item.votes.dislikes} tagOne={item.tags.tagOne} tagTwo={item.tags.tagTwo} tagThree={item.tags.tagThree} editRender={setUpdateQuestions} />);
@@ -34,30 +30,35 @@ function Questions() {
       .catch(err => console.log(err))
   }, [updateQuestions])
 
+  let defaultFormVals = ["name", "title", "question", "tagOne", "tagTwo", "tagThree"];
+
+  const [formValues, setFormValues] = useState(defaultFormVals);
 
   // Create a new question
-
   const getValues = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   }
 
-
+  //Create Question
   const addQuestion = (e) => {
     // e.preventDefault();
 
-
     let payload = {
-      name: ['name'],
-      title: ['title'],
-      question: ['question'],
+      name: formValues['name'],
+      title: formValues['title'],
+      question: formValues['question'],
       tags: {
-          tagOne: formValues['varOne'],
-          tagTwo: formValues['varTwo'],
-          tagThree: formValues['varThree']
+        tagOne: formValues['tagOne'],
+        tagTwo: formValues['tagTwo'],
+        tagThree: formValues['tagThree']
+      },
+      votes: {
+        total: 0, // Initialize total votes to 0
+        likes: 0,
+        dislikes: 0
       }
     }
-
 
     axios.post("http://localhost:5000/api/newQuestion", payload)
       .then((res) => {
@@ -73,38 +74,38 @@ function Questions() {
     <>
       <BasicNav />
 
-    <div className={styles.create}>
-      {/* new question form */}
-      <Form onSubmit={addQuestion} style={{ marginTop: "2%", width: "56%", marginLeft: "auto", marginRight: "auto" }}>
-        <Form.Group className="mb-3">
-          <Form.Label>Name</Form.Label>
-          <Form.Control name="name" type="string" placeholder="User"  onChange={getValues} />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Title</Form.Label>
-          <Form.Control name="title" type="string" placeholder="Title" onChange={getValues} />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Question</Form.Label>
-          <Form.Control name="question" as="textarea" rows={3} placeholder="Question Here..." onChange={getValues} />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Tag One</Form.Label>
-          <Form.Control name="tagOne" type="text" onChange={getValues} />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Tag Two (optional)</Form.Label>
-          <Form.Control name="tagTwo" type="text" onChange={getValues} />
-        </Form.Group>
-        <Form.Group className="mb-2">
-          <Form.Label>Tag Three (optional)</Form.Label>
-          <Form.Control name="tagThree" type="text" onChange={getValues} />
-        </Form.Group>
-        <Button variant="primary" type="submit" style={{ width: "100%", marginTop: "2%", marginBottom: "2%" }}>
-          Submit
-        </Button>
-      </Form>
-    </div>
+      <div className={styles.create}>
+        {/* new question form */}
+        <Form onSubmit={addQuestion} style={{ marginTop: "2%", width: "56%", marginLeft: "auto", marginRight: "auto" }}>
+          <Form.Group className="mb-3">
+            <Form.Label>Name</Form.Label>
+            <Form.Control name="name" type="string" placeholder="User" required onChange={getValues} />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Title</Form.Label>
+            <Form.Control name="title" type="string" placeholder="Title" required onChange={getValues} />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Question</Form.Label>
+            <Form.Control name="question" as="textarea" rows={3} placeholder="Question Here..." required onChange={getValues} />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Tag One</Form.Label>
+            <Form.Control name="tagOne" type="text" required onChange={getValues} />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Tag Two (optional)</Form.Label>
+            <Form.Control name="tagTwo" type="text" onChange={getValues} />
+          </Form.Group>
+          <Form.Group className="mb-2">
+            <Form.Label>Tag Three (optional)</Form.Label>
+            <Form.Control name="tagThree" type="text" onChange={getValues} />
+          </Form.Group>
+          <Button variant="primary" type="submit" style={{ width: "100%", marginTop: "2%", marginBottom: "2%" }}>
+            Submit
+          </Button>
+        </Form>
+      </div>
 
       <div className={styles.main_container}>
 
