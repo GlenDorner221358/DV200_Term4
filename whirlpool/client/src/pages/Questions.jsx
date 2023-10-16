@@ -22,7 +22,7 @@ function Questions() {
 
   //Read Questions
   useEffect(() => {
-    axios.get('http://localhost:5000/api/allQuestions')
+    axios.get('http://localhost:5001/api/allQuestions')
       .then(res => {
         let QuestionData = res.data;
         let slicedArray = [];
@@ -59,7 +59,7 @@ function Questions() {
     }
 
 
-    axios.post("http://localhost:5000/api/newQuestion", payload)
+    axios.post("http://localhost:5001/api/newQuestion", payload)
       .then((res) => {
         if (res) {
           console.log("Item Added");

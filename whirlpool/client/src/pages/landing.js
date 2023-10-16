@@ -20,7 +20,7 @@ const [product, setProducts] = useState();
 const [updateProducts, setUpdateProducts] = useState(false);
 
 useEffect(() => {
-    Axios.get('http://localhost:5000/api/allQuestions')
+    Axios.get('http://localhost:5001/api/allQuestions')
         .then(res => {
             let productData = res.data;
             let slicedArray = [];
