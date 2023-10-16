@@ -9,6 +9,7 @@ function BasicNav() {
 
   const userEmail = sessionStorage.getItem("username")
 
+  // get user name
   useEffect(() => {
       Axios.get('http://localhost:5000/api/users:' + userEmail)
           .then(res => {

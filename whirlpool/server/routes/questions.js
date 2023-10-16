@@ -5,6 +5,7 @@ const router = express.Router();
 // Create new Question
 router.post('/api/newQuestion', async (req, res) => {
     try {
+
         const data = req.body;
 
         const newQuestion = new QuestionSchema({
@@ -51,7 +52,6 @@ router.get('/api/singleQuestion/:id', async (req, res) => {
 });
 
 //Update Question
-// Update Question
 router.patch('/api/updateQuestion/:id', async (req, res) => {
     try {
         const data = req.body;

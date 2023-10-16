@@ -5,7 +5,7 @@ const questionSchema = mongoose.Schema({
     title: { type: String, required: true },
     question: { type: String, required: true },
     tags: {
-        tagOne: { type: String, required: false },
+        tagOne: { type: String, required: true },
         tagTwo: { type: String, required: false },
         tagThree: { type: String, required: false }
     },

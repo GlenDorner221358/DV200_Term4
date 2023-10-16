@@ -144,7 +144,7 @@ function Profile() {
                                         <img id="imgPrev" style={{ backgroundColor: "lightgrey", height: "200px", width: "200px", float: "left" }} />
                                     </div>
                                 </Form.Group >
-                                    <Button variant="warning" type="submit" style={{ width: "100%", marginTop: "2%", marginBottom: "2%" }}>
+                                    <Button variant="warning" type="submit" style={{ color: "black", width: "100%", marginTop: "2%", marginBottom: "2%", backgroundColor: "#FDF5BF" }}>
                                         Upload image
                                     </Button>
                                 </Form>

@@ -43,11 +43,23 @@ router.post("/", uploadUserImage.single('image'), async (req, res) => {
     }
 })
 
+// read all users
+router.get('/api/users', async (req, res) => {
+    try {
+        const findUsers = await User.find();
+        res.json(findUsers);
+    } catch (error) {
+        res.status(500).json({ error: "Error: ", details: error.message });
+    }
+})
+
+// find user by email
 router.get('/api/users:email', async (req, res) => {
     const findUser = await User.findByEmail(req.params.email)
     res.json(findUser)
 })
 
+// update users profile pic by email
 router.put('/api/updateUserImg/:email', async(req, res) => {
     console.log(req.body)
 
