@@ -30,49 +30,12 @@ function Questions() {
     axios.get('http://localhost:5001/api/allQuestions')
       .then(res => {
         let QuestionData = res.data;
-        let slicedArray = [];
-        slicedArray = QuestionData.slice(0, 4);
-        let renderQuestions = slicedArray.map((item) => <HomeQuestion key={item._id} QuestionId={item._id} name={item.name} title={item.title} question={item.question} total={item.votes.total} likes={item.votes.likes} dislikes={item.votes.dislikes} tagOne={item.tags.tagOne} tagTwo={item.tags.tagTwo} tagThree={item.tags.tagThree} editRender={setUpdateQuestions} />);
+        let renderQuestions = QuestionData.map((item) => <HomeQuestion key={item._id} QuestionId={item._id} name={item.name} title={item.title} question={item.question} total={item.votes.total} likes={item.votes.likes} dislikes={item.votes.dislikes} tagOne={item.tags.tagOne} tagTwo={item.tags.tagTwo} tagThree={item.tags.tagThree} editRender={setUpdateQuestions} />);
         setQuestions(renderQuestions);
         setUpdateQuestions(false);
       })
       .catch(err => console.log(err))
   }, [updateQuestions])
-
-
-  // Create a new question
-
-  const getValues = (e) => {
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
-  }
-
-
-  const addQuestion = (e) => {
-    // e.preventDefault();
-
-
-    let payload = {
-      name: ['name'],
-      title: ['title'],
-      question: ['question'],
-      tags: {
-          tagOne: formValues['varOne'],
-          tagTwo: formValues['varTwo'],
-          tagThree: formValues['varThree']
-      }
-    }
-
-
-    axios.post("http://localhost:5001/api/newQuestion", payload)
-      .then((res) => {
-        if (res) {
-          console.log("Item Added");
-          setUpdateQuestions(true);
-        }
-      })
-      .catch(err => console.log(err))
-  }
 
   return (
     <>
