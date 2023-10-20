@@ -53,10 +53,18 @@ router.get('/api/allUsers', async (req, res) => {
     }
 })
 
+
 // find user by email
-router.get('/api/users:email', async (req, res) => {
-    const findUser = await User.findByEmail(req.params.email)
-    res.json(findUser)
+router.get('/api/users/:email', async (req, res) => {
+    try {
+        const user = await User.findOne({ email: req.params.email });
+        if (!user) {
+            return res.status(404).send({ message: "User not found." });
+        }
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ error: "Error: ", details: error.message });
+    }
 })
 
 // update users profile pic by email

@@ -37,5 +37,17 @@ const validate = (data) => {
 	return schema.validate(data);
 };
 
+// find a user based on their email
+router.get("/user", async (req, res) => {
+	try {
+		const user = await User.findOne({ email: req.body.email });
+		if (!user)
+			return res.status(404).send({ message: "User not found." });
+		res.json(user);
+	} catch (error) {
+		res.status(500).json({ error: "Error: ", details: error.message });
+	}
+});
+
 
 module.exports = router;
