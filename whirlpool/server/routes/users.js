@@ -44,7 +44,7 @@ router.post("/", uploadUserImage.single('image'), async (req, res) => {
 })
 
 // read all users
-router.get('/api/users', async (req, res) => {
+router.get('/api/allUsers', async (req, res) => {
     try {
         const findUsers = await User.find();
         res.json(findUsers);
@@ -74,3 +74,10 @@ router.put('/api/updateUserImg/:email', async(req, res) => {
 
 //End
 module.exports = router
+
+
+
+
+
+
+

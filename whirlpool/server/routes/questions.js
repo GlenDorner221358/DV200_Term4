@@ -94,6 +94,8 @@ router.patch('/api/updateQuestion/:id', async (req, res) => {
     }
 });
 
+//Update Votes
+
 
 // Delete Question
 router.delete('/api/deleteQuestion/:id', async (req, res) => {

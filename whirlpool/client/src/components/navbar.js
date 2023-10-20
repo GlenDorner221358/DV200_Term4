@@ -6,24 +6,12 @@ import { useState, useEffect } from "react";
 import Axios from 'axios'
 
 function BasicNav() {
-
-  const userEmail = sessionStorage.getItem("username")
-
-  // get user name
-  useEffect(() => {
-      Axios.get('http://localhost:5000/api/users:' + userEmail)
-          .then(res => {
-              sessionStorage.setItem("user", res.data.firstName);
-          })
-          .catch(err => console.log(err))
-  })
-
-  const user = sessionStorage.getItem("user")
+  const user = sessionStorage.getItem("User")
 
   const handleLogout = () =>{
     localStorage.removeItem("token")
     sessionStorage.removeItem('username')
-    sessionStorage.removeItem('user')
+    sessionStorage.removeItem('User')
     window.location = "/";
   }
 
