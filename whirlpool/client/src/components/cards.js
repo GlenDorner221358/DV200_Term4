@@ -19,67 +19,84 @@ const HomeQuestion = (props) => {
         setVotes(votes + 1);
         setLikes(likes + 1);
 
+        console.log(props)
         //test
         let payload = {
-            name: data.name,
-            title: data.title,
-            question: data.question,
+            name: props.name,
+            title: props.name,
+            question: props.question,
             tags: {
-                tagOne: data.tags.tagOne,
-                tagTwo: data.tags.tagTwo,
-                tagThree: data.tags.tagThree
+                tagOne: props.tagOne,
+                tagTwo: props.tagTwo,
+                tagThree: props.tagThree
             },
             votes: {
-                total: totalVotes,
-                likes: data.votes.likes,
-                dislikes: data.votes.dislikes
+                total: votes,
+                likes: likes,
+                dislikes: props.dislikes
             }
         }
 
-        Axios.patch('http://localhost:5000/api/updateProduct/' + props._id, payload)
-        .then(res => {
-            if (res) {
-              console.log("Like Updated")
-              props.close();
-            }
-          })
-          .catch(function (error) {
-            console.log(error);
-          })
+        Axios.patch('http://localhost:5001/api/updateQuestion/' + props.productId, payload)
+            .then(res => {
+                if (res) {
+                    console.log("Like Updated")
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
 
     };
 
     const handleDislike = async () => {
         setVotes(votes + 1);
         setDislikes(dislikes + 1);
-        
 
-        try {
-            await Axios.patch('http://localhost:5001/api/updateQuestion/', {
-                questionId: props.id,
-                change: 'dislikes'
-            });
-        } catch (error) {
-            console.error('Failed to update votes:', error);
+        let payload = {
+            name: props.name,
+            title: props.name,
+            question: props.question,
+            tags: {
+                tagOne: props.tagOne,
+                tagTwo: props.tagTwo,
+                tagThree: props.tagThree
+            },
+            votes: {
+                total: votes,
+                likes: props.likes,
+                dislikes: dislikes
+            }
         }
+
+        Axios.patch('http://localhost:5001/api/updateQuestion/' + props.productId, payload)
+            .then(res => {
+                if (res) {
+                    console.log("Like Updated")
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+
     };
 
 
     return (
-        <Card style={{ margin: "2%" , width: "100%" }}>
-            <Card.Header style={{backgroundColor: "white"}}>{props.name}</Card.Header>
+        <Card style={{ margin: "2%", width: "100%" }}>
+            <Card.Header style={{ backgroundColor: "white" }}>{props.name}</Card.Header>
             <Card.Body>
                 <div className={styles.cardLeft}>
                     <Figure>
-                    <div style={{width:"50px", height:"30px"}}>
+                        <div style={{ width: "50px", height: "30px" }}>
                             <Figure.Caption style={{ display: "inline", padding: "10px" }} >{votes}</Figure.Caption>
                             <Figure.Image style={{ display: "inline" }} alt="votes icon" width="14px" height="14px" src={VoteImage} />
                         </div>
-                        <div style={{width:"50px", height:"30px"}} onClick={handleLike}>
+                        <div style={{ width: "50px", height: "30px" }} onClick={handleLike}>
                             <Figure.Caption style={{ display: "inline", padding: "10px" }}>{likes}</Figure.Caption>
                             <Figure.Image style={{ display: "inline" }} alt="likes icon" width="14px" height="14px" src={LikeImage} />
                         </div>
-                        <div style={{width:"50px", height:"30px"}} onClick={handleDislike}>
+                        <div style={{ width: "50px", height: "30px" }} onClick={handleDislike}>
                             <Figure.Caption style={{ display: "inline", padding: "10px" }}>{dislikes}</Figure.Caption>
                             <Figure.Image style={{ display: "inline" }} alt="dislikes icon" width="14px" height="14px" src={DislikeImage} />
                         </div>

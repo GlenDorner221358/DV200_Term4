@@ -76,8 +76,8 @@ router.patch('/api/updateQuestion/:id', async (req, res) => {
                     },
                     votes: {
                         total: totalVotes,
-                        likes: data.votes.likes,
-                        dislikes: data.votes.dislikes
+                        likes: totalLikes,
+                        dislikes: totalDisikes
                     }
                 }
             },

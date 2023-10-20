@@ -2,8 +2,8 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/esm/Button';
-import { useState, useEffect } from "react";
-import Axios from 'axios'
+// import { useState, useEffect } from "react";
+// import Axios from 'axios'
 
 function BasicNav() {
   const user = sessionStorage.getItem("User")
