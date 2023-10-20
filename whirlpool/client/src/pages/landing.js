@@ -1,34 +1,32 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from 'axios'
-
 import BasicNav from '../components/navbar';
 import HomeQuestion from "../components/cards";
 import styles from './css/landing.module.css'
-
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 
-
 function Landing() {
-
-    //Read Questions
 const [product, setProducts] = useState();
 const [updateProducts, setUpdateProducts] = useState(false);
+const [searchTerm, setSearchTerm] = useState("");
 
 useEffect(() => {
     axios.get('http://localhost:5001/api/allQuestions')
         .then(res => {
             let productData = res.data;
-            let renderProducts = productData.map((item) => <HomeQuestion key={item._id} productId={item._id} name={item.name} title={item.title} question={item.question} total={item.votes.total} likes={item.votes.likes} dislikes={item.votes.dislikes} tagOne={item.tags.tagOne} tagTwo={item.tags.tagTwo} tagThree={item.tags.tagThree} editRender={setUpdateProducts} />);
+            let renderProducts = productData
+            .filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase()) || item.question.toLowerCase().includes(searchTerm.toLowerCase()))
+            .map((item) => <HomeQuestion key={item._id} productId={item._id} name={item.name} title={item.title} question={item.question} total={item.votes.total} likes={item.votes.likes} dislikes={item.votes.dislikes} tagOne={item.tags.tagOne} tagTwo={item.tags.tagTwo} tagThree={item.tags.tagThree} editRender={setUpdateProducts} />);
             setProducts(renderProducts);
             setUpdateProducts(false);
         })
         .catch(err => console.log(err))
-}, [updateProducts])
+}, [updateProducts, searchTerm])
 
     return (
         <div>
@@ -43,12 +41,11 @@ useEffect(() => {
                                 <Col>
                                     <Form.Control
                                         type="text"
-                                        placeholder="Search Topics"
+                                        placeholder="Search..."
+                                        value={searchTerm}
                                         className=" mr-sm-2"
+                                        onChange={(e) => setSearchTerm(e.target.value)}
                                     />
-                                </Col>
-                                <Col>
-                                    <Button type="submit">Submit</Button>
                                 </Col>
                             </Row>
                         </Form>
