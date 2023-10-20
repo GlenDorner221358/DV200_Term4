@@ -24,18 +24,24 @@ function Questions() {
 
   const [formValues, setFormValues] = useState(defaultFormVals);
 
+  const [selectedTag, setSelectedTag] = useState(null);
+
+  const clearTags = () => setSelectedTag(null); // Function to clear tags
 
   //Read Questions
   useEffect(() => {
+    console.log(selectedTag);
     axios.get('http://localhost:5001/api/allQuestions')
       .then(res => {
         let QuestionData = res.data;
-        let renderQuestions = QuestionData.map((item) => <HomeQuestion key={item._id} QuestionId={item._id} name={item.name} title={item.title} question={item.question} total={item.votes.total} likes={item.votes.likes} dislikes={item.votes.dislikes} tagOne={item.tags.tagOne} tagTwo={item.tags.tagTwo} tagThree={item.tags.tagThree} editRender={setUpdateQuestions} />);
+        let renderQuestions = QuestionData
+        .filter(item => selectedTag ? (item.tags.tagOne === selectedTag || item.tags.tagTwo === selectedTag || item.tags.tagThree === selectedTag) : true)
+        .map((item) => <HomeQuestion key={item._id} QuestionId={item._id} name={item.name} title={item.title} question={item.question} total={item.votes.total} likes={item.votes.likes} dislikes={item.votes.dislikes} tagOne={item.tags.tagOne} tagTwo={item.tags.tagTwo} tagThree={item.tags.tagThree} editRender={setUpdateQuestions} />);
         setQuestions(renderQuestions);
         setUpdateQuestions(false);
       })
       .catch(err => console.log(err))
-  }, [updateQuestions])
+  }, [updateQuestions, selectedTag]) // added selectedTag to the dependency array
 
   return (
     <>
@@ -46,7 +52,7 @@ function Questions() {
       <div className={styles.main_container}>
 
         <div className={styles.left_panel}>
-          <Tagcard />
+          <Tagcard onTagClick={setSelectedTag} onClearTags={clearTags} /> 
         </div>
         <div className={styles.questions_section}>
           <div className={styles.top_container}>

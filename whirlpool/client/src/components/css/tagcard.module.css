@@ -1,9 +1,7 @@
-/* .space{
-    width: 100px;
-    height: 10px;
-    background: red;
-} */
-
 .spacer{
     margin: 1%;
+}
+
+.spacer:focus{
+    background-color: red;
 }
