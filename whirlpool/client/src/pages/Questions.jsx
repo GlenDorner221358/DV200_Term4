@@ -24,9 +24,13 @@ function Questions() {
 
   const [formValues, setFormValues] = useState(defaultFormVals);
 
+  const [selectedTag, setSelectedTag] = useState(null);
+
+  const clearTags = () => setSelectedTag(null); // Function to clear tags
 
   //Read Questions
   useEffect(() => {
+    console.log(selectedTag);
     axios.get('http://localhost:5001/api/allQuestions')
       .then(res => {
         let QuestionData = res.data;
@@ -35,7 +39,7 @@ function Questions() {
         setUpdateQuestions(false);
       })
       .catch(err => console.log(err))
-  }, [updateQuestions])
+  }, [updateQuestions, selectedTag]) // added selectedTag to the dependency array
 
   return (
     <>
@@ -46,7 +50,7 @@ function Questions() {
       <div className={styles.main_container}>
 
         <div className={styles.left_panel}>
-          <Tagcard />
+          <Tagcard onTagClick={setSelectedTag} onClearTags={clearTags} /> 
         </div>
         <div className={styles.questions_section}>
           <div className={styles.top_container}>
