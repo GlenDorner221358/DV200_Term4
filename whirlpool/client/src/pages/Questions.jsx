@@ -30,7 +30,7 @@ function Questions() {
     axios.get('http://localhost:5001/api/allQuestions')
       .then(res => {
         let QuestionData = res.data;
-        let renderQuestions = QuestionData.map((item) => <HomeQuestion key={item._id} QuestionId={item._id} name={item.name} title={item.title} question={item.question} total={item.votes.total} likes={item.votes.likes} dislikes={item.votes.dislikes} tagOne={item.tags.tagOne} tagTwo={item.tags.tagTwo} tagThree={item.tags.tagThree} editRender={setUpdateQuestions} />);
+        let renderQuestions = QuestionData.map((item) => <HomeQuestion key={item._id} productId={item._id} name={item.name} title={item.title} question={item.question} total={item.votes.total} likes={item.votes.likes} dislikes={item.votes.dislikes} tagOne={item.tags.tagOne} tagTwo={item.tags.tagTwo} tagThree={item.tags.tagThree} editRender={setUpdateQuestions} />);
         setQuestions(renderQuestions);
         setUpdateQuestions(false);
       })

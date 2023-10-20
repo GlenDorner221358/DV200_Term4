@@ -9,6 +9,7 @@ const Signup = () => {
 		lastName: "",
 		email: "",
 		password: "",
+		profilePic: "user.png" // Default profile picture
 	});
 	const [error, setError] = useState("");
 	const navigate = useNavigate();

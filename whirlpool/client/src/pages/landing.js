@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Axios from 'axios'
+import axios from 'axios'
 
 import BasicNav from '../components/navbar';
 import HomeQuestion from "../components/cards";
@@ -20,7 +20,7 @@ const [product, setProducts] = useState();
 const [updateProducts, setUpdateProducts] = useState(false);
 
 useEffect(() => {
-    Axios.get('http://localhost:5001/api/allQuestions')
+    axios.get('http://localhost:5001/api/allQuestions')
         .then(res => {
             let productData = res.data;
             let renderProducts = productData.map((item) => <HomeQuestion key={item._id} productId={item._id} name={item.name} title={item.title} question={item.question} total={item.votes.total} likes={item.votes.likes} dislikes={item.votes.dislikes} tagOne={item.tags.tagOne} tagTwo={item.tags.tagTwo} tagThree={item.tags.tagThree} editRender={setUpdateProducts} />);

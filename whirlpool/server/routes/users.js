@@ -54,8 +54,11 @@ router.get('/api/allUsers', async (req, res) => {
 })
 
 // find user by email
-router.get('/api/users:email', async (req, res) => {
-    const findUser = await User.findByEmail(req.params.email)
+router.get('/api/users/:email', async (req, res) => {
+    const findUser = await User.findOne({ email: req.params.email })
+    if (!findUser) {
+        return res.status(404).json({ message: "User not found." });
+    }
     res.json(findUser)
 })
 
@@ -63,7 +66,7 @@ router.get('/api/users:email', async (req, res) => {
 router.put('/api/updateUserImg/:email', async(req, res) => {
     console.log(req.body)
 
-    const findProduct = await User.updateOne(
+    const findUser = await User.updateOne(
         { email: req.params.email }, 
         {$set: {
            profilePic: req.body.profilePic
