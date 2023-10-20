@@ -23,9 +23,7 @@ useEffect(() => {
     Axios.get('http://localhost:5001/api/allQuestions')
         .then(res => {
             let productData = res.data;
-            let slicedArray = [];
-            slicedArray = productData.slice(0, 4);
-            let renderProducts = slicedArray.map((item) => <HomeQuestion key={item._id} productId={item._id} name={item.name} title={item.title} question={item.question} total={item.votes.total} likes={item.votes.likes} dislikes={item.votes.dislikes} tagOne={item.tags.tagOne} tagTwo={item.tags.tagTwo} tagThree={item.tags.tagThree} editRender={setUpdateProducts} />);
+            let renderProducts = productData.map((item) => <HomeQuestion key={item._id} productId={item._id} name={item.name} title={item.title} question={item.question} total={item.votes.total} likes={item.votes.likes} dislikes={item.votes.dislikes} tagOne={item.tags.tagOne} tagTwo={item.tags.tagTwo} tagThree={item.tags.tagThree} editRender={setUpdateProducts} />);
             setProducts(renderProducts);
             setUpdateProducts(false);
         })
