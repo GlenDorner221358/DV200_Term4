@@ -4,7 +4,7 @@ import './css/profile.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useState, useEffect } from "react";
-import Axios from 'axios'
+import axios from 'axios'
 
 function Profile() {
     const [imageName, setImageName] = useState("Name of file")
@@ -13,13 +13,16 @@ function Profile() {
     const [userData, setUserData] = useState(); 
 
     useEffect(() => {
-        Axios.get('http://localhost:5001/api/users:' + userMail)
-            .then(res => {
-                let data = res.data;
-                setUserData(data);
-            })
-            .catch(err => console.log(err))
-    })
+        if (userMail) {
+            axios.get('http://localhost:5001/api/users:' + userMail)
+                .then(res => {
+                    let data = res.data;
+                    setUserData(data);
+                    console.log(data)
+                })
+                .catch(err => console.log(err))
+        }
+    }, [userMail])
 
     const getImage = (e) => {
         //This is where Multer comes in
@@ -44,7 +47,7 @@ function Profile() {
 
         payloadData.append("image", userImage);
 
-        Axios.put("http://localhost:5000/api/users:", payloadData)
+        axios.put("http://localhost:5001/api/users/", payloadData)
             .then((res) => {
                 if (res) {
                     console.log("Item Added");
@@ -61,20 +64,20 @@ function Profile() {
             {/* Profile front end provided by bootdey for free use */}
             {/* Code was still tweaked and edited by us of course */}
 
-            <div class="container" id="bababooie">
-                <div class="main-body">
+            <div className="container" id="bababooie">
+                <div className="main-body">
                 <h1> Your profile: </h1>
-                    <div class="row gutters-sm">
-                        <div class="col-md-4 mb-3">
-                        <div class="cardEspesiale">
-                            <div class="card-body">
-                            <div class="d-flex flex-column align-items-center text-center">
+                    <div className="row gutters-sm">
+                        <div className="col-md-4 mb-3">
+                        <div className="cardEspesiale">
+                            <div className="card-body">
+                            <div className="d-flex flex-column align-items-center text-center">
                                 <img
-                                //  src={userData.profilePic} 
-                                 alt="not working :(" class="rounded-circle" width="150" height="150px" style={{marginTop:"5%"}}/>
-                                <div class="mt-3">
+                                 src={userData?.profilePic} 
+                                 alt="User" className="rounded-circle" width="150" height="150px" style={{marginTop:"5%"}}/>
+                                <div className="mt-3">
                                 <h4>
-                                    {/* {userData.firstName} */}
+                                    {userData?.firstName}
                                 </h4>
 
                                 </div>
@@ -82,58 +85,58 @@ function Profile() {
                             </div>
                         </div>
                         </div>
-                        <div class="col-md-8">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                <h6 class="mb-0">Name</h6>
+                        <div className="col-md-8">
+                        <div className="card mb-3">
+                            <div className="card-body">
+                            <div className="row">
+                                <div className="col-sm-3">
+                                <h6 className="mb-0">Name</h6>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
-                                {/* {userData.firstName} */}
-                                </div>
-                            </div>
-                            <hr />
-                            <div class="row">
-                                <div class="col-sm-3">
-                                <h6 class="mb-0">Surname</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                {/* {userData.lastName} */}
+                                <div className="col-sm-9 text-secondary">
+                                {userData?.firstName}
                                 </div>
                             </div>
                             <hr />
-                            <div class="row">
-                                <div class="col-sm-3">
-                                <h6 class="mb-0">Email</h6>
+                            <div className="row">
+                                <div className="col-sm-3">
+                                <h6 className="mb-0">Surname</h6>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
-                                {/* {userData.email} */}
+                                <div className="col-sm-9 text-secondary">
+                                {userData?.lastName}
                                 </div>
                             </div>
                             <hr />
-                            <div class="row">
-                                <div class="col-sm-3">
-                                <h6 class="mb-0">Questions asked</h6>
+                            <div className="row">
+                                <div className="col-sm-3">
+                                <h6 className="mb-0">Email</h6>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
+                                <div className="col-sm-9 text-secondary">
+                                {userData?.email}
+                                </div>
+                            </div>
+                            <hr />
+                            <div className="row">
+                                <div className="col-sm-3">
+                                <h6 className="mb-0">Questions asked</h6>
+                                </div>
+                                <div className="col-sm-9 text-secondary">
                                 123456789
                                 </div>
                             </div>
                             <hr />
-                            <div class="row">
-                                <div class="col-sm-3">
-                                <h6 class="mb-0">Achievements</h6>
+                            <div className="row">
+                                <div className="col-sm-3">
+                                <h6 className="mb-0">Achievements</h6>
                                 </div>
-                                <div class="col-sm-9 text-secondary">
-                                    <img src="https://i.ytimg.com/vi/8Scm09bwT_s/hqdefault.jpg" alt="Admin" class="rounded-circle achievement" width="50" />
-                                    <img src="https://i.ytimg.com/vi/8Scm09bwT_s/hqdefault.jpg" alt="Admin" class="rounded-circle achievement" width="50" />
-                                    <img src="https://i.ytimg.com/vi/8Scm09bwT_s/hqdefault.jpg" alt="Admin" class="rounded-circle achievement" width="50" />
+                                <div className="col-sm-9 text-secondary">
+                                    <img src="https://i.ytimg.com/vi/8Scm09bwT_s/hqdefault.jpg" alt="Admin" className="rounded-circle achievement" width="50" />
+                                    <img src="https://i.ytimg.com/vi/8Scm09bwT_s/hqdefault.jpg" alt="Admin" className="rounded-circle achievement" width="50" />
+                                    <img src="https://i.ytimg.com/vi/8Scm09bwT_s/hqdefault.jpg" alt="Admin" className="rounded-circle achievement" width="50" />
                                 </div>
                             </div>
                             <hr />
-                            <div class="row">
-                                <div class="col-sm-12">
+                            <div className="row">
+                                <div className="col-sm-12">
                                 <Form onSubmit={changeImg} style={{ marginTop: "2%", marginLeft: "auto", marginRight: "auto" }}>
                                 <Form.Group controlId="formFile" className="mb-3" style={{ display: "inline-block", width: "100%" }}>
                                     <Form.Control type="file" style={{ marginBottom: "2%" }} onChange={getImage} />
@@ -159,35 +162,35 @@ function Profile() {
 
 
             {/* Start of previous questions code */}
-            <div class="content questions">
-                <div class="container">
+            <div className="content questions">
+                <div className="container">
                 <h1> Your Questions: </h1>
-                    <div class="row">                     
-                        <div class="col-lg-4">
-                            <div class="text-center card-box">
-                                <div class="member-card pt-2 pb-2">
-                                    <div class="">
+                    <div className="row">                     
+                        <div className="col-lg-4">
+                            <div className="text-center card-box">
+                                <div className="member-card pt-2 pb-2">
+                                    <div className="">
                                         <h3>Why does my wiewie itch??</h3>
-                                        <p class="text-muted"> Like the title states, my weenor is eetchee and... </p>
+                                        <p className="text-muted"> Like the title states, my weenor is eetchee and... </p>
                                     </div>
-                                    <div class="mt-4">
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <div class="mt-3">
+                                    <div className="mt-4">
+                                        <div className="row">
+                                            <div className="col-4">
+                                                <div className="mt-3">
                                                     <h4>7421</h4>
-                                                    <p class="mb-0 text-muted">Score</p>
+                                                    <p className="mb-0 text-muted">Score</p>
                                                 </div>
                                             </div>
-                                            <div class="col-4">
-                                                <div class="mt-3">
+                                            <div className="col-4">
+                                                <div className="mt-3">
                                                     <h4>14754</h4>
-                                                    <p class="mb-0 text-muted">Replies</p>
+                                                    <p className="mb-0 text-muted">Replies</p>
                                                 </div>
                                             </div>
-                                            <div class="col-4">
-                                                <div class="mt-3">
+                                            <div className="col-4">
+                                                <div className="mt-3">
                                                     <h4>11525</h4>
-                                                    <p class="mb-0 text-muted">Likes</p>
+                                                    <p className="mb-0 text-muted">Likes</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -195,31 +198,31 @@ function Profile() {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="text-center card-box">
-                                <div class="member-card pt-2 pb-2">
-                                    <div class="">
+                        <div className="col-lg-4">
+                            <div className="text-center card-box">
+                                <div className="member-card pt-2 pb-2">
+                                    <div className="">
                                         <h3>What did my dad just say?</h3>
-                                        <p class="text-muted"> I had my earphones in couldnt hear him :( </p>
+                                        <p className="text-muted"> I had my earphones in couldnt hear him :( </p>
                                     </div>
-                                    <div class="mt-4">
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <div class="mt-3">
+                                    <div className="mt-4">
+                                        <div className="row">
+                                            <div className="col-4">
+                                                <div className="mt-3">
                                                     <h4>7421</h4>
-                                                    <p class="mb-0 text-muted">Score</p>
+                                                    <p className="mb-0 text-muted">Score</p>
                                                 </div>
                                             </div>
-                                            <div class="col-4">
-                                                <div class="mt-3">
+                                            <div className="col-4">
+                                                <div className="mt-3">
                                                     <h4>14754</h4>
-                                                    <p class="mb-0 text-muted">Replies</p>
+                                                    <p className="mb-0 text-muted">Replies</p>
                                                 </div>
                                             </div>
-                                            <div class="col-4">
-                                                <div class="mt-3">
+                                            <div className="col-4">
+                                                <div className="mt-3">
                                                     <h4>11525</h4>
-                                                    <p class="mb-0 text-muted">Likes</p>
+                                                    <p className="mb-0 text-muted">Likes</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -227,31 +230,31 @@ function Profile() {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="text-center card-box">
-                                <div class="member-card pt-2 pb-2">
-                                    <div class="">
+                        <div className="col-lg-4">
+                            <div className="text-center card-box">
+                                <div className="member-card pt-2 pb-2">
+                                    <div className="">
                                         <h3>What is deez?</h3>
-                                        <p class="text-muted"> Hello fellow redditors, I have had many people ask... </p>
+                                        <p className="text-muted"> Hello fellow redditors, I have had many people ask... </p>
                                     </div>
-                                    <div class="mt-4">
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <div class="mt-3">
+                                    <div className="mt-4">
+                                        <div className="row">
+                                            <div className="col-4">
+                                                <div className="mt-3">
                                                     <h4>7421</h4>
-                                                    <p class="mb-0 text-muted">Score</p>
+                                                    <p className="mb-0 text-muted">Score</p>
                                                 </div>
                                             </div>
-                                            <div class="col-4">
-                                                <div class="mt-3">
+                                            <div className="col-4">
+                                                <div className="mt-3">
                                                     <h4>14754</h4>
-                                                    <p class="mb-0 text-muted">Replies</p>
+                                                    <p className="mb-0 text-muted">Replies</p>
                                                 </div>
                                             </div>
-                                            <div class="col-4">
-                                                <div class="mt-3">
+                                            <div className="col-4">
+                                                <div className="mt-3">
                                                     <h4>11525</h4>
-                                                    <p class="mb-0 text-muted">Likes</p>
+                                                    <p className="mb-0 text-muted">Likes</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -262,15 +265,15 @@ function Profile() {
                     </div>
 
                     {/* Pages */}
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="text-right">
-                                <ul class="pagination pagination-split mt-0 float-right pages">
-                                    <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span> <span class="sr-only">Previous</span></a></li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span> <span class="sr-only">Next</span></a></li>
+                    <div className="row">
+                        <div className="col-12">
+                            <div className="text-right">
+                                <ul className="pagination pagination-split mt-0 float-right pages">
+                                    <li className="page-item"><a className="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span> <span className="sr-only">Previous</span></a></li>
+                                    <li className="page-item active"><a className="page-link" href="#">1</a></li>
+                                    <li className="page-item"><a className="page-link" href="#">2</a></li>
+                                    <li className="page-item"><a className="page-link" href="#">3</a></li>
+                                    <li className="page-item"><a className="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span> <span className="sr-only">Next</span></a></li>
                                 </ul>
                             </div>
                         </div>

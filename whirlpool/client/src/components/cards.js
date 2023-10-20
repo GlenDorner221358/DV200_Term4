@@ -55,6 +55,37 @@ const HomeQuestion = (props) => {
                 .catch(function (error) {
                     console.log(error);
                 })
+                
+        } else if (isLiked && !isDisliked) {
+            setVotes(votes - 1);
+            setLikes(likes - 1);
+            setIsLiked(false);
+
+            let payload = {
+                name: props.name,
+                title: props.name,
+                question: props.question,
+                tags: {
+                    tagOne: props.tagOne,
+                    tagTwo: props.tagTwo,
+                    tagThree: props.tagThree
+                },
+                votes: {
+                    total: votes,
+                    likes: likes,
+                    dislikes: props.dislikes
+                }
+            }
+
+            Axios.patch('http://localhost:5001/api/updateQuestion/' + props.productId, payload)
+                .then(res => {
+                    if (res) {
+                        console.log("Like Updated")
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
         }
     };
 
@@ -63,6 +94,37 @@ const HomeQuestion = (props) => {
             setVotes(votes + 1);
             setDislikes(dislikes + 1);
             setIsDisliked(true);
+
+            let payload = {
+                name: props.name,
+                title: props.name,
+                question: props.question,
+                tags: {
+                    tagOne: props.tagOne,
+                    tagTwo: props.tagTwo,
+                    tagThree: props.tagThree
+                },
+                votes: {
+                    total: votes,
+                    likes: props.likes,
+                    dislikes: dislikes
+                }
+            }
+
+            Axios.patch('http://localhost:5001/api/updateQuestion/' + props.productId, payload)
+                .then(res => {
+                    if (res) {
+                        console.log("Dislike Updated")
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+
+        } else if (isDisliked && !isLiked) {
+            setVotes(votes - 1);
+            setDislikes(dislikes - 1);
+            setIsDisliked(false);
 
             let payload = {
                 name: props.name,

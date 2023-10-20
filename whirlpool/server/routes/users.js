@@ -65,13 +65,14 @@ router.get('/api/users/:email', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: "Error: ", details: error.message });
     }
+
 })
 
 // update users profile pic by email
 router.put('/api/updateUserImg/:email', async(req, res) => {
     console.log(req.body)
 
-    const findProduct = await User.updateOne(
+    const findUser = await User.updateOne(
         { email: req.params.email }, 
         {$set: {
            profilePic: req.body.profilePic
