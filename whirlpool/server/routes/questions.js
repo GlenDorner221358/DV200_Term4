@@ -41,13 +41,16 @@ router.get('/api/allQuestions', async (req, res) => {
     }
 });
 
-// Single Question
+// Single Question by ID
 router.get('/api/singleQuestion/:id', async (req, res) => {
     try {
-        const findQuestion = await QuestionSchema.findById(req.params.id);
-        res.json(findQuestion);
+        const question = await QuestionSchema.findById(req.params.id);
+        if (!question) {
+            return res.status(404).json({ error: "Question not found" });
+        }
+        res.json(question);
     } catch (error) {
-        res.status(404).json({ error: "Question not found", details: error.message });
+        res.status(500).json({ error: "There was an error", details: error.message });
     }
 });
 

@@ -154,6 +154,35 @@ const HomeQuestion = (props) => {
         }
     };
 
+    const handleSingle = () => {
+        // Get the id of the question
+        const question = {
+            id: props.productId,
+            name: props.name,
+            title: props.title,
+            question: props.question,
+            tags: {
+                tagOne: props.tagOne,
+                tagTwo: props.tagTwo,
+                tagThree: props.tagThree
+            },
+            votes: {
+                total: votes,
+                likes: props.likes,
+                dislikes: props.dislikes
+            }
+        };
+        console.log(question)
+
+        // Store the question in session storage
+        sessionStorage.setItem('question', JSON.stringify(question));
+
+        // Redirect the user to the single screen
+        window.location.href = '/single';
+    };
+
+
+
     return (
         <Card style={{ margin: "2%", width: "100%" }}>
             <Card.Header style={{ backgroundColor: "white" }}>{props.name}</Card.Header>
@@ -179,7 +208,7 @@ const HomeQuestion = (props) => {
                     <Card.Text >
                         {props.question}
                     </Card.Text>
-                    <Button style={{ float: "right" }} href="/single">View Question</Button>
+                    <Button style={{ float: "right" }} onClick={handleSingle}>View Question</Button>
                 </div>
             </Card.Body>
         </Card >

@@ -4,6 +4,7 @@ const { User } = require("../models/users");
 const Joi = require('joi');
 const bcrypt = require('bcrypt');
 
+// Create a new user
 router.post("/", async (req, res) => {
 	try {
 		const { error } = validate(req.body);
@@ -29,6 +30,12 @@ router.post("/", async (req, res) => {
 	}
 });
 
+// Read all users
+router.get("/api/users/", async (req, res) => {
+	const findUsers = await User.find();
+	res.json(findUsers)
+});
+
 const validate = (data) => {
 	const schema = Joi.object({
 		email: Joi.string().email().required().label("Email"),
@@ -36,18 +43,6 @@ const validate = (data) => {
 	});
 	return schema.validate(data);
 };
-
-// find a user based on their email
-router.get("/user", async (req, res) => {
-	try {
-		const user = await User.findOne({ email: req.body.email });
-		if (!user)
-			return res.status(404).send({ message: "User not found." });
-		res.json(user);
-	} catch (error) {
-		res.status(500).json({ error: "Error: ", details: error.message });
-	}
-});
 
 
 module.exports = router;

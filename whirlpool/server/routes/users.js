@@ -5,7 +5,10 @@ const bcrypt = require("bcrypt")
 const multer = require('multer')
 const path = require('path')
 
-//Multer Middleware Prep
+
+// NONE OF THIS WORKS 
+
+// Multer Middleware Prep
 const userImgStore = multer.diskStorage({
     destination: ( req, file, callBack ) => {
         callBack(null, path.join( __dirname, '../userImages'));
@@ -20,7 +23,7 @@ const userImgStore = multer.diskStorage({
 //Run Middleware
 const uploadUserImage = multer({storage: userImgStore});
 
-router.post("/", uploadUserImage.single('image'), async (req, res) => {
+router.post("/api/users", uploadUserImage.single('image'), async (req, res) => {
     try {
         const { error } = validate(req.body)
         if (error) {
@@ -44,7 +47,7 @@ router.post("/", uploadUserImage.single('image'), async (req, res) => {
 })
 
 // read all users
-router.get('/api/allUsers', async (req, res) => {
+router.get('/api/users/', async (req, res) => {
     try {
         const findUsers = await User.find();
         res.json(findUsers);
@@ -53,9 +56,8 @@ router.get('/api/allUsers', async (req, res) => {
     }
 })
 
-
 // find user by email
-router.get('/api/users/:email', async (req, res) => {
+router.get('/api/singleUser/:email', async (req, res) => {
     try {
         const user = await User.findOne({ email: req.params.email });
         if (!user) {

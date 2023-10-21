@@ -10,7 +10,7 @@ function BasicNav() {
   const user = sessionStorage.getItem("User")
 
   useEffect(() => {
-    Axios.get("http://localhost:5001/api/auth/user", {
+    Axios.get("http://localhost:5001/api/singleUser/" + JSON.stringify(user), {
       headers: {
         "x-auth-token": localStorage.getItem("token"),
       },
