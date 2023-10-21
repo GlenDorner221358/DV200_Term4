@@ -18,9 +18,12 @@ app.use(express.urlencoded({ extended: false }))
 
 app.use(QuestionRoutes)
 app.use(CommentRoutes)
+
 app.use("/api/users", userRoutes)
 app.use("/api/auth", authRoutes)
 
+app.use(userRoutes)
+app.use(authRoutes)
 //Connect to DB
 mongoose.connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,
