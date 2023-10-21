@@ -32,9 +32,30 @@ router.post('/api/newQuestion', async (req, res) => {
 });
 
 // Get Questions
+// router.get('/api/allQuestions', async (req, res) => {
+//     try {
+//         const findQuestions = await QuestionSchema.find();
+//         res.json(findQuestions);
+//     } catch (error) {
+//         res.status(500).json({ error: "There was an error", details: error.message });
+//     }
+// });
+
+// Get Questions
 router.get('/api/allQuestions', async (req, res) => {
     try {
-        const findQuestions = await QuestionSchema.find();
+        let findQuestions;
+        if (req.query.tag) {
+            findQuestions = await QuestionSchema.find({
+                $or: [
+                    { 'tags.tagOne': req.query.tag },
+                    { 'tags.tagTwo': req.query.tag },
+                    { 'tags.tagThree': req.query.tag }
+                ]
+            });
+        } else {
+            findQuestions = await QuestionSchema.find();
+        }
         res.json(findQuestions);
     } catch (error) {
         res.status(500).json({ error: "There was an error", details: error.message });

@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+<<<<<<< Updated upstream
 
 function Landing() {
 const [product, setProducts] = useState();
@@ -27,6 +28,27 @@ useEffect(() => {
         })
         .catch(err => console.log(err))
 }, [updateProducts, searchTerm])
+=======
+function Landing() {
+
+    //Read Questions
+    const [product, setProducts] = useState();
+    const [updateProducts, setUpdateProducts] = useState(false);
+    const [selectedTag, setSelectedTag] = useState(null);
+
+    useEffect(() => {
+        Axios.get(`http://localhost:5001/api/allQuestions?tag=${selectedTag || ''}`)
+            .then(res => {
+                let productData = res.data;
+                let slicedArray = [];
+                slicedArray = productData.slice(0, 4);
+                let renderProducts = slicedArray.map((item) => <HomeQuestion key={item._id} productId={item._id} name={item.name} title={item.title} question={item.question} total={item.votes.total} likes={item.votes.likes} dislikes={item.votes.dislikes} tagOne={item.tags.tagOne} tagTwo={item.tags.tagTwo} tagThree={item.tags.tagThree} editRender={setUpdateProducts} />);
+                setProducts(renderProducts);
+                setUpdateProducts(false);
+            })
+            .catch(err => console.log(err))
+    }, [updateProducts, selectedTag])
+>>>>>>> Stashed changes
 
     return (
         <div>
@@ -60,31 +82,33 @@ useEffect(() => {
                 <div className={styles.right_col}>
                     <Form>
                         <Form.Label><b>Filter by tags:</b></Form.Label>
-                        <Form.Check // prettier-ignore
-                            type="checkbox"
-                            label="AllTags"
-                        />
-                        <Form.Check // prettier-ignore
+                        <Form.Check 
                             type="checkbox"
                             label="React"
+                            onChange={() => setSelectedTag('React')}
                         />
-                        <Form.Check // prettier-ignore
+                        <Form.Check 
                             type="checkbox"
                             label="Bootstrap"
+                            onChange={() => setSelectedTag('Bootstrap')}
                         />
-                        <Form.Check // prettier-ignore
+                        <Form.Check 
                             type="checkbox"
                             label="JavaScript"
-                        /><Form.Check // prettier <Form.Check // prettier-ignore
+                            onChange={() => setSelectedTag('JavaScript')}
+                        />
+                        <Form.Check 
                             type="checkbox"
                             label="Python"
+                            onChange={() => setSelectedTag('Python')}
                         />
-                        <Form.Check // prettier-ignore
+                        <Form.Check 
                             type="checkbox"
                             label="Insomnia"
+                            onChange={() => setSelectedTag('Insomnia')}
                         /><br />
-                        <Button variant="primary" type="submit">
-                            Submit
+                        <Button variant="primary" type="submit" onClick={() => setSelectedTag(null)}>
+                            Clear
                         </Button>
                     </Form>
 
