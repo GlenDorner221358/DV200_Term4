@@ -1,6 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
+<<<<<<< Updated upstream
 import axios from 'axios'
+=======
+import Axios from 'axios'
+
+>>>>>>> Stashed changes
 import BasicNav from '../components/navbar';
 import HomeQuestion from "../components/cards";
 import styles from './css/landing.module.css'
@@ -19,7 +24,7 @@ const [selectedTag, setSelectedTag] = useState(null);
 
     //Read Questions with search
 useEffect(() => {
-    axios.get('http://localhost:5001/api/allQuestions')
+    Axios.get('http://localhost:5001/api/allQuestions')
         .then(res => {
             let productData = res.data;
             let renderProducts = productData

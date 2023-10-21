@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
-import { Button, Modal, Form } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';//, Modal, Form
 import MyModal from '../components/createQuestionModal';
 
 import styles from '../pages/css/Questions.module.css'
@@ -20,10 +20,6 @@ function Questions() {
 
   const [Question, setQuestions] = useState();
   const [updateQuestions, setUpdateQuestions] = useState(false);
-
-  let defaultFormVals = ["name", "title", "question", "tagOne", "tagTwo", "tagThree"];
-
-  const [formValues, setFormValues] = useState(defaultFormVals);
 
 
   //Read Questions

@@ -1,11 +1,11 @@
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Figure from 'react-bootstrap/Figure';
 import VoteImage from '../icons/package.svg';
 import LikeImage from '../icons/thumbs-up.svg';
 import DislikeImage from '../icons/thumbs-down.svg';
-import { useState, useEffect } from "react";
-import axios from 'axios'
+// import { useState, useEffect } from "react";
+// import axios from 'axios'
 
 import styles from '../pages/css/single.css'
 
