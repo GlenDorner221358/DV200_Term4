@@ -45,6 +45,7 @@ function Questions() {
         setQuestions(renderQuestions);
         setUpdateQuestions(false);
       })
+      
       .catch(err => console.log(err))
 <<<<<<< Updated upstream
   }, [updateQuestions, selectedTag]) // added selectedTag to the dependency array
