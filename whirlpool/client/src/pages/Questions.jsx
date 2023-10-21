@@ -25,20 +25,11 @@ function Questions() {
 
   const [formValues, setFormValues] = useState(defaultFormVals);
 
-<<<<<<< Updated upstream
-  const [selectedTag, setSelectedTag] = useState(null);
 
-  const clearTags = () => setSelectedTag(null); // Function to clear tags
-
-  //Read Questions
-  useEffect(() => {
-    console.log(selectedTag);
-    axios.get('http://localhost:5001/api/allQuestions')
-=======
   //Read Questions
   useEffect(() => {
     axios.get(`http://localhost:5001/api/allQuestions?tag=${selectedTag || ''}`)
->>>>>>> Stashed changes
+
       .then(res => {
         let QuestionData = res.data;
         let renderQuestions = QuestionData.map((item) => <HomeQuestion key={item._id} productId={item._id} name={item.name} title={item.title} question={item.question} total={item.votes.total} likes={item.votes.likes} dislikes={item.votes.dislikes} tagOne={item.tags.tagOne} tagTwo={item.tags.tagTwo} tagThree={item.tags.tagThree} editRender={setUpdateQuestions} />);
@@ -47,11 +38,9 @@ function Questions() {
       })
       
       .catch(err => console.log(err))
-<<<<<<< Updated upstream
-  }, [updateQuestions, selectedTag]) // added selectedTag to the dependency array
-=======
+
   }, [updateQuestions, selectedTag])
->>>>>>> Stashed changes
+
 
   return (
     <>
@@ -61,11 +50,9 @@ function Questions() {
       <div className={styles.main_container}>
 
         <div className={styles.left_panel}>
-<<<<<<< Updated upstream
-          <Tagcard onTagClick={setSelectedTag} onClearTags={clearTags} /> 
-=======
+
           <Tagcard setSelectedTag={setSelectedTag} />
->>>>>>> Stashed changes
+
         </div>
         <div className={styles.questions_section}>
           <div className={styles.top_container}>

@@ -9,13 +9,15 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-<<<<<<< Updated upstream
 
 function Landing() {
 const [product, setProducts] = useState();
 const [updateProducts, setUpdateProducts] = useState(false);
 const [searchTerm, setSearchTerm] = useState("");
 
+const [selectedTag, setSelectedTag] = useState(null);
+
+    //Read Questions with search
 useEffect(() => {
     axios.get('http://localhost:5001/api/allQuestions')
         .then(res => {
@@ -28,16 +30,11 @@ useEffect(() => {
         })
         .catch(err => console.log(err))
 }, [updateProducts, searchTerm])
-=======
-function Landing() {
 
-    //Read Questions
-    const [product, setProducts] = useState();
-    const [updateProducts, setUpdateProducts] = useState(false);
-    const [selectedTag, setSelectedTag] = useState(null);
 
+    //Read Questions with tags
     useEffect(() => {
-        Axios.get(`http://localhost:5001/api/allQuestions?tag=${selectedTag || ''}`)
+        axios.get(`http://localhost:5001/api/allQuestions?tag=${selectedTag || ''}`)
             .then(res => {
                 let productData = res.data;
                 let slicedArray = [];
@@ -48,7 +45,6 @@ function Landing() {
             })
             .catch(err => console.log(err))
     }, [updateProducts, selectedTag])
->>>>>>> Stashed changes
 
     return (
         <div>
