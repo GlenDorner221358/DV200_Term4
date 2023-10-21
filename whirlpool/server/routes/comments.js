@@ -9,14 +9,14 @@ router.get('/api/allComments/', async (req, res) => {
 })
 
 // Get comments by questionTitle
-// router.get('/api/allComments', async (req, res) => {
-//     try {
-//         const findQuestions = await QuestionSchema.find();
-//         res.json(findQuestions);
-//     } catch (error) {
-//         res.status(500).json({ error: "There was an error", details: error.message });
-//     }
-// });
+router.get('/api/comments/:questionTitle', async (req, res) => {
+    try {
+        const findComments = await CommentSchema.find({ questionTitle: req.params.questionTitle });
+        res.json(findComments);
+    } catch (error) {
+        res.status(500).json({ error: "There was an error", details: error.message });
+    }
+});
 
 // Create new Comment
 router.post('/api/newComment/', async (req, res) => {
@@ -24,7 +24,7 @@ router.post('/api/newComment/', async (req, res) => {
         const data = req.body;
         
         const newComment = new CommentSchema({
-            questionTitle: data.title,
+            questionTitle: data.questionTitle,
             name: data.name,
             comment: data.comment,
             likes: 0

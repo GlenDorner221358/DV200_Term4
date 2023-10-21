@@ -17,7 +17,6 @@ function Single() {
             </div>
             
             <SingleComment />
-            <SingleComment />
         </div>
     );
 }
