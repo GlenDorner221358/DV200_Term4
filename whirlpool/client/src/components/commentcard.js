@@ -1,36 +1,82 @@
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Figure from 'react-bootstrap/Figure';
 import LikeImage from '../icons/thumbs-up.svg';
+import LikedImage from '../icons/thumbs-up-fill.svg';
 import { useState, useEffect } from "react";
 import axios from 'axios'
 
 import styles from '../pages/css/single.css'
 
-function SingleComment() {
+const SingleComment = (props) => {
     const question = JSON.parse(sessionStorage.getItem("question"));
     const queTitle = question.title;
     const [comments, setComments] = useState([]);
+    const [isLiked, setIsLiked] = useState(false);
+    const [likedCommentID, setLikedCommentID] = useState(null);
 
+    // gets comments based on the currently viewed question
     useEffect(() => {
         axios.get("http://localhost:5001/api/comments/" + queTitle)
         .then((res) => {
             setComments(res.data);
         })
         .catch(err => console.log(err))
-    }, []);
+    }, [queTitle]);
+
+    // handles the liking of comments
+    const handleLike = async (commentID, commentLikes) => {
+        if (!isLiked) {
+            commentLikes = commentLikes + 1
+            setIsLiked(true);
+            setLikedCommentID(commentID);
+    
+            let payload = {
+                likes: commentLikes
+            };
+    
+            axios.patch('http://localhost:5001/api/updateComment/' + commentID, payload)
+                .then(res => {
+                if (res) {
+                    console.log("Like Updated " + commentID);
+                }
+                })
+                .catch(function (error) {
+                console.log(error);
+                });
+        } else if (likedCommentID === commentID) {
+            commentLikes = commentLikes - 1
+            setIsLiked(false);
+            setLikedCommentID(null);
+    
+            let payload = {
+                likes: commentLikes
+            };
+    
+            axios.patch('http://localhost:5001/api/updateComment/' + commentID, payload)
+                .then(res => {
+                if (res) {
+                    console.log("Like Updated " + commentID);
+                }
+                })
+                .catch(function (error) {
+                console.log(error);
+                });
+        }
+    };
 
     return (
-        <div class="comment" style={{marginBottom: "2%"}}>
+        <div class="comment">
         {comments.map((comment) => (
-            <Card style={{marginLeft: "12%", marginRight: "12%"}}>
+            <Card style={{marginLeft: "12%", marginRight: "12%", marginBottom: "2%"}}>
                 <Card.Header>{comment.name}</Card.Header>
                 <Card.Body>
                     <div className={styles.cardLeft}>
                         <Figure>
                             <div class="left">
-                                <Figure.Caption style={{ display: "inline", padding: "5px" }}>{comment.likes}</Figure.Caption>
-                                <Figure.Image style={{ display: "inline"}} alt="likes icon" width="20px" height="20px" src={LikeImage} />
+                                <div style={{ width: "50px", height: "30px" }} onClick={() => handleLike(comment._id, comment.likes)}>
+                                    <Figure.Caption style={{ display: "inline", padding: "10px" }}>{comment.likes}</Figure.Caption>
+                                    <Figure.Image style={{ display: "inline" }} alt="likes icon" width="14px" height="14px" src={likedCommentID === comment._id ? LikedImage : LikeImage} />
+                                </div>
                             </div>
                         </Figure>
                     </div>
@@ -47,3 +93,4 @@ function SingleComment() {
 }
 
 export default SingleComment;
+

@@ -18,6 +18,31 @@ router.get('/api/comments/:questionTitle', async (req, res) => {
     }
 });
 
+//Update comment by ID
+router.patch('/api/updateComment/:id', async (req, res) => {
+    try {
+        const data = req.body;
+
+        const updatedComment = await CommentSchema.findByIdAndUpdate(
+            req.params.id,
+            {
+                $set: {
+                    likes: data.likes
+                }
+            },
+            { new: true } // Set new: true to return the updated document
+        );
+
+        if (!updatedComment) {
+            return res.status(404).json({ error: "Comment not found" });
+        }
+
+        res.json(updatedComment);
+    } catch (error) {
+        res.status(400).json({ error: "There is an error", details: error.message });
+    }
+});
+
 // Create new Comment
 router.post('/api/newComment/', async (req, res) => {
     try {

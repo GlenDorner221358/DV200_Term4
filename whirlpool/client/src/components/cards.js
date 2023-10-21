@@ -10,7 +10,7 @@ import LikedImage from '../icons/thumbs-up-fill.svg';
 import DislikeImage from '../icons/thumbs-down.svg';
 import DislikedImage from '../icons/thumbs-down-fill.svg';
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Axios from 'axios'
 
 import styles from '../pages/css/landing.module.css'
@@ -25,7 +25,9 @@ const HomeQuestion = (props) => {
     const [isDisliked, setIsDisliked] = useState(false);
 
     const handleLike = async () => {
-        if (!isLiked && !isDisliked) {
+        if (!sessionStorage.getItem('username')) {
+            window.location.href = '/login';
+        } else if (!isLiked && !isDisliked) {
             setVotes(votes + 1);
             setLikes(likes + 1);
             setIsLiked(true);
@@ -90,7 +92,9 @@ const HomeQuestion = (props) => {
     };
 
     const handleDislike = async () => {
-        if (!isDisliked && !isLiked) {
+        if (!sessionStorage.getItem('username')) {
+            window.location.href = '/login';
+        } else if (!isDisliked && !isLiked) {
             setVotes(votes + 1);
             setDislikes(dislikes + 1);
             setIsDisliked(true);
