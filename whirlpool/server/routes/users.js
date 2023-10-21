@@ -85,10 +85,3 @@ router.put('/api/updateUserImg/:email', async(req, res) => {
 
 //End
 module.exports = router
-
-
-
-
-
-
-

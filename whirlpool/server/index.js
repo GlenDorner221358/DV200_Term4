@@ -4,6 +4,7 @@ const app = express();
 const cors = require('cors')
 const mongoose = require('mongoose')
 const QuestionRoutes = require('./routes/questions')
+const CommentRoutes = require('./routes/comments')
 const userRoutes = require('./routes/users')
 const authRoutes = require('./routes/auth')
 
@@ -16,9 +17,13 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.use(QuestionRoutes)
+app.use(CommentRoutes)
+
 app.use("/api/users", userRoutes)
 app.use("/api/auth", authRoutes)
 
+app.use(userRoutes)
+app.use(authRoutes)
 //Connect to DB
 mongoose.connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,

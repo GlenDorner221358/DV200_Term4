@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
-import { Button, Modal, Form } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';//, Modal, Form
 import MyModal from '../components/createQuestionModal';
 
 import styles from '../pages/css/Questions.module.css'
@@ -14,6 +14,7 @@ function Questions() {
 
   const [showModal, setShowModal] = useState(false);
   const [selectedTag, setSelectedTag] = useState(null);
+  const [totalQuestions, setTotalQuestions] = useState(0);
 
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
@@ -21,24 +22,18 @@ function Questions() {
   const [Question, setQuestions] = useState();
   const [updateQuestions, setUpdateQuestions] = useState(false);
 
-  let defaultFormVals = ["name", "title", "question", "tagOne", "tagTwo", "tagThree"];
-
-  const [formValues, setFormValues] = useState(defaultFormVals);
-
 
   //Read Questions
   useEffect(() => {
     axios.get(`http://localhost:5001/api/allQuestions?tag=${selectedTag || ''}`)
-
       .then(res => {
         let QuestionData = res.data;
+        setTotalQuestions(QuestionData.length); // Add this line
         let renderQuestions = QuestionData.map((item) => <HomeQuestion key={item._id} productId={item._id} name={item.name} title={item.title} question={item.question} total={item.votes.total} likes={item.votes.likes} dislikes={item.votes.dislikes} tagOne={item.tags.tagOne} tagTwo={item.tags.tagTwo} tagThree={item.tags.tagThree} editRender={setUpdateQuestions} />);
         setQuestions(renderQuestions);
         setUpdateQuestions(false);
       })
-      
       .catch(err => console.log(err))
-
   }, [updateQuestions, selectedTag])
 
 
@@ -65,7 +60,7 @@ function Questions() {
             <Button className={styles.ask_btn} variant="primary" onClick={handleShow}>Ask Question</Button>{''}
 
             <div className={styles.more_info_row}>
-              <h5 className={styles.totalQ}>Total Questions:</h5>
+            <h5 className={styles.totalQ}>Total Questions: {totalQuestions}</h5> {/* Update this line */}
             </div>
 
           </div>
