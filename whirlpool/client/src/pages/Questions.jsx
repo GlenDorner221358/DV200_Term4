@@ -13,6 +13,7 @@ import Tagcard from '../components/tagcard';
 function Questions() {
 
   const [showModal, setShowModal] = useState(false);
+  const [selectedTag, setSelectedTag] = useState(null);
 
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
@@ -24,40 +25,41 @@ function Questions() {
 
   const [formValues, setFormValues] = useState(defaultFormVals);
 
-  const [selectedTag, setSelectedTag] = useState(null);
-
-  const clearTags = () => setSelectedTag(null); // Function to clear tags
 
   //Read Questions
   useEffect(() => {
-    console.log(selectedTag);
-    axios.get('http://localhost:5001/api/allQuestions')
+    axios.get(`http://localhost:5001/api/allQuestions?tag=${selectedTag || ''}`)
+
       .then(res => {
         let QuestionData = res.data;
         let renderQuestions = QuestionData.map((item) => <HomeQuestion key={item._id} productId={item._id} name={item.name} title={item.title} question={item.question} total={item.votes.total} likes={item.votes.likes} dislikes={item.votes.dislikes} tagOne={item.tags.tagOne} tagTwo={item.tags.tagTwo} tagThree={item.tags.tagThree} editRender={setUpdateQuestions} />);
         setQuestions(renderQuestions);
         setUpdateQuestions(false);
       })
+      
       .catch(err => console.log(err))
-  }, [updateQuestions, selectedTag]) // added selectedTag to the dependency array
+
+  }, [updateQuestions, selectedTag])
+
 
   return (
     <>
       <BasicNav />
       <MyModal showModal={showModal} handleClose={handleClose} />
 
-
       <div className={styles.main_container}>
 
         <div className={styles.left_panel}>
-          <Tagcard onTagClick={setSelectedTag} onClearTags={clearTags} /> 
+
+          <Tagcard setSelectedTag={setSelectedTag} />
+
         </div>
         <div className={styles.questions_section}>
           <div className={styles.top_container}>
             <h1 className={styles.question_heading}>Questions</h1>
 
             <div className={styles.groupbtn_edit}>
-              <Group />
+              <Group setSelectedTag={setSelectedTag} />
             </div>
 
             <Button className={styles.ask_btn} variant="primary" onClick={handleShow}>Ask Question</Button>{''}

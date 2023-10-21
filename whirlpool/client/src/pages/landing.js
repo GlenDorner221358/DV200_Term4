@@ -15,6 +15,9 @@ const [product, setProducts] = useState();
 const [updateProducts, setUpdateProducts] = useState(false);
 const [searchTerm, setSearchTerm] = useState("");
 
+const [selectedTag, setSelectedTag] = useState(null);
+
+    //Read Questions with search
 useEffect(() => {
     axios.get('http://localhost:5001/api/allQuestions')
         .then(res => {
@@ -27,6 +30,21 @@ useEffect(() => {
         })
         .catch(err => console.log(err))
 }, [updateProducts, searchTerm])
+
+
+    //Read Questions with tags
+    useEffect(() => {
+        axios.get(`http://localhost:5001/api/allQuestions?tag=${selectedTag || ''}`)
+            .then(res => {
+                let productData = res.data;
+                let slicedArray = [];
+                slicedArray = productData.slice(0, 4);
+                let renderProducts = slicedArray.map((item) => <HomeQuestion key={item._id} productId={item._id} name={item.name} title={item.title} question={item.question} total={item.votes.total} likes={item.votes.likes} dislikes={item.votes.dislikes} tagOne={item.tags.tagOne} tagTwo={item.tags.tagTwo} tagThree={item.tags.tagThree} editRender={setUpdateProducts} />);
+                setProducts(renderProducts);
+                setUpdateProducts(false);
+            })
+            .catch(err => console.log(err))
+    }, [updateProducts, selectedTag])
 
     return (
         <div>
@@ -60,31 +78,33 @@ useEffect(() => {
                 <div className={styles.right_col}>
                     <Form>
                         <Form.Label><b>Filter by tags:</b></Form.Label>
-                        <Form.Check // prettier-ignore
-                            type="checkbox"
-                            label="AllTags"
-                        />
-                        <Form.Check // prettier-ignore
-                            type="checkbox"
-                            label="React"
-                        />
-                        <Form.Check // prettier-ignore
-                            type="checkbox"
-                            label="Bootstrap"
-                        />
-                        <Form.Check // prettier-ignore
-                            type="checkbox"
-                            label="JavaScript"
-                        /><Form.Check // prettier <Form.Check // prettier-ignore
-                            type="checkbox"
-                            label="Python"
-                        />
-                        <Form.Check // prettier-ignore
-                            type="checkbox"
-                            label="Insomnia"
-                        /><br />
-                        <Button variant="primary" type="submit">
-                            Submit
+                        <Form.Check 
+                        type="checkbox"
+                        label="React"
+                        onChange={() => setSelectedTag(selectedTag === 'React' ? null : 'React')}
+                    />
+                    <Form.Check 
+                        type="checkbox"
+                        label="Bootstrap"
+                        onChange={() => setSelectedTag(selectedTag === 'Bootstrap' ? null : 'Bootstrap')}
+                    />
+                    <Form.Check 
+                        type="checkbox"
+                        label="JavaScript"
+                        onChange={() => setSelectedTag(selectedTag === 'JavaScript' ? null : 'JavaScript')}
+                    />
+                    <Form.Check 
+                        type="checkbox"
+                        label="Python"
+                        onChange={() => setSelectedTag(selectedTag === 'Python' ? null : 'Python')}
+                    />
+                    <Form.Check 
+                        type="checkbox"
+                        label="Insomnia"
+                        onChange={() => setSelectedTag(selectedTag === 'Insomnia' ? null : 'Insomnia')}
+                    /><br />
+                        <Button variant="primary" type="submit" onClick={() => setSelectedTag(null)}>
+                            Clear
                         </Button>
                     </Form>
 
