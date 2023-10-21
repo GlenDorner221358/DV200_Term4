@@ -7,10 +7,12 @@ import Axios from 'axios'
 
 function BasicNav() {
   const [firstName, setFirstName] = useState("");
-  const user = sessionStorage.getItem("User")
+  const user = sessionStorage.getItem("username")
+
+  console.log(user)
 
   useEffect(() => {
-    Axios.get("http://localhost:5001/api/singleUser/" + JSON.stringify(user), {
+    Axios.get("http://localhost:5001/api/singleUser/" + user, {
       headers: {
         "x-auth-token": localStorage.getItem("token"),
       },
@@ -45,7 +47,7 @@ function BasicNav() {
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">
-          <Nav.Link href='/profile' style={{marginRight:"2%"}}>{firstName}</Nav.Link>
+          <Nav.Link href='/profile' style={{marginRight:"5%"}}>{firstName}</Nav.Link>
           <Button variant={user ? 'danger' : 'primary'} onClick={handleLogout}>{user ? 'Log out' : 'Log in'}</Button>
         </Navbar.Collapse>
       </Container>

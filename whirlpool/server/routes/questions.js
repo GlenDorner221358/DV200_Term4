@@ -5,7 +5,6 @@ const router = express.Router();
 // Create new Question
 router.post('/api/newQuestion', async (req, res) => {
     try {
-
         const data = req.body;
 
         const newQuestion = new QuestionSchema({
@@ -30,16 +29,6 @@ router.post('/api/newQuestion', async (req, res) => {
         res.status(400).json({ error: "There is an error", details: error.message });
     }
 });
-
-// Get Questions
-// router.get('/api/allQuestions', async (req, res) => {
-//     try {
-//         const findQuestions = await QuestionSchema.find();
-//         res.json(findQuestions);
-//     } catch (error) {
-//         res.status(500).json({ error: "There was an error", details: error.message });
-//     }
-// });
 
 // Get Questions
 router.get('/api/allQuestions', async (req, res) => {

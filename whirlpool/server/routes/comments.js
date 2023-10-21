@@ -3,14 +3,6 @@ const CommentSchema = require('../models/comment');
 const router = express.Router();
 
 // Get all comments
-// router.get('/api/allComments', async (req, res) => {
-//     try {
-//         const findComments = await CommentSchema.find();
-//         res.json(findComments);
-//     } catch (error) {
-//         res.status(500).json({ error: "There was an error", details: error.message });
-//     }
-// });
 router.get('/api/allComments/', async (req, res) => {
     const findComments = await CommentSchema.find()
     res.json(findComments)
@@ -27,22 +19,23 @@ router.get('/api/allComments/', async (req, res) => {
 // });
 
 // Create new Comment
-// router.post('/api/newComment', async (req, res) => {
-//     try {
-//         const data = req.body;
-//         const newComment = new CommentSchema({
-//             questionTitle: data.title,
-//             name: data.name,
-//             comment: data.comment,
-//             likes: 0,
-//         });
+router.post('/api/newComment/', async (req, res) => {
+    try {
+        const data = req.body;
+        
+        const newComment = new CommentSchema({
+            questionTitle: data.title,
+            name: data.name,
+            comment: data.comment,
+            likes: 0
+        });
 
-//         const savedComment = await newComment.save();
-//         res.json(savedComment);
-//     } catch (error) {
-//         res.status(400).json({ error: "There is an error", details: error.message });
-//     }
-// })
+        const savedComment = await newComment.save();
+        res.json(savedComment);
+    } catch (error) {
+        res.status(400).json({ error: "There is an error", details: error.message });
+    }
+})
 
 // Export the router
 module.exports = router;
