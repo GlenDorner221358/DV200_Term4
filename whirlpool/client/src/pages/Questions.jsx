@@ -54,7 +54,7 @@ function Questions() {
             <h1 className={styles.question_heading}>Questions</h1>
 
             <div className={styles.groupbtn_edit}>
-              <Group setSelectedTag={setSelectedTag} />
+            <Group setSelectedTag={setSelectedTag} clearSelectedTag={() => setSelectedTag(null)} selectedTag={selectedTag} />
             </div>
 
             <Button className={styles.ask_btn} variant="primary" onClick={handleShow}>Ask Question</Button>{''}
