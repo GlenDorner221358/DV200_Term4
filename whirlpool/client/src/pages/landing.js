@@ -79,30 +79,30 @@ useEffect(() => {
                     <Form>
                         <Form.Label><b>Filter by tags:</b></Form.Label>
                         <Form.Check 
-                            type="checkbox"
-                            label="React"
-                            onChange={() => setSelectedTag('React')}
-                        />
-                        <Form.Check 
-                            type="checkbox"
-                            label="Bootstrap"
-                            onChange={() => setSelectedTag('Bootstrap')}
-                        />
-                        <Form.Check 
-                            type="checkbox"
-                            label="JavaScript"
-                            onChange={() => setSelectedTag('JavaScript')}
-                        />
-                        <Form.Check 
-                            type="checkbox"
-                            label="Python"
-                            onChange={() => setSelectedTag('Python')}
-                        />
-                        <Form.Check 
-                            type="checkbox"
-                            label="Insomnia"
-                            onChange={() => setSelectedTag('Insomnia')}
-                        /><br />
+                        type="checkbox"
+                        label="React"
+                        onChange={() => setSelectedTag(selectedTag === 'React' ? null : 'React')}
+                    />
+                    <Form.Check 
+                        type="checkbox"
+                        label="Bootstrap"
+                        onChange={() => setSelectedTag(selectedTag === 'Bootstrap' ? null : 'Bootstrap')}
+                    />
+                    <Form.Check 
+                        type="checkbox"
+                        label="JavaScript"
+                        onChange={() => setSelectedTag(selectedTag === 'JavaScript' ? null : 'JavaScript')}
+                    />
+                    <Form.Check 
+                        type="checkbox"
+                        label="Python"
+                        onChange={() => setSelectedTag(selectedTag === 'Python' ? null : 'Python')}
+                    />
+                    <Form.Check 
+                        type="checkbox"
+                        label="Insomnia"
+                        onChange={() => setSelectedTag(selectedTag === 'Insomnia' ? null : 'Insomnia')}
+                    /><br />
                         <Button variant="primary" type="submit" onClick={() => setSelectedTag(null)}>
                             Clear
                         </Button>
