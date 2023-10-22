@@ -83,5 +83,20 @@ router.put('/api/updateUserImg/:email', async(req, res) => {
     res.json(findUser)
 })
 
+
+const handleDeleteAccount = () => {
+    // Make a DELETE request to delete the user account
+    axios.delete("http://localhost:5001/api/auth/delete")
+    .then((response) => {
+    // Handle successful deletion
+    console.log("User account deleted successfully");
+    // Redirect the user to the login page or perform any other necessary action
+    })
+    .catch((error) => {
+    // Handle error
+    console.log(error);
+    });
+    };
+
 //End
 module.exports = router

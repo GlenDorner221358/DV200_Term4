@@ -5,7 +5,9 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useState, useEffect } from "react";
-import axios from 'axios'
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+
 // import userData from "../components/userData";
 
 function Profile() {
@@ -20,6 +22,8 @@ function Profile() {
         lastName: '',
         email: ''
     });
+
+  
 
     useEffect(() => {
         if (userMail) {
@@ -89,6 +93,35 @@ function Profile() {
             })
             .catch(err => console.log(err));
     }
+
+    let navigate = useNavigate();
+
+    // const handleDeleteAccount = () => {
+    //     // Make a DELETE request to delete the user account
+    //     axios.delete("http://localhost:5001/api/auth/delete")
+    //     .then((response) => {
+    //     // Handle successful deletion
+    //     console.log("User account deleted successfully");
+    //     // Redirect the user to the login page or perform any other necessary action
+    //     navigate('/signup')
+
+    //     })
+    //     .catch((error) => {
+    //     // Handle error
+    //     console.log(error);
+    //     });
+    //     };
+
+        const handleDeleteAccount = () => {
+            axios.delete("http://localhost:5001/api/auth/delete")
+              .then((response) => {
+                console.log("User account deleted successfully");
+                onDeleteAccount(); // Call the onDeleteAccount prop to handle any necessary actions after deletion
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          };
 
     return(
         <div id="daBigOne">
@@ -189,29 +222,33 @@ function Profile() {
                                     </Button>
                                 <Modal show={showModal} onHide={() => setShowModal(false)}>
                                 <Modal.Header closeButton>
-                    <Modal.Title>Edit Info</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group>
-                            <Form.Label>First Name</Form.Label>
-                            <Form.Control type="text" name="firstName" value={editData.firstName} onChange={handleInputChange} />
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>Last Name</Form.Label>
-                            <Form.Control type="text" name="lastName" value={editData.lastName} onChange={handleInputChange} />
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" name="email" value={editData.email} onChange={handleInputChange} />
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
-                    <Button variant="primary" onClick={handleSave}>Save Changes</Button>
-                </Modal.Footer>
-            </Modal>
+                                <Modal.Title>Edit Info</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form>
+                                    <Form.Group>
+                                        <Form.Label>First Name</Form.Label>
+                                        <Form.Control type="text" name="firstName" value={editData.firstName} onChange={handleInputChange} />
+                                    </Form.Group>
+                                    <Form.Group>
+                                        <Form.Label>Last Name</Form.Label>
+                                        <Form.Control type="text" name="lastName" value={editData.lastName} onChange={handleInputChange} />
+                                    </Form.Group>
+                                    <Form.Group>
+                                        <Form.Label>Email</Form.Label>
+                                        <Form.Control type="email" name="email" value={editData.email} onChange={handleInputChange} />
+                                    </Form.Group>
+                                </Form>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
+                                <Button variant="primary" onClick={handleSave}>Save Changes</Button>
+                            </Modal.Footer>
+                        </Modal>
+
+                            <Button onClick={handleDeleteAccount} variant="warning" type="submit" style={{ color: "black", width: "100%", marginTop: "2%", marginBottom: "2%", backgroundColor: "#FDF5BF" }}>
+                                       Delete Account
+                                    </Button>
                                 </div>
                                 
                             </div>

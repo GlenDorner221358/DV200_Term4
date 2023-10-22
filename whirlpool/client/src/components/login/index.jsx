@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
+import Profile from "./pages/profile";
 
 const Login = () => {
 	const [data, setData] = useState({ email: "", password: "" });
@@ -29,6 +30,33 @@ const Login = () => {
 			}
 		}
 	};
+
+	const handleDeleteAccount = async () => {
+		try {
+		  const userMail = sessionStorage.getItem("username");
+		  const url = `http://localhost:5001/api/users/${userMail}`; // Replace with your API endpoint for deleting a user
+		  const response = await axios.delete(url);
+		  // Handle successful deletion
+		  console.log("User deleted successfully");
+		} catch (error) {
+		  // Handle error
+		  console.log(error);
+		}
+	  };
+
+	//   const handleDeleteAccount = () => {
+	// 	// Make a DELETE request to delete the user account
+	// 	axios.delete("http://localhost:5001/api/auth/delete")
+	// 	.then((response) => {
+	// 	// Handle successful deletion
+	// 	console.log("User account deleted successfully");
+	// 	// Redirect the user to the login page or perform any other necessary action
+	// 	})
+	// 	.catch((error) => {
+	// 	// Handle error
+	// 	console.log(error);
+	// 	});
+	// 	};
 
 	return (
 		<div className={styles.login_container}>
