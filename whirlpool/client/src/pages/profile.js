@@ -3,14 +3,23 @@ import BasicNav from '../components/navbar';
 import './css/profile.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import { useState, useEffect } from "react";
 import axios from 'axios'
+// import userData from "../components/userData";
 
 function Profile() {
     const [imageName, setImageName] = useState("Name of file")
     const [userImage, setUserImage] = useState()
     const userMail = sessionStorage.getItem("username")
     const [userData, setUserData] = useState(); 
+
+    const [showModal, setShowModal] = useState(false);
+    const [editData, setEditData] = useState({
+        firstName: '',
+        lastName: '',
+        email: ''
+    });
 
     useEffect(() => {
         if (userMail) {
@@ -56,6 +65,31 @@ function Profile() {
             .catch(err => console.log(err))
     }
 
+    const handleEdit = () => {
+        setShowModal(true);
+        setEditData({
+            firstName: userData?.firstName,
+            lastName: userData?.lastName,
+            email: userData?.email
+        });
+    }
+
+    const handleInputChange = (event) => {
+        setEditData({
+            ...editData,
+            [event.target.name]: event.target.value
+        });
+    }
+
+    const handleSave = () => {
+        axios.put(`http://localhost:5001/api/users/${userMail}`, editData)
+            .then(res => {
+                setUserData(res.data);
+                setShowModal(false);
+            })
+            .catch(err => console.log(err));
+    }
+
     return(
         <div id="daBigOne">
 
@@ -79,7 +113,6 @@ function Profile() {
                                 <h4>
                                     {userData?.firstName}
                                 </h4>
-
                                 </div>
                             </div>
                             </div>
@@ -151,7 +184,36 @@ function Profile() {
                                         Upload image
                                     </Button>
                                 </Form>
+                                <Button onClick={handleEdit} variant="warning" type="submit" style={{ color: "black", width: "100%", marginTop: "2%", marginBottom: "2%", backgroundColor: "#FDF5BF" }}>
+                                       Edit Info
+                                    </Button>
+                                <Modal show={showModal} onHide={() => setShowModal(false)}>
+                                <Modal.Header closeButton>
+                    <Modal.Title>Edit Info</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group>
+                            <Form.Label>First Name</Form.Label>
+                            <Form.Control type="text" name="firstName" value={editData.firstName} onChange={handleInputChange} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Last Name</Form.Label>
+                            <Form.Control type="text" name="lastName" value={editData.lastName} onChange={handleInputChange} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control type="email" name="email" value={editData.email} onChange={handleInputChange} />
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
+                    <Button variant="primary" onClick={handleSave}>Save Changes</Button>
+                </Modal.Footer>
+            </Modal>
                                 </div>
+                                
                             </div>
                             </div>
                         </div>
