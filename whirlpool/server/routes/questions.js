@@ -108,7 +108,7 @@ router.patch('/api/updateQuestion/:id', async (req, res) => {
 });
 
 
-// Delete Question
+// Delete Question by id
 router.delete('/api/deleteQuestion/:id', async (req, res) => {
     try {
         const deletedQuestion = await QuestionSchema.findByIdAndDelete(req.params.id);

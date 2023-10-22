@@ -20,6 +20,7 @@ function BasicNav() {
     .then((response) => {
       setFirstName(response.data.firstName);
       sessionStorage.setItem("firstName", response.data.firstName);
+      sessionStorage.setItem("permissions", response.data.permissions);
     })
     .catch((error) => {
       console.log(error);
@@ -31,6 +32,7 @@ function BasicNav() {
     sessionStorage.removeItem('username')
     sessionStorage.removeItem('User')
     sessionStorage.removeItem('firstName')
+    sessionStorage.removeItem('permissions')
     window.location = "/";
   }
 
