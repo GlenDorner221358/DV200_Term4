@@ -112,6 +112,7 @@ function Profile({ onDeleteAccount }) {
     //     });
     //     };
 
+
         // const handleDeleteAccount = () => {
         //     axios.delete("http://localhost:5001/api/auth/delete")
         //       .then((response) => {
@@ -126,6 +127,18 @@ function Profile({ onDeleteAccount }) {
             const handleDeleteAccount = () => {
             onDeleteAccount();
   };
+
+        // const handleDeleteAccount = () => {
+        //     axios.delete("http://localhost:5001/api/auth/delete")
+        //       .then((response) => {
+        //         console.log("User account deleted successfully");
+        //         // onDeleteAccount(); // Call the onDeleteAccount prop to handle any necessary actions after deletion
+        //       })
+        //       .catch((error) => {
+        //         console.log(error);
+        //       });
+        //   };
+
 
     return(
         <div id="daBigOne">
