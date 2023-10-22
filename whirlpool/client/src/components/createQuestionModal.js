@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
 import axios from 'axios'
 
 const MyModal = ({ showModal, handleClose }) => {
+
   const [formData, setFormData] = useState({
     title: '',
     question: '',
@@ -10,10 +11,11 @@ const MyModal = ({ showModal, handleClose }) => {
     tag2: '',
     tag3: '',
     image: null,
-    imagePreview: null, // Add a new state variable for image preview
+    imagePreview: null // Add a new state variable for image preview
   });
 
   let qname = sessionStorage.getItem('username')
+  const [productImage, setProductImage] = useState()
 
   const handleFormChange = (e, field) => {
     setFormData({
@@ -31,15 +33,15 @@ const MyModal = ({ showModal, handleClose }) => {
     payload.append('name', qname);
     payload.append('title', formData['title']);
     payload.append('question', formData['question']);
-    payload.append('tagOne', formData['tag1']);
-    payload.append('tagTwo', formData['tag2']);
-    payload.append('tagThree', formData['tag3']);
-    payload.append('image', formData['image']); // Append the image file to the payload
+    payload.append('tag1', formData['tag1']);
+    payload.append('tag2', formData['tag2']);
+    payload.append('tag3', formData['tag3']);
+    payload.append("image", productImage); // Append the image file to the payload
 
     axios.post("http://localhost:5001/api/newQuestion", payload)
       .then((res) => {
         if (res) {
-          console.log("Item Added");
+          console.log("Question Added");
         }
       })
       .catch(err => console.log(err))
@@ -63,10 +65,14 @@ const MyModal = ({ showModal, handleClose }) => {
   ];
 
   const getImage = (e) => {
+
+    let imagefile = e.target.files[0];
+    setProductImage(imagefile);
+
     setFormData({
       ...formData,
-      image: e.target.files[0], // Update the image field in formData state with the selected file
-      imagePreview: URL.createObjectURL(e.target.files[0]), // Create a preview URL for the selected image
+      image: imagefile, // Update the image field in formData state with the selected file
+      imagePreview: URL.createObjectURL(imagefile), // Create a preview URL for the selected image
     });
   };
 
@@ -101,14 +107,14 @@ const MyModal = ({ showModal, handleClose }) => {
           <Form.Group controlId="formFile" className="mb-3" style={{ display: "inline-block", width: "100%", marginTop: "4%" }}>
             <Form.Control type="file" style={{ marginBottom: "2%" }} onChange={getImage} />
             <div>
-                <p>{formData.image ? formData.image.name : ''}</p>
+              <p>{formData.image ? formData.image.name : ''}</p>
             </div>
             <div>
-                {formData.imagePreview && ( // Render the image preview if it exists
-                  <img src={formData.imagePreview} alt="Image Preview" style={{ backgroundColor: "lightgrey", height: "200px", width: "200px", float: "left" }} />
-                )}
+              {formData.imagePreview && ( // Render the image preview if it exists
+                <img src={formData.imagePreview} alt="Preview" style={{ backgroundColor: "lightgrey", height: "200px", width: "200px", float: "left" }} />
+              )}
             </div>
-        </Form.Group>
+          </Form.Group>
 
           {[1, 2, 3].map((tagNum) => (
             <Form.Group key={tagNum} controlId={`formTag${tagNum}`}>

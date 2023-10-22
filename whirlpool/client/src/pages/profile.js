@@ -116,7 +116,7 @@ function Profile() {
             axios.delete("http://localhost:5001/api/auth/delete")
               .then((response) => {
                 console.log("User account deleted successfully");
-                onDeleteAccount(); // Call the onDeleteAccount prop to handle any necessary actions after deletion
+                // onDeleteAccount(); // Call the onDeleteAccount prop to handle any necessary actions after deletion
               })
               .catch((error) => {
                 console.log(error);
