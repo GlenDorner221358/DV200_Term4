@@ -4,6 +4,7 @@ import LikeImage from '../icons/thumbs-up.svg';
 import LikedImage from '../icons/thumbs-up-fill.svg';
 import { useState, useEffect } from "react";
 import axios from 'axios'
+import Button from 'react-bootstrap/Button';
 
 import styles from '../pages/css/single.css'
 
@@ -13,6 +14,7 @@ const SingleComment = (props) => {
     const [comments, setComments] = useState([]);
     const [isLiked, setIsLiked] = useState(false);
     const [likedCommentID, setLikedCommentID] = useState(null);
+    const permissions = sessionStorage.getItem("permissions");
 
     // gets comments based on the currently viewed question
     useEffect(() => {
@@ -64,6 +66,19 @@ const SingleComment = (props) => {
         }
     };
 
+    // handles comment deletion
+    const handleDelete = async (commentID) => {
+        if (permissions === 'true') {
+            try {
+                await axios.delete('http://localhost:5001/api/deleteComment/' + commentID);
+                // Update the state or redirect to reflect the deletion
+                console.log("Comment deleted")
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    };
+
     return (
         <div class="comment">
         {comments.map((comment) => (
@@ -85,6 +100,9 @@ const SingleComment = (props) => {
                         {comment.comment}
                         </Card.Text>
                     </div>
+                    {permissions === 'true' && (
+                        <Button variant="danger" onClick={() => handleDelete(comment._id)} style={{marginTop: "2%", float: "right"}}>Delete Comment</Button>
+                    )}
                 </Card.Body>
             </Card >
         ))}

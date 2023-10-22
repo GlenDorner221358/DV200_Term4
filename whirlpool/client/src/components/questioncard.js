@@ -1,16 +1,28 @@
-// import Button from 'react-bootstrap/Button';
+import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Figure from 'react-bootstrap/Figure';
 import VoteImage from '../icons/package.svg';
 import LikeImage from '../icons/thumbs-up.svg';
 import DislikeImage from '../icons/thumbs-down.svg';
-// import { useState, useEffect } from "react";
-// import axios from 'axios'
+import { useState, useEffect } from "react";
+import axios from 'axios'
 
 import styles from '../pages/css/single.css'
 
 function SingleQuestion() {
     const question = JSON.parse(sessionStorage.getItem('question'));
+
+    const handleDelete = async () => {
+        try {
+            await axios.delete('http://localhost:5001/api/deleteQuestion/' + question.id);
+            axios.delete('http://localhost:5001/api/deleteComments/' + question.title);
+            sessionStorage.removeItem('question')
+            console.log("question and all comments deleted");
+            window.location = "/question";
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
         <Card style={{marginLeft: "10%", marginRight: "10%", marginTop: "3%"}}>
@@ -37,6 +49,9 @@ function SingleQuestion() {
                     <Card.Text value="question description">
                         {question.question}
                     </Card.Text>
+                    {sessionStorage.getItem('permissions') === 'true' && (
+                        <Button variant="danger" style={{marginTop: "1%", float: "right"}} onClick={handleDelete}>Delete Question</Button>
+                    )}
                 </div>
             </Card.Body>
 

@@ -62,5 +62,29 @@ router.post('/api/newComment/', async (req, res) => {
     }
 })
 
+// Delete comment by id
+router.delete('/api/deleteComment/:id', async (req, res) => {
+    try {
+        const deletedComment = await CommentSchema.findByIdAndDelete(req.params.id);
+        if (!deletedComment) {
+            return res.status(404).json({ error: "Comment not found" });
+        }
+        res.json(deletedComment);
+    } catch (error) {
+        res.status(500).json({ error: "There was an error", details: error.message });
+    }
+});
+
+// Delete comments by question title
+router.delete('/api/deleteComments/:questionTitle', async (req, res) => {
+    try {
+        const deletedComments = await CommentSchema.deleteMany({ questionTitle: req.params.questionTitle });
+        res.json(deletedComments);
+    } catch (error) {
+        res.status(500).json({ error: "There was an error", details: error.message });
+    }
+});
+
+
 // Export the router
 module.exports = router;

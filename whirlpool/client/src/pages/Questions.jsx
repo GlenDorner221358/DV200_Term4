@@ -57,7 +57,9 @@ function Questions() {
             <Group setSelectedTag={setSelectedTag} clearSelectedTag={() => setSelectedTag(null)} selectedTag={selectedTag} />
             </div>
 
-            <Button className={styles.ask_btn} variant="primary" onClick={handleShow}>Ask Question</Button>{''}
+            {sessionStorage.getItem("username") && (
+              <Button className={styles.ask_btn} variant="primary" onClick={handleShow}>Ask Question</Button>
+            )}
 
             <div className={styles.more_info_row}>
             <h5 className={styles.totalQ}>Total Questions: {totalQuestions}</h5> {/* Update this line */}
