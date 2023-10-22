@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 // import userData from "../components/userData";
 
-function Profile() {
+function Profile({ onDeleteAccount }) {
     const [imageName, setImageName] = useState("Name of file")
     const [userImage, setUserImage] = useState()
     const userMail = sessionStorage.getItem("username")
@@ -94,7 +94,7 @@ function Profile() {
             .catch(err => console.log(err));
     }
 
-    let navigate = useNavigate();
+    // let navigate = useNavigate();
 
     // const handleDeleteAccount = () => {
     //     // Make a DELETE request to delete the user account
@@ -112,16 +112,20 @@ function Profile() {
     //     });
     //     };
 
-        const handleDeleteAccount = () => {
-            axios.delete("http://localhost:5001/api/auth/delete")
-              .then((response) => {
-                console.log("User account deleted successfully");
-                onDeleteAccount(); // Call the onDeleteAccount prop to handle any necessary actions after deletion
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          };
+        // const handleDeleteAccount = () => {
+        //     axios.delete("http://localhost:5001/api/auth/delete")
+        //       .then((response) => {
+        //         console.log("User account deleted successfully");
+        //         onDeleteAccount(); // Call the onDeleteAccount prop to handle any necessary actions after deletion
+        //       })
+        //       .catch((error) => {
+        //         console.log(error);
+        //       });
+        //   };
+
+            const handleDeleteAccount = () => {
+            onDeleteAccount();
+  };
 
     return(
         <div id="daBigOne">

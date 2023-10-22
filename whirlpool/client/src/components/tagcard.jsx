@@ -36,6 +36,7 @@ function Tagcard({ setSelectedTag }) {
       <Button variant="primary" className={styles.spacer} onClick={() => handleClick('Xcode')}>Xcode</Button>
       <Button variant="primary" className={styles.spacer} onClick={() => handleClick('Bootstrap')}>Bootstrap</Button>
 
+
       </Card.Body>
     </Card>
     </div>
