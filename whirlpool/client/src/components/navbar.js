@@ -9,8 +9,6 @@ function BasicNav() {
   const [firstName, setFirstName] = useState("");
   const user = sessionStorage.getItem("username")
 
-  console.log(user)
-
   useEffect(() => {
     Axios.get("http://localhost:5001/api/singleUser/" + user, {
       headers: {

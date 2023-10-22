@@ -4,6 +4,7 @@ const questionSchema = mongoose.Schema({
     name: { type: String, required: true },
     title: { type: String, required: true },
     question: { type: String, required: true },
+    image: { type: String, required: false },
     tags: {
         tagOne: { type: String, required: true },
         tagTwo: { type: String, required: false },
@@ -15,8 +16,5 @@ const questionSchema = mongoose.Schema({
         dislikes: { type: Number,  required: false }
     }
 })
-
-//Reference to other models
-//Likes (Bool), dislikes (Bool), UserId, QuestionId
 
 module.exports = mongoose.model("Question", questionSchema)

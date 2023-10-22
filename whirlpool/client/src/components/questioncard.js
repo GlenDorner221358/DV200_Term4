@@ -49,6 +49,9 @@ function SingleQuestion() {
                     <Card.Text value="question description">
                         {question.question}
                     </Card.Text>
+                    {question.image && (
+                        <img src={question.image} alt="question image" style={{ width: "100%", marginTop: "2%" }} />
+                    )}
                     {sessionStorage.getItem('permissions') === 'true' && (
                         <Button variant="danger" style={{marginTop: "1%", float: "right"}} onClick={handleDelete}>Delete Question</Button>
                     )}

@@ -9,6 +9,8 @@ const MyModal = ({ showModal, handleClose }) => {
     tag1: '',
     tag2: '',
     tag3: '',
+    image: null,
+    imagePreview: null, // Add a new state variable for image preview
   });
 
   let qname = sessionStorage.getItem('username')
@@ -25,21 +27,14 @@ const MyModal = ({ showModal, handleClose }) => {
     // Handle form submission
     console.log(formData); // Replace with your logic to handle the form data
 
-    let payload = {
-      name: qname,
-      title: formData['title'],
-      question: formData['question'],
-      tags: {
-        tagOne: formData['tag1'],
-        tagTwo: formData['tag2'],
-        tagThree: formData['tag3']
-      },
-      votes: {
-        total: 0, // Initialize total votes to 0
-        likes: 0,
-        dislikes: 0
-      }
-    }
+    let payload = new FormData(); // Create a new FormData object
+    payload.append('name', qname);
+    payload.append('title', formData['title']);
+    payload.append('question', formData['question']);
+    payload.append('tagOne', formData['tag1']);
+    payload.append('tagTwo', formData['tag2']);
+    payload.append('tagThree', formData['tag3']);
+    payload.append('image', formData['image']); // Append the image file to the payload
 
     axios.post("http://localhost:5001/api/newQuestion", payload)
       .then((res) => {
@@ -66,6 +61,14 @@ const MyModal = ({ showModal, handleClose }) => {
     'Kotlin',
     'Xcode',
   ];
+
+  const getImage = (e) => {
+    setFormData({
+      ...formData,
+      image: e.target.files[0], // Update the image field in formData state with the selected file
+      imagePreview: URL.createObjectURL(e.target.files[0]), // Create a preview URL for the selected image
+    });
+  };
 
   return (
     <Modal show={showModal} onHide={handleClose}>
@@ -94,6 +97,18 @@ const MyModal = ({ showModal, handleClose }) => {
               onChange={(e) => handleFormChange(e, 'question')}
             />
           </Form.Group>
+
+          <Form.Group controlId="formFile" className="mb-3" style={{ display: "inline-block", width: "100%", marginTop: "4%" }}>
+            <Form.Control type="file" style={{ marginBottom: "2%" }} onChange={getImage} />
+            <div>
+                <p>{formData.image ? formData.image.name : ''}</p>
+            </div>
+            <div>
+                {formData.imagePreview && ( // Render the image preview if it exists
+                  <img src={formData.imagePreview} alt="Image Preview" style={{ backgroundColor: "lightgrey", height: "200px", width: "200px", float: "left" }} />
+                )}
+            </div>
+        </Form.Group>
 
           {[1, 2, 3].map((tagNum) => (
             <Form.Group key={tagNum} controlId={`formTag${tagNum}`}>

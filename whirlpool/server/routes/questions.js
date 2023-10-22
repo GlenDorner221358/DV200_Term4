@@ -1,9 +1,24 @@
 const express = require('express');
 const QuestionSchema = require('../models/question');
 const router = express.Router();
+const multer = require('multer');
+const path = require('path');
+
+// Multer Middleware Prep
+const questionImgStore = multer.diskStorage({
+    destination: (req, file, callBack) => {
+        callBack(null, path.join(__dirname, '../questionImages'));
+    },
+    filename: (req, file, callBack) => {
+        callBack(null, Date.now() + path.extname(file.originalname));
+    }
+});
+
+// Run Middleware
+const uploadQuestionImage = multer({ storage: questionImgStore });
 
 // Create new Question
-router.post('/api/newQuestion', async (req, res) => {
+router.post('/api/newQuestion', uploadQuestionImage.single('image'), async (req, res) => {
     try {
         const data = req.body;
 
@@ -11,11 +26,13 @@ router.post('/api/newQuestion', async (req, res) => {
             name: data.name,
             title: data.title,
             question: data.question,
+            image: req.file.filename,
             tags: {
                 tagOne: data.tags.tagOne,
                 tagTwo: data.tags.tagTwo,
                 tagThree: data.tags.tagThree
             },
+            image: req.file.filename, // Save the filename of the uploaded image
             votes: {
                 total: 0, // Initialize total votes to 0
                 likes: 0,
@@ -23,10 +40,10 @@ router.post('/api/newQuestion', async (req, res) => {
             }
         });
 
-        const savedQuestion = await newQuestion.save();
-        res.json(savedQuestion);
+        await newQuestion.save();
+        res.status(201).send({ message: "Question created successfully" });
     } catch (error) {
-        res.status(400).json({ error: "There is an error", details: error.message });
+        res.status(500).json({ error: "Internal Server Error", details: error.message });
     }
 });
 
@@ -82,6 +99,7 @@ router.patch('/api/updateQuestion/:id', async (req, res) => {
                     name: data.name,
                     title: data.title,
                     question: data.question,
+                    image: req.file.filename,
                     tags: {
                         tagOne: data.tags.tagOne,
                         tagTwo: data.tags.tagTwo,
