@@ -101,51 +101,6 @@ function Profile({ onDeleteAccount }) {
 
     let navigate = useNavigate();
 
-
-
-    // const handleDeleteAccount = () => {
-    //     // Make a DELETE request to delete the user account
-    //     axios.delete("http://localhost:5001/api/auth/delete")
-    //     .then((response) => {
-    //     // Handle successful deletion
-    //     console.log("User account deleted successfully");
-    //     // Redirect the user to the login page or perform any other necessary action
-    //     navigate('/signup')
-
-    //     })
-    //     .catch((error) => {
-    //     // Handle error
-    //     console.log(error);
-    //     });
-    //     };
-
-
-    // const handleDeleteAccount = () => {
-    //     axios.delete("http://localhost:5001/api/auth/delete")
-    //       .then((response) => {
-    //         console.log("User account deleted successfully");
-    //         onDeleteAccount(); // Call the onDeleteAccount prop to handle any necessary actions after deletion
-    //       })
-    //       .catch((error) => {
-    //         console.log(error);
-    //       });
-    //   };
-
-    // const handleDeleteAccount = () => {
-    //     onDeleteAccount();
-    // };
-
-    // const handleDeleteAccount = () => {
-    //     axios.delete("http://localhost:5001/api/auth/delete")
-    //       .then((response) => {
-    //         console.log("User account deleted successfully");
-    //         // onDeleteAccount(); // Call the onDeleteAccount prop to handle any necessary actions after deletion
-    //       })
-    //       .catch((error) => {
-    //         console.log(error);
-    //       });
-    //   };
-
 const handleDeleteAccount = () => {
     axios.delete(`http://localhost:5001/api/deleteUser/${userMail}`)
       .then((response) => {
