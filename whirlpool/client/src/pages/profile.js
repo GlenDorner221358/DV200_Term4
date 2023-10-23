@@ -7,6 +7,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import PreviousQuestions from "../components/previousQuestions";
 
 import userPic from "../assets/user.png"
 
@@ -178,26 +179,6 @@ function Profile() {
                                     </div>
                                     <hr />
                                     <div className="row">
-                                        <div className="col-sm-3">
-                                            <h6 className="mb-0">Questions asked</h6>
-                                        </div>
-                                        <div className="col-sm-9 text-secondary">
-                                            123456789
-                                        </div>
-                                    </div>
-                                    <hr />
-                                    <div className="row">
-                                        <div className="col-sm-3">
-                                            <h6 className="mb-0">Achievements</h6>
-                                        </div>
-                                        <div className="col-sm-9 text-secondary">
-                                            <img src="https://i.ytimg.com/vi/8Scm09bwT_s/hqdefault.jpg" alt="Admin" className="rounded-circle achievement" width="50" />
-                                            <img src="https://i.ytimg.com/vi/8Scm09bwT_s/hqdefault.jpg" alt="Admin" className="rounded-circle achievement" width="50" />
-                                            <img src="https://i.ytimg.com/vi/8Scm09bwT_s/hqdefault.jpg" alt="Admin" className="rounded-circle achievement" width="50" />
-                                        </div>
-                                    </div>
-                                    <hr />
-                                    <div className="row">
                                         <div className="col-sm-12">
                                             <Form onSubmit={changeImg} style={{ marginTop: "2%", marginLeft: "auto", marginRight: "auto" }}>
                                                 <Form.Group controlId="formFile" className="mb-3" style={{ display: "inline-block", width: "100%" }}>
@@ -271,125 +252,8 @@ function Profile() {
             </div>
 
 
-            {/* Start of previous questions code */}
-            <div className="content questions">
-                <div className="container">
-                    <h1> Your Questions: </h1>
-                    <div className="row">
-                        <div className="col-lg-4">
-                            <div className="text-center card-box">
-                                <div className="member-card pt-2 pb-2">
-                                    <div className="">
-                                        <h3>Why does my wiewie itch??</h3>
-                                        <p className="text-muted"> Like the title states, my weenor is eetchee and... </p>
-                                    </div>
-                                    <div className="mt-4">
-                                        <div className="row">
-                                            <div className="col-4">
-                                                <div className="mt-3">
-                                                    <h4>7421</h4>
-                                                    <p className="mb-0 text-muted">Score</p>
-                                                </div>
-                                            </div>
-                                            <div className="col-4">
-                                                <div className="mt-3">
-                                                    <h4>14754</h4>
-                                                    <p className="mb-0 text-muted">Replies</p>
-                                                </div>
-                                            </div>
-                                            <div className="col-4">
-                                                <div className="mt-3">
-                                                    <h4>11525</h4>
-                                                    <p className="mb-0 text-muted">Likes</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4">
-                            <div className="text-center card-box">
-                                <div className="member-card pt-2 pb-2">
-                                    <div className="">
-                                        <h3>What did my dad just say?</h3>
-                                        <p className="text-muted"> I had my earphones in couldnt hear him :( </p>
-                                    </div>
-                                    <div className="mt-4">
-                                        <div className="row">
-                                            <div className="col-4">
-                                                <div className="mt-3">
-                                                    <h4>7421</h4>
-                                                    <p className="mb-0 text-muted">Score</p>
-                                                </div>
-                                            </div>
-                                            <div className="col-4">
-                                                <div className="mt-3">
-                                                    <h4>14754</h4>
-                                                    <p className="mb-0 text-muted">Replies</p>
-                                                </div>
-                                            </div>
-                                            <div className="col-4">
-                                                <div className="mt-3">
-                                                    <h4>11525</h4>
-                                                    <p className="mb-0 text-muted">Likes</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4">
-                            <div className="text-center card-box">
-                                <div className="member-card pt-2 pb-2">
-                                    <div className="">
-                                        <h3>What is deez?</h3>
-                                        <p className="text-muted"> Hello fellow redditors, I have had many people ask... </p>
-                                    </div>
-                                    <div className="mt-4">
-                                        <div className="row">
-                                            <div className="col-4">
-                                                <div className="mt-3">
-                                                    <h4>7421</h4>
-                                                    <p className="mb-0 text-muted">Score</p>
-                                                </div>
-                                            </div>
-                                            <div className="col-4">
-                                                <div className="mt-3">
-                                                    <h4>14754</h4>
-                                                    <p className="mb-0 text-muted">Replies</p>
-                                                </div>
-                                            </div>
-                                            <div className="col-4">
-                                                <div className="mt-3">
-                                                    <h4>11525</h4>
-                                                    <p className="mb-0 text-muted">Likes</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Pages */}
-                    <div className="row">
-                        <div className="col-12">
-                            <div className="text-right">
-                                <ul className="pagination pagination-split mt-0 float-right pages">
-                                    <li className="page-item"><a className="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span> <span className="sr-only">Previous</span></a></li>
-                                    <li className="page-item active"><a className="page-link" href="#">1</a></li>
-                                    <li className="page-item"><a className="page-link" href="#">2</a></li>
-                                    <li className="page-item"><a className="page-link" href="#">3</a></li>
-                                    <li className="page-item"><a className="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span> <span className="sr-only">Next</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {/* previously asked questions */}
+            <PreviousQuestions />
 
         </div>
     )
