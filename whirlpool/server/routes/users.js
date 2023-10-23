@@ -84,19 +84,19 @@ router.put('/api/updateUserImg/:email', async(req, res) => {
 })
 
 
-const handleDeleteAccount = () => {
-    // Make a DELETE request to delete the user account
-    axios.delete("http://localhost:5001/api/auth/delete")
-    .then((response) => {
-    // Handle successful deletion
-    console.log("User account deleted successfully");
-    // Redirect the user to the login page or perform any other necessary action
-    })
-    .catch((error) => {
-    // Handle error
-    console.log(error);
-    });
-    };
+
+// delete user by email
+router.delete('/api/deleteUser/:email', async (req, res) => {
+    try {
+        const user = await User.findOneAndDelete({ email: req.params.email });
+        if (!user) {
+            return res.status(404).send({ message: "User not found." });
+        }
+        res.json({ message: "User deleted successfully." });
+    } catch (error) {
+        res.status(500).json({ error: "Error: ", details: error.message });
+    }
+});
 
 
     // update user by email
