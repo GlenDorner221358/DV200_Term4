@@ -11,7 +11,7 @@ const path = require('path')
 // Multer Middleware Prep
 const userImgStore = multer.diskStorage({
     destination: ( req, file, callBack ) => {
-        callBack(null, path.join( __dirname, '../../../client/src/assets'));
+        callBack(null, path.join( __dirname, '../../client/src/assets'));
     },
 
     filename: ( req, file, callBack) => {
