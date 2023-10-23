@@ -11,7 +11,7 @@ const path = require('path')
 // Multer Middleware Prep
 const userImgStore = multer.diskStorage({
     destination: ( req, file, callBack ) => {
-        callBack(null, path.join( __dirname, '../userImages'));
+        callBack(null, path.join( __dirname, '../../../client/src/assets'));
     },
 
     filename: ( req, file, callBack) => {
@@ -22,6 +22,22 @@ const userImgStore = multer.diskStorage({
 
 //Run Middleware
 const uploadUserImage = multer({storage: userImgStore});
+
+// update user profile image
+router.put('/api/users/profilePic/:email', uploadUserImage.single('profilePic'), async (req, res) => {
+    try {
+        const user = await User.findOne({ email: req.params.email });
+        if (!user) {
+            return res.status(404).send({ message: "User not found." });
+        }
+        user.profilePic = req.file.path;
+        await user.save();
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ error: "Error: ", details: error.message });
+    }
+});
+
 
 router.post("/api/users", uploadUserImage.single('image'), async (req, res) => {
     try {

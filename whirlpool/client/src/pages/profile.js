@@ -61,14 +61,20 @@ function Profile({ onDeleteAccount }) {
     }
 
     const changeImg = (e) => {
+        e.preventDefault();
         const payloadData = new FormData();
 
-        payloadData.append("image", userImage);
+        payloadData.append('profilePic', userImage);
 
-        axios.put("http://localhost:5001/api/users/", payloadData)
+        axios.put("http://localhost:5001/api/users/profilePic/" + userMail, payloadData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
             .then((res) => {
                 if (res) {
                     console.log("Item Added");
+                    setuserProfile(res.data.profilePic); // Update the userProfile state instead of userImage
                 }
             })
             .catch(err => console.log(err))
@@ -101,16 +107,16 @@ function Profile({ onDeleteAccount }) {
 
     let navigate = useNavigate();
 
-const handleDeleteAccount = () => {
-    axios.delete(`http://localhost:5001/api/deleteUser/${userMail}`)
-      .then((response) => {
-        console.log("User account deleted successfully");
-        navigate('/login');
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-};
+    const handleDeleteAccount = () => {
+        axios.delete(`http://localhost:5001/api/deleteUser/${userMail}`)
+            .then((response) => {
+                console.log("User account deleted successfully");
+                navigate('/login');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
     return (
         <div id="daBigOne">
@@ -129,7 +135,7 @@ const handleDeleteAccount = () => {
                                 <div className="card-body">
                                     <div className="d-flex flex-column align-items-center text-center">
                                         <img
-                                            src={userPic}
+                                            src={userImage || userPic}
                                             alt="User" className="rounded-circle" width="150" height="150px" style={{ marginTop: "5%" }} />
                                         <div className="mt-3">
                                             <h4>
