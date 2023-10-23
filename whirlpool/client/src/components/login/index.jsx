@@ -2,7 +2,6 @@ import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
-import Profile from "../../pages/profile";
 
 
 const Login = () => {
@@ -32,31 +31,7 @@ const Login = () => {
 		}
 	};
 
-	const handleDeleteAccount = () => {
-		const userMail = sessionStorage.getItem("username");
-		axios.delete(`http://localhost:5001/api/auth/delete/${userMail}`)
-		  .then((response) => {
-			console.log("User account deleted successfully");
-			// Perform any other necessary actions after deletion
-		  })
-		  .catch((error) => {
-			console.log(error);
-		  });
-	  };
-
-	//   const handleDeleteAccount = () => {
-	// 	// Make a DELETE request to delete the user account
-	// 	axios.delete("http://localhost:5001/api/auth/delete")
-	// 	.then((response) => {
-	// 	// Handle successful deletion
-	// 	console.log("User account deleted successfully");
-	// 	// Redirect the user to the login page or perform any other necessary action
-	// 	})
-	// 	.catch((error) => {
-	// 	// Handle error
-	// 	console.log(error);
-	// 	});
-	// 	};
+	
 
 	return (
 		<div className={styles.login_container}>
@@ -98,9 +73,7 @@ const Login = () => {
 					</Link>
 				</div>
 			</div>
-			{/* <Profile onDeleteAccount={handleDeleteAccount} /> */}
 		</div>
-		//   <Profile onDeleteAccount={handleDeleteAccount} />
 	);
 };
 
