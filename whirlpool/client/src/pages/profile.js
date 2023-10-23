@@ -27,7 +27,7 @@ function Profile({ onDeleteAccount }) {
 
     useEffect(() => {
         if (userMail) {
-            axios.get('http://localhost:5001/api/users:' + userMail)
+            axios.get('http://localhost:5001/api/singleUser/' + userMail)
                 .then(res => {
                     let data = res.data;
                     setUserData(data);
