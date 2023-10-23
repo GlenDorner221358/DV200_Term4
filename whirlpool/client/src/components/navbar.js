@@ -43,7 +43,7 @@ function BasicNav() {
           <Nav className="me-auto">
             <Nav.Link href="/landing">Home</Nav.Link>
             <Nav.Link href="/question">Questions</Nav.Link>
-            <Nav.Link href="/profile">My Profile</Nav.Link>
+            {user && <Nav.Link href="/profile">My Profile</Nav.Link>}
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">
