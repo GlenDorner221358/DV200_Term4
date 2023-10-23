@@ -27,17 +27,13 @@ function Profile() {
     });
 
 
-    const [userProfile, setuserProfile] = useState()
-
-
     useEffect(() => {
         if (userMail) {
             axios.get('http://localhost:5001/api/singleUser/' + userMail)
                 .then(res => {
                     let data = res.data;
                     setUserData(data);
-                    console.log(data)
-                    setuserProfile(data.profilePic)
+                    console.log(JSON.stringify(data.profilePic));
                 })
                 .catch(err => console.log(err))
         }
@@ -63,9 +59,10 @@ function Profile() {
 
     const changeImg = (e) => {
         e.preventDefault();
+
         const payloadData = new FormData();
 
-        payloadData.append('profilePic', userImage);
+        payloadData.append('image', userImage);
 
         axios.put("http://localhost:5001/api/users/profilePic/" + userMail, payloadData, {
             headers: {
@@ -75,7 +72,6 @@ function Profile() {
             .then((res) => {
                 if (res) {
                     console.log("Item Added");
-                    setuserProfile(res.data.profilePic); // Update the userProfile state instead of userImage
                 }
             })
             .catch(err => console.log(err))
@@ -108,20 +104,20 @@ function Profile() {
 
     let navigate = useNavigate();
 
-const handleDeleteAccount = () => {
-    setShowConfirm(true);
-};
+    const handleDeleteAccount = () => {
+        setShowConfirm(true);
+    };
 
-const confirmDeleteAccount = () => {
-    axios.delete(`http://localhost:5001/api/deleteUser/${userMail}`)
-        .then((response) => {
-            console.log("User account deletedcessfully");
-            navigate('/login');
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-};
+    const confirmDeleteAccount = () => {
+        axios.delete(`http://localhost:5001/api/deleteUser/${userMail}`)
+            .then((response) => {
+                console.log("User account deletedcessfully");
+                navigate('/login');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
     return (
         <div id="daBigOne">
@@ -140,7 +136,7 @@ const confirmDeleteAccount = () => {
                                 <div className="card-body">
                                     <div className="d-flex flex-column align-items-center text-center">
                                         <img
-                                            src={userImage || userPic}
+                                            src={userPic}
                                             alt="User" className="rounded-circle" width="150" height="150px" style={{ marginTop: "5%" }} />
                                         <div className="mt-3">
                                             <h4>
@@ -251,19 +247,19 @@ const confirmDeleteAccount = () => {
                                             </Button>
 
                                             <Modal show={showConfirm} onHide={() => setShowConfirm(false)}>
-                                            <Modal.Header closeButton>
-                                                <Modal.Title>Confirm Account Deletion</Modal.Title>
-                                            </Modal.Header>
-                                            <Modal.Body>Are you sure you want to delete your account?</Modal.Body>
-                                            <Modal.Footer>
-                                                <Button variant="secondary" onClick={() => setShowConfirm(false)}>
-                                                    Cancel
-                                                </Button>
-                                                <Button variant="danger" onClick={confirmDeleteAccount} >
-                                                    Delete Account
-                                                </Button>
-                                            </Modal.Footer>
-                                        </Modal>
+                                                <Modal.Header closeButton>
+                                                    <Modal.Title>Confirm Account Deletion</Modal.Title>
+                                                </Modal.Header>
+                                                <Modal.Body>Are you sure you want to delete your account?</Modal.Body>
+                                                <Modal.Footer>
+                                                    <Button variant="secondary" onClick={() => setShowConfirm(false)}>
+                                                        Cancel
+                                                    </Button>
+                                                    <Button variant="danger" onClick={confirmDeleteAccount} >
+                                                        Delete Account
+                                                    </Button>
+                                                </Modal.Footer>
+                                            </Modal>
                                         </div>
 
                                     </div>

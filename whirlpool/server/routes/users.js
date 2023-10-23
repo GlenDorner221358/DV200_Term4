@@ -5,9 +5,6 @@ const bcrypt = require("bcrypt")
 const multer = require('multer')
 const path = require('path')
 
-
-// NONE OF THIS WORKS 
-
 // Multer Middleware Prep
 const userImgStore = multer.diskStorage({
     destination: ( req, file, callBack ) => {
@@ -24,7 +21,7 @@ const userImgStore = multer.diskStorage({
 const uploadUserImage = multer({storage: userImgStore});
 
 // update user profile image
-router.put('/api/users/profilePic/:email', uploadUserImage.single('profilePic'), async (req, res) => {
+router.put('/api/users/profilePic/:email', uploadUserImage.single('image'), async (req, res) => {
     try {
         const user = await User.findOne({ email: req.params.email });
         if (!user) {
