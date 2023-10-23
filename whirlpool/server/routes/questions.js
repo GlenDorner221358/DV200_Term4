@@ -49,32 +49,6 @@ router.post('/api/newQuestion', uploadQuestionImage.single("image"), async (req,
         res.status(400).json({ error: "There is an error", details: error.message });
     }
 
-    // try {
-    //     let data = JSON.parse(req.body.information);
-    //     console.log(req.body.filename);
-
-    //     const newQuestion = new QuestionSchema({
-    //         name: data.name,
-    //         title: data.title,
-    //         question: data.question,
-    //         image: req.file.filename,
-    //         tags: {
-    //             tagOne: data.tags.tagOne,
-    //             tagTwo: data.tags.tagTwo,
-    //             tagThree: data.tags.tagThree
-    //         },
-    //         votes: {
-    //             total: 0, // Initialize total votes to 0
-    //             likes: 0,
-    //             dislikes: 0
-    //         }
-    //     });
-
-    //     const savedQuestion = await newQuestion.save();
-    //     res.json(savedQuestion);
-    // } catch (error) {
-    //     res.status(400).json({ error: "There is an error", details: error.message });
-    // }
 });
 
 // Get Questions
@@ -156,6 +130,19 @@ router.patch('/api/updateQuestion/:id', async (req, res) => {
 
 //Update Votes
 
+
+// Get questions by name
+router.get('/api/namedQuestions/:name', async (req, res) => {
+    try {
+        const questions = await QuestionSchema.find({ name: req.params.name });
+        if (questions.length === 0) {
+            return res.status(404).json({ error: "Questions not found" });
+        }
+        res.json(questions);
+    } catch (error) {
+        res.status(500).json({ error: "There was an error", details: error.message });
+    }
+});
 
 // Delete Question
 router.delete('/api/deleteQuestion/:id', async (req, res) => {
