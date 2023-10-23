@@ -13,11 +13,12 @@ import userPic from "../assets/user.png"
 
 // import userData from "../components/userData";
 
-function Profile({ onDeleteAccount }) {
+function Profile() {
     const [imageName, setImageName] = useState("Name of file")
     const [userImage, setUserImage] = useState()
     const userMail = sessionStorage.getItem("username")
     const [userData, setUserData] = useState();
+    const [showConfirm, setShowConfirm] = useState(false);
 
     const [showModal, setShowModal] = useState(false);
     const [editData, setEditData] = useState({
@@ -62,14 +63,20 @@ function Profile({ onDeleteAccount }) {
     }
 
     const changeImg = (e) => {
+        e.preventDefault();
         const payloadData = new FormData();
 
-        payloadData.append("image", userImage);
+        payloadData.append('profilePic', userImage);
 
-        axios.put("http://localhost:5001/api/users/", payloadData)
+        axios.put("http://localhost:5001/api/users/profilePic/" + userMail, payloadData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
             .then((res) => {
                 if (res) {
                     console.log("Item Added");
+                    setuserProfile(res.data.profilePic); // Update the userProfile state instead of userImage
                 }
             })
             .catch(err => console.log(err))
@@ -103,14 +110,18 @@ function Profile({ onDeleteAccount }) {
     let navigate = useNavigate();
 
 const handleDeleteAccount = () => {
+    setShowConfirm(true);
+};
+
+const confirmDeleteAccount = () => {
     axios.delete(`http://localhost:5001/api/deleteUser/${userMail}`)
-      .then((response) => {
-        console.log("User account deleted successfully");
-        navigate('/login');
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then((response) => {
+            console.log("User account deletedcessfully");
+            navigate('/login');
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 };
 
     return (
@@ -130,7 +141,7 @@ const handleDeleteAccount = () => {
                                 <div className="card-body">
                                     <div className="d-flex flex-column align-items-center text-center">
                                         <img
-                                            src={userPic}
+                                            src={userImage || userPic}
                                             alt="User" className="rounded-circle" width="150" height="150px" style={{ marginTop: "5%" }} />
                                         <div className="mt-3">
                                             <h4>
@@ -219,6 +230,21 @@ const handleDeleteAccount = () => {
                                             <Button onClick={handleDeleteAccount} variant="warning" type="submit" style={{ color: "black", width: "100%", marginTop: "2%", marginBottom: "2%", backgroundColor: "#FDF5BF" }}>
                                                 Delete Account
                                             </Button>
+
+                                            <Modal show={showConfirm} onHide={() => setShowConfirm(false)}>
+                                            <Modal.Header closeButton>
+                                                <Modal.Title>Confirm Account Deletion</Modal.Title>
+                                            </Modal.Header>
+                                            <Modal.Body>Are you sure you want to delete your account?</Modal.Body>
+                                            <Modal.Footer>
+                                                <Button variant="secondary" onClick={() => setShowConfirm(false)}>
+                                                    Cancel
+                                                </Button>
+                                                <Button variant="danger" onClick={confirmDeleteAccount} >
+                                                    Delete Account
+                                                </Button>
+                                            </Modal.Footer>
+                                        </Modal>
                                         </div>
 
                                     </div>
