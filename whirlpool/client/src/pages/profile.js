@@ -85,14 +85,24 @@ function Profile({ onDeleteAccount }) {
         });
     }
 
+    // const handleSave = () => {
+    //     axios.put(`http://localhost:5001/api/users/${userMail}`, editData)
+    //         .then(res => {
+    //             setUserData(res.data);
+    //             setShowModal(false);
+    //         })
+    //         .catch(err => console.log(err));
+    // }
+
+
     const handleSave = () => {
-        axios.put(`http://localhost:5001/api/users/${userMail}`, editData)
+        axios.put(`http://localhost:5001/api/updateUser/${userMail}`, editData)
             .then(res => {
                 setUserData(res.data);
                 setShowModal(false);
             })
             .catch(err => console.log(err));
-    }
+    };
 
     // let navigate = useNavigate();
 
