@@ -136,7 +136,7 @@ router.get('/api/namedQuestions/:name', async (req, res) => {
     try {
         const questions = await QuestionSchema.find({ name: req.params.name });
         if (questions.length === 0) {
-            return res.status(404).json({ error: "Questions not found" });
+            // return res.status(404).json({ error: "Name not found" });
         }
         res.json(questions);
     } catch (error) {

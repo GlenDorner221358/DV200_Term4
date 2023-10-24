@@ -25,16 +25,21 @@ const HomeQuestion = (props) => {
     const [isDisliked, setIsDisliked] = useState(false);
 
     const handleLike = async () => {
+        console.log("Like");
         if (!sessionStorage.getItem('username')) {
             window.location.href = '/login';
         } else if (!isLiked && !isDisliked) {
-            setVotes(votes + 1);
-            setLikes(likes + 1);
+
+            let tempVote = votes + 1
+            let tempLikes = likes + 1
+            
+            setVotes(tempVote);
+            setLikes(tempLikes);
             setIsLiked(true);
 
             let payload = {
                 name: props.name,
-                title: props.name,
+                title: props.title,
                 question: props.question,
                 tags: {
                     tagOne: props.tagOne,
@@ -42,8 +47,8 @@ const HomeQuestion = (props) => {
                     tagThree: props.tagThree
                 },
                 votes: {
-                    total: votes,
-                    likes: likes,
+                    total: tempVote,
+                    likes: tempLikes,
                     dislikes: props.dislikes
                 }
             }
@@ -51,7 +56,8 @@ const HomeQuestion = (props) => {
             Axios.patch('http://localhost:5001/api/updateQuestion/' + props.productId, payload)
                 .then(res => {
                     if (res) {
-                        console.log("Like Updated")
+                        console.log("Like Updated " + props.productId)
+                        
                     }
                 })
                 .catch(function (error) {
@@ -59,13 +65,16 @@ const HomeQuestion = (props) => {
                 })
                 
         } else if (isLiked && !isDisliked) {
-            setVotes(votes - 1);
-            setLikes(likes - 1);
+            let tempVote = votes - 1
+            let tempLikes = likes - 1
+            
+            setVotes(tempVote);
+            setLikes(tempLikes);
             setIsLiked(false);
 
             let payload = {
                 name: props.name,
-                title: props.name,
+                title: props.title,
                 question: props.question,
                 tags: {
                     tagOne: props.tagOne,
@@ -73,8 +82,8 @@ const HomeQuestion = (props) => {
                     tagThree: props.tagThree
                 },
                 votes: {
-                    total: votes,
-                    likes: likes,
+                    total: tempVote,
+                    likes: tempLikes,
                     dislikes: props.dislikes
                 }
             }
@@ -92,11 +101,17 @@ const HomeQuestion = (props) => {
     };
 
     const handleDislike = async () => {
+        console.log("Dislike");
+
         if (!sessionStorage.getItem('username')) {
             window.location.href = '/login';
         } else if (!isDisliked && !isLiked) {
-            setVotes(votes + 1);
-            setDislikes(dislikes + 1);
+
+            let tempVote = votes + 1
+            let tempDislikes = dislikes + 1
+
+            setVotes(tempVote);
+            setDislikes(tempDislikes);
             setIsDisliked(true);
 
             let payload = {
@@ -109,9 +124,9 @@ const HomeQuestion = (props) => {
                     tagThree: props.tagThree
                 },
                 votes: {
-                    total: votes,
+                    total: tempVote,
                     likes: props.likes,
-                    dislikes: dislikes
+                    dislikes: tempDislikes
                 }
             }
 
@@ -126,9 +141,12 @@ const HomeQuestion = (props) => {
                 })
 
         } else if (isDisliked && !isLiked) {
-            setVotes(votes - 1);
-            setDislikes(dislikes - 1);
-            setIsDisliked(false);
+            let tempVote = votes - 1
+            let tempDislikes = dislikes - 1
+
+            setVotes(tempVote);
+            setDislikes(tempDislikes);
+            setIsDisliked(true);
 
             let payload = {
                 name: props.name,
@@ -140,9 +158,9 @@ const HomeQuestion = (props) => {
                     tagThree: props.tagThree
                 },
                 votes: {
-                    total: votes,
+                    total: tempVote,
                     likes: props.likes,
-                    dislikes: dislikes
+                    dislikes: tempDislikes
                 }
             }
 
@@ -197,11 +215,11 @@ const HomeQuestion = (props) => {
                             <Figure.Caption style={{ display: "inline", padding: "10px" }} >{votes}</Figure.Caption>
                             <Figure.Image style={{ display: "inline" }} alt="votes icon" width="14px" height="14px" src={VoteImage} />
                         </div>
-                        <div style={{ width: "50px", height: "30px" }} onClick={handleLike}>
+                        <div style={{ width: "50px", height: "30px" }} onClick={() => handleLike()}>
                             <Figure.Caption style={{ display: "inline", padding: "10px" }}>{likes}</Figure.Caption>
                             <Figure.Image style={{ display: "inline" }} alt="likes icon" width="14px" height="14px" src={isLiked ? LikedImage : LikeImage} />
                         </div>
-                        <div style={{ width: "50px", height: "30px" }} onClick={handleDislike}>
+                        <div style={{ width: "50px", height: "30px" }} onClick={() => handleDislike()}>
                             <Figure.Caption style={{ display: "inline", padding: "10px" }}>{dislikes}</Figure.Caption>
                             <Figure.Image style={{ display: "inline" }} alt="dislikes icon" width="14px" height="14px" src={isDisliked ? DislikedImage : DislikeImage} />
                         </div>

@@ -8,7 +8,7 @@ const path = require('path')
 // Multer Middleware Prep
 const userImgStore = multer.diskStorage({
     destination: ( req, file, callBack ) => {
-        callBack(null, path.join( __dirname, '../../client/src/assets'));
+        callBack(null, './userImages');
     },
 
     filename: ( req, file, callBack) => {
@@ -27,7 +27,7 @@ router.put('/api/users/profilePic/:email', uploadUserImage.single('image'), asyn
         if (!user) {
             return res.status(404).send({ message: "User not found." });
         }
-        user.profilePic = req.file.path;
+        user.profilePic = req.file.filename;
         await user.save();
         res.json(user);
     } catch (error) {
