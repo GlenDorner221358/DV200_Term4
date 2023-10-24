@@ -9,6 +9,8 @@ import BasicNav from '../components/navbar'
 import HomeQuestion from "../components/cards";
 import Group from '../components/groupbtn';
 import Tagcard from '../components/tagcard';
+import Footer from '../components/footer';
+
 
 function Questions() {
 
@@ -38,7 +40,8 @@ function Questions() {
 
 
   return (
-    <>
+    <div className={styles.flexContainer}>
+      <div>
       <BasicNav />
       <MyModal showModal={showModal} handleClose={handleClose} />
 
@@ -71,10 +74,10 @@ function Questions() {
           </div>
         </div>
         <div className={styles.right_panel}></div>
-
+        </div>
       </div>
-
-    </>
+      <Footer />
+    </div>
   )
 }
 

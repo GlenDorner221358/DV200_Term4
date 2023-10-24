@@ -4,6 +4,13 @@
     margin-top: 3%;
 }
 
+.flexContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 200vh;
+    justify-content: space-between;
+}
+
 .left_panel{
     width: 16vw;
     height: 50vh;

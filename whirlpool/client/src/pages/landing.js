@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Axios from 'axios'
 
+import "../components/css/footer.css";
 import BasicNav from '../components/navbar';
 import HomeQuestion from "../components/cards";
 import styles from './css/landing.module.css'
@@ -9,6 +10,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Footer from "../components/footer";
 
 
 function Landing() {
@@ -48,7 +50,7 @@ function Landing() {
     }, [updateProducts, selectedTag])
 
     return (
-        <div>
+        <div className={styles.flexContainer}>
             <BasicNav />
             <hr />
             <div className={styles.body_container}>
@@ -70,9 +72,11 @@ function Landing() {
                         </Form>
                     </div>
                     <br />
-                    <div className="row row-cols-1 row-cols-md-4 g-4" style={{ margin: "1%" }} > {/* Determine how many I want to display --> row-cols-md-5*/}
+                    <div className="row row-cols-1 row-cols-md-4 g-4" style={{ margin: "1%", marginBottom: "20%" }} > {/* Determine how many I want to display --> row-cols-md-5*/}
                         {product}
                     </div>
+
+                    
                 </div>
 
 
@@ -111,7 +115,9 @@ function Landing() {
 
                 </div>
             </div>
-
+            
+            <Footer />
+                   
         </div>
     )
 }

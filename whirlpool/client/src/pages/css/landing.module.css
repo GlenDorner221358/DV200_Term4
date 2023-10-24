@@ -5,6 +5,12 @@
     height: 100%;
 }
 
+.flexContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 .left_col {
     width: 75%;
     margin-right: 5%;

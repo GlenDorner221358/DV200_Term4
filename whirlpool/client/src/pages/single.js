@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import SingleQuestion from '../components/questioncard';
 import SingleComment from '../components/commentcard';
 import NewComment from '../components/newComment';
+import Footer from '../components/footer';
 
 function Single() {
     return(
@@ -17,6 +18,7 @@ function Single() {
             </div>
             
             <SingleComment />
+            <Footer />
         </div>
     );
 }

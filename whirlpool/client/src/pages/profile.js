@@ -8,6 +8,8 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import PreviousQuestions from "../components/previousQuestions";
+import Footer from "../components/footer";
+
 
 import userPic from "../assets/user.png"
 
@@ -121,14 +123,14 @@ function Profile() {
     };
 
     return (
-        <div id="daBigOne">
+        <div id="daBigOne" style={{position: "relative"}}>
 
             <BasicNav />
 
             {/* Profile front end provided by bootdey for free use */}
             {/* Code was still tweaked and edited by us of course */}
 
-            <div className="container" id="bababooie">
+            <div className="container" id="bababooie" >
                 <div className="main-body">
                     <h1> Your profile: </h1>
                     <div className="row gutters-sm">
@@ -252,8 +254,14 @@ function Profile() {
             </div>
 
 
-            {/* previously asked questions */}
-            <PreviousQuestions />
+            <div style={{position: "relative"}}>
+                {/* previously asked questions */}
+                <PreviousQuestions />
+            </div>
+
+            <Footer style={{marginTop: "50%"}}/>
+
+            
 
         </div>
     )
