@@ -62,20 +62,49 @@ function Profile() {
         e.preventDefault();
 
         const payloadData = new FormData();
+        // const fileName = userImage.name; // Extract the file name
 
-        payloadData.append('image', userImage);
-
-        axios.put("http://localhost:5001/api/users/profilePic/" + userMail, payloadData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
+        let payload = {
+            name: userData.name,
+            title: userData.title,
+            question: userData.question,
+            tags: {
+                tagOne: userData.tagOne,
+                tagTwo: userData.tagTwo,
+                tagThree: userData.tagThree
+            },
+            votes: {
+                total: userData.total,
+                likes: userData.likes,
+                dislikes: userData.dislikes
             }
-        })
+        }
+
+        payloadData.append("information", JSON.stringify(payload));
+        payloadData.append('image', userImage); // Append the file with the name to FormData
+
+        console.log(JSON.stringify(payloadData));
+
+        axios.put("http://localhost:5000/api/users/profilePic/" + userMail, payloadData)
             .then((res) => {
                 if (res) {
                     console.log("Item Added");
                 }
             })
             .catch(err => console.log(err))
+        // console.log(fileName)
+
+        // axios.put("http://localhost:5001/api/users/profilePic/" + userMail, payloadData, {
+        //     headers: {
+        //         'Content-Type': 'multipart/form-data'
+        //     }
+        // })
+        //     .then((res) => {
+        //         if (res) {
+        //             console.log("Item Added");
+        //         }
+        //     })
+        //     .catch(err => console.log(err))
     }
 
     const handleEdit = () => {

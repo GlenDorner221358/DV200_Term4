@@ -34,7 +34,7 @@ const HomeQuestion = (props) => {
 
             let payload = {
                 name: props.name,
-                title: props.name,
+                title: props.title,
                 question: props.question,
                 tags: {
                     tagOne: props.tagOne,
@@ -65,7 +65,7 @@ const HomeQuestion = (props) => {
 
             let payload = {
                 name: props.name,
-                title: props.name,
+                title: props.title,
                 question: props.question,
                 tags: {
                     tagOne: props.tagOne,
