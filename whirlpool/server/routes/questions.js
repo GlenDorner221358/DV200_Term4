@@ -4,20 +4,20 @@ const router = express.Router();
 const multer = require('multer')
 const path = require('path')
 
-//Multer Middleware Prep
-const questionImageStore = multer.diskStorage({
-    destination: (req, file, callBack) => {
-        callBack(null, path.join(__dirname, '../questionImages'));
+// Multer Middleware Prep
+const questionImgStore = multer.diskStorage({
+    destination: ( req, file, callBack ) => {
+        callBack(null, './questionImages');
     },
 
-    filename: (req, file, callBack) => {
+    filename: ( req, file, callBack) => {
         console.log(file)
         callBack(null, Date.now() + path.extname(file.originalname));
     }
 });
 
 //Run Middleware
-const uploadQuestionImage = multer({ storage: questionImageStore });
+const uploadQuestionImage = multer({storage: questionImgStore});
 
 // Create new Question
 router.post('/api/newQuestion', uploadQuestionImage.single("image"), async (req, res) => {
@@ -50,6 +50,8 @@ router.post('/api/newQuestion', uploadQuestionImage.single("image"), async (req,
     }
 
 });
+
+
 
 // Get Questions
 router.get('/api/allQuestions', async (req, res) => {

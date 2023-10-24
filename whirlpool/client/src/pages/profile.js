@@ -49,7 +49,6 @@ function Profile() {
     }, [userMail])
 
     const getImage = (e) => {
-        //This is where Multer comes in
         let imagefile = e.target.files[0];
         setUserImage(imagefile);
 
@@ -66,6 +65,7 @@ function Profile() {
         reader.readAsDataURL(e.target.files[0]);
     }
 
+    // Image upload handling
     const changeImg = (e) => {
         e.preventDefault();
 
@@ -91,8 +91,6 @@ function Profile() {
         payloadData.append("information", JSON.stringify(payload));
         payloadData.append('image', userImage); // Append the file with the name to FormData
 
-        // console.log(JSON.stringify(payloadData));
-
         axios.put("http://localhost:5001/api/users/profilePic/" + userMail, payloadData)
             .then((res) => {
                 if (res) {
@@ -100,19 +98,6 @@ function Profile() {
                 }
             })
             .catch(err => console.log(err))
-        // console.log(fileName)
-
-        // axios.put("http://localhost:5001/api/users/profilePic/" + userMail, payloadData, {
-        //     headers: {
-        //         'Content-Type': 'multipart/form-data'
-        //     }
-        // })
-        //     .then((res) => {
-        //         if (res) {
-        //             console.log("Item Added");
-        //         }
-        //     })
-        //     .catch(err => console.log(err))
     }
 
     const handleEdit = () => {
@@ -131,6 +116,7 @@ function Profile() {
         });
     }
 
+    // edit the users info
     const handleSave = () => {
         axios.put(`http://localhost:5001/api/updateUser/${userMail}`, editData)
             .then(res => {
@@ -140,6 +126,7 @@ function Profile() {
             .catch(err => console.log(err));
     };
 
+    // Delete account
     let navigate = useNavigate();
 
     const handleDeleteAccount = () => {
@@ -227,7 +214,7 @@ function Profile() {
                                                         <img id="imgPrev" style={{ backgroundColor: "lightgrey", height: "200px", width: "200px", float: "left" }} />
                                                     </div>
                                                 </Form.Group >
-                                                <Button variant="warning" type="submit" style={{ color: "black", width: "100%", marginTop: "2%", marginBottom: "2%", backgroundColor: "#FDF5BF" }}>
+                                                <Button variant="primary" type="submit" style={{ color: "black", width: "100%", marginTop: "2%", marginBottom: "2%", backgroundColor: "#FDF5BF" }}>
                                                     Upload image
                                                 </Button>
                                             </Form>

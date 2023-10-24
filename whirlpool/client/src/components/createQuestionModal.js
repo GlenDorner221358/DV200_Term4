@@ -3,6 +3,8 @@ import { Button, Modal, Form } from 'react-bootstrap';
 import axios from 'axios'
 
 const MyModal = ({ showModal, handleClose }) => {
+  const [imageName, setImageName] = useState("Name of file")
+  const [questionImage, setQuestionImage] = useState()
 
   const [formData, setFormData] = useState({
     title: '',
@@ -24,21 +26,35 @@ const MyModal = ({ showModal, handleClose }) => {
     });
   };
 
+  
+   // Handle form submission
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission
+   
     console.log(formData); // Replace with your logic to handle the form data
 
-    let payload = new FormData(); // Create a new FormData object
-    payload.append('name', qname);
-    payload.append('title', formData['title']);
-    payload.append('question', formData['question']);
-    payload.append('tag1', formData['tag1']);
-    payload.append('tag2', formData['tag2']);
-    payload.append('tag3', formData['tag3']);
-    payload.append("image", productImage); // Append the image file to the payload
+    const payloadData = new FormData(); // Create a new FormData object
 
-    axios.post("http://localhost:5001/api/newQuestion", payload)
+    let payload ={
+      name: qname,
+      title: formData['title'],
+      question: formData['question'],
+      tags: {
+        tagOne: formData['tag1'],
+        tagTwo: formData['tag2'],
+        tagThree: formData['tag3']
+      },
+      votes: {
+        total: 0, // Initialize total votes to 0
+        likes: 0,
+        dislikes: 0
+      }
+    }
+    
+    payloadData.append("information", JSON.stringify(payload));
+    payloadData.append("image", questionImage); // Append the image file to the payload
+
+    axios.post("http://localhost:5001/api/newQuestion/", payload)
       .then((res) => {
         if (res) {
           console.log("Question Added");
@@ -49,6 +65,7 @@ const MyModal = ({ showModal, handleClose }) => {
     handleClose(); // Close the modal after submission if needed
   };
 
+  // the select values for when selecting tags
   const tagOptions = [
     'HTML',
     'Javascript',
@@ -64,10 +81,14 @@ const MyModal = ({ showModal, handleClose }) => {
     'Xcode',
   ];
 
+  // modal form display uploaded image function
   const getImage = (e) => {
-
     let imagefile = e.target.files[0];
-    setProductImage(imagefile);
+    setQuestionImage(imagefile);
+
+    let value = e.target.value;
+    let imageName = value.substring(12);
+    setImageName(imageName);
 
     setFormData({
       ...formData,

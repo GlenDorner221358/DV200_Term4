@@ -21,6 +21,7 @@ app.use(CommentRoutes)
 
 app.use("/api/users", userRoutes)
 app.use("/api/auth", authRoutes)
+app.use("/questionImages", express.static("questionImages"))
 
 app.use('/userImages', express.static("userImages"))
 

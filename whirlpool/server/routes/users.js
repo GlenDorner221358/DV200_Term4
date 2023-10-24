@@ -35,7 +35,7 @@ router.put('/api/users/profilePic/:email', uploadUserImage.single('image'), asyn
     }
 });
 
-
+// idk what this does but im afraid to remove it
 router.post("/api/users", uploadUserImage.single('image'), async (req, res) => {
     try {
         const { error } = validate(req.body)
@@ -95,7 +95,6 @@ router.put('/api/updateUserImg/:email', async(req, res) => {
     )
     res.json(findUser)
 })
-
 
 
 // delete user by email
