@@ -52,6 +52,7 @@ const HomeQuestion = (props) => {
                 .then(res => {
                     if (res) {
                         console.log("Like Updated")
+                        
                     }
                 })
                 .catch(function (error) {
@@ -197,11 +198,11 @@ const HomeQuestion = (props) => {
                             <Figure.Caption style={{ display: "inline", padding: "10px" }} >{votes}</Figure.Caption>
                             <Figure.Image style={{ display: "inline" }} alt="votes icon" width="14px" height="14px" src={VoteImage} />
                         </div>
-                        <div style={{ width: "50px", height: "30px" }} onClick={handleLike}>
+                        <div style={{ width: "50px", height: "30px" }} onClick={() => handleLike()}>
                             <Figure.Caption style={{ display: "inline", padding: "10px" }}>{likes}</Figure.Caption>
                             <Figure.Image style={{ display: "inline" }} alt="likes icon" width="14px" height="14px" src={isLiked ? LikedImage : LikeImage} />
                         </div>
-                        <div style={{ width: "50px", height: "30px" }} onClick={handleDislike}>
+                        <div style={{ width: "50px", height: "30px" }} onClick={() => handleDislike()}>
                             <Figure.Caption style={{ display: "inline", padding: "10px" }}>{dislikes}</Figure.Caption>
                             <Figure.Image style={{ display: "inline" }} alt="dislikes icon" width="14px" height="14px" src={isDisliked ? DislikedImage : DislikeImage} />
                         </div>

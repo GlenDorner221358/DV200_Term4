@@ -22,6 +22,8 @@ app.use(CommentRoutes)
 app.use("/api/users", userRoutes)
 app.use("/api/auth", authRoutes)
 
+app.use('/userImages', express.static("userImages"))
+
 app.use(userRoutes)
 app.use(authRoutes)
 //Connect to DB

@@ -9,13 +9,16 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import PreviousQuestions from "../components/previousQuestions";
 
-import userPic from "../assets/user.png"
+// import userPic from "../assets/user.png"
 
 // import userData from "../components/userData";
 
 function Profile() {
     const [imageName, setImageName] = useState("Name of file")
     const [userImage, setUserImage] = useState()
+
+    const [userPic, setUserPic] = useState("../assets/user.png")
+
     const userMail = sessionStorage.getItem("username")
     const [userData, setUserData] = useState();
     const [showConfirm, setShowConfirm] = useState(false);
@@ -35,6 +38,9 @@ function Profile() {
                     let data = res.data;
                     setUserData(data);
                     console.log(JSON.stringify(data.profilePic));
+
+                    setUserPic("http://localhost:5001/userImages/" + data.profilePic)
+
                 })
                 .catch(err => console.log(err))
         }
@@ -83,9 +89,9 @@ function Profile() {
         payloadData.append("information", JSON.stringify(payload));
         payloadData.append('image', userImage); // Append the file with the name to FormData
 
-        console.log(JSON.stringify(payloadData));
+        // console.log(JSON.stringify(payloadData));
 
-        axios.put("http://localhost:5000/api/users/profilePic/" + userMail, payloadData)
+        axios.put("http://localhost:5001/api/users/profilePic/" + userMail, payloadData)
             .then((res) => {
                 if (res) {
                     console.log("Item Added");
