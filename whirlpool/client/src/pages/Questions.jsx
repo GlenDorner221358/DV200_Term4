@@ -40,7 +40,7 @@ function Questions() {
 
 
   return (
-    <div className={styles.flexContainer}>
+    <div className={styles.flexContainer} >
       <div>
       <BasicNav />
       <MyModal showModal={showModal} handleClose={handleClose} />
@@ -76,7 +76,7 @@ function Questions() {
         <div className={styles.right_panel}></div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }

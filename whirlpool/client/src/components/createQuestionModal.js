@@ -58,6 +58,7 @@ const MyModal = ({ showModal, handleClose }) => {
       .then((res) => {
         if (res) {
           console.log("Question Added");
+          window.location = "/question";
         }
       })
       .catch(err => console.log(err))

@@ -111,8 +111,8 @@ router.delete('/api/deleteUser/:email', async (req, res) => {
 });
 
 
-    // update user by email
-    router.put('/api/updateUser/:email', async (req, res) => {
+// update user by email
+router.put('/api/updateUser/:email', async (req, res) => {
     try {
         const user = await User.findOneAndUpdate({ email: req.params.email }, req.body, { new: true });
         if (!user) {

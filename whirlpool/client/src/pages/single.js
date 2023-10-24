@@ -18,7 +18,7 @@ function Single() {
             </div>
             
             <SingleComment />
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 }

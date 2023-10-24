@@ -11,7 +11,10 @@ import styles from '../pages/css/single.css'
 
 function SingleQuestion() {
     const question = JSON.parse(sessionStorage.getItem('question'));
+    const [wienerballs, setWienerBalls] = useState();
+    const [quePic, setQuePic] = useState();
 
+    // handles question deleting
     const handleDelete = async () => {
         try {
             await axios.delete('http://localhost:5001/api/deleteQuestion/' + question.id);
@@ -23,6 +26,20 @@ function SingleQuestion() {
             console.log(error);
         }
     }
+
+    // gets the image of the question
+    useEffect(() => {
+        axios.get('http://localhost:5001/api/singleQuestion/' + question.id)
+            .then(res => {
+                let data = res.data;
+                setWienerBalls(data);
+                console.log(JSON.stringify(data.image));
+
+                setQuePic("http://localhost:5001/questionImages/" + data.image)
+
+            })
+            .catch(err => console.log(err))
+    }, [question.id])
 
     return (
         <Card style={{marginLeft: "10%", marginRight: "10%", marginTop: "3%"}}>
@@ -44,17 +61,16 @@ function SingleQuestion() {
                         </div>
                     </Figure>
                 </div>
+                {sessionStorage.getItem('permissions') === 'true' && (
+                        <Button variant="danger" style={{marginTop: "1%", float: "right"}} onClick={handleDelete}>Delete Question</Button>
+                    )}
                 <div className={styles.cardRight}>
                     <Card.Title style={{fontWeight: "bold", fontSize: '30px'}}>{question.title}</Card.Title>
                     <Card.Text value="question description">
                         {question.question}
                     </Card.Text>
-                    {question.image && (
-                        <img src={question.image} alt="question image" style={{ width: "100%", marginTop: "2%" }} />
-                    )}
-                    {sessionStorage.getItem('permissions') === 'true' && (
-                        <Button variant="danger" style={{marginTop: "1%", float: "right"}} onClick={handleDelete}>Delete Question</Button>
-                    )}
+                    {/* the image */}
+                    <img src={quePic} alt="question image" style={{ width: "50%", marginTop: "2%", marginLeft: "25%" }} />
                 </div>
             </Card.Body>
 

@@ -183,6 +183,7 @@ const HomeQuestion = (props) => {
             name: props.name,
             title: props.title,
             question: props.question,
+            image: props.image,
             tags: {
                 tagOne: props.tagOne,
                 tagTwo: props.tagTwo,

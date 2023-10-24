@@ -10,11 +10,6 @@ import { useNavigate } from "react-router-dom";
 import PreviousQuestions from "../components/previousQuestions";
 import Footer from "../components/footer";
 
-
-// import userPic from "../assets/user.png"
-
-// import userData from "../components/userData";
-
 function Profile() {
     const [imageName, setImageName] = useState("Name of file")
     const [userImage, setUserImage] = useState()
@@ -32,7 +27,7 @@ function Profile() {
         email: ''
     });
 
-
+    // gets the image of the user
     useEffect(() => {
         if (userMail) {
             axios.get('http://localhost:5001/api/singleUser/' + userMail)
@@ -95,6 +90,7 @@ function Profile() {
             .then((res) => {
                 if (res) {
                     console.log("Item Added");
+                    window.location = "/profile";
                 }
             })
             .catch(err => console.log(err))
