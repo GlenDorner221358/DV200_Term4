@@ -38,10 +38,10 @@ function NewComment() {
     }
 
     return (
-        <div class="comment">
+        <div className="comment">
         <Card style={{marginLeft: "12%", marginRight: "12%"}}>
             <Card.Header>{firstName}</Card.Header>
-            <Card.Body class="left">
+            <Card.Body className="left">
                 <Form onSubmit={handleSubmit}>
                     <Form.Group controlId="formComment">
                         <Form.Control type='text' placeholder='Leave a comment...' onChange={e => setComment(e.target.value)} style={{width: "90%", height: "70px", marginLeft: "5%", marginTop: "2%", marginBottom: "2%"}} />

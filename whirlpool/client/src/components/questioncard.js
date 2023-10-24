@@ -47,15 +47,15 @@ function SingleQuestion() {
             <Card.Body>
                 <div className={styles.cardLeft}>
                     <Figure>
-                        <div class="left">
+                        <div className="left">
                             <Figure.Caption style={{ display: "inline", padding: "5px" }} >{question.votes.likes}</Figure.Caption>
                             <Figure.Image style={{ display: "inline" }} alt="votes icon" width="20px" height="20px" src={VoteImage} />
                         </div>
-                        <div class="left">
+                        <div className="left">
                             <Figure.Caption style={{ display: "inline", padding: "5px" }}>{question.votes.total}</Figure.Caption>
                             <Figure.Image style={{ display: "inline"}} alt="likes icon" width="20px" height="20px" src={LikeImage} />
                         </div>
-                        <div class="left">
+                        <div className="left">
                             <Figure.Caption style={{ display: "inline", padding: "5px" }} >{question.votes.likes}</Figure.Caption>
                             <Figure.Image style={{ display: "inline" }} alt="dislikes icon" width="20px" height="20px" src={DislikeImage} />
                         </div>
