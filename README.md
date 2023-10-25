@@ -7,7 +7,7 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/GlenDorner221358/Whirlpool?color=lightblue)
 
 <h5 align="center" style="padding:0;margin:0;">Christian Krahtz | Glen Dorner | Tsebo Ramonyalioa </h5>
-<h5 align="center" style="padding:0;margin:0;">221198  | 221358 | 200200</h5>
+<h5 align="center" style="padding:0;margin:0;">221198 | 221358 | 200200</h5>
 <h6 align="center">DV200 | Term 4</h6>
 </br>
 <p align="center">
@@ -136,9 +136,10 @@ I went with a simple and minimalistic UI design as I wanted a dark mode type of 
 ### Wireframes
 
 <!-- ![image8](client/src/Assets/mockups/wireframes.jpg) -->
-![image1](src/Assets/Landing%20Page.jpg)
+<!-- ![image1](src/Assets/Landing%20Page.jpg)
 ![image2](src/Assets/Comparison%20Page.jpg)
-![image3](src/Assets/Timeline%20Page.jpg)
+![image3](src/Assets/Timeline%20Page.jpg) -->
+![image4](/Whirlpool/Wireframes/Home.jpeg)
 
 ## Development Process
 
