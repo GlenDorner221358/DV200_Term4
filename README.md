@@ -6,7 +6,7 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/GlenDorner221358/Whirlpool?color=lightblue)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/GlenDorner221358/Whirlpool?color=lightblue)
 
-<h5 align="center" style="padding:0;margin:0;">Christian Krahtz | Glen Dorner | Tsebo Ramonyalioa </h5>
+<h5 align="center" style="padding:0;margin:0;">Christian Krahtz | Glen Dorner | Tsebo Ramonyalioa | Hannah Naidoo</h5>
 <h5 align="center" style="padding:0;margin:0;">221198 | 221358 | 200200</h5>
 <h6 align="center">DV200 | Term 4</h6>
 </br>
@@ -223,8 +223,9 @@ See the [open issues](https://github.com/GlenDorner221358/Whirlpool/issues) for 
 <!-- AUTHORS -->
 
 ## Author
-- **Glen Dorner** - [Github](https://github.com/GlenDorner221358)
 - **Christian Krahtz** - [Github](https://github.com/CWKrahtz)
+- **Glen Dorner** - [Github](https://github.com/GlenDorner221358)
+- **Hannah Naidoo** - [Github](https://github.com/HannahAmaria)
 - **Tsebo Ramonyalioa** - [Github](https://github.com/Tsebo200)
 
 
