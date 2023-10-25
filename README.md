@@ -19,8 +19,7 @@
 <h3 align="center">Whirlpool</h3>
 
   <p align="center">
-    This is a MERN Stack Q&A .<br>
-
+    This is a MERN Stack Q&A<br>
    <br />
    <br />
    <!-- <a href="https://youtu.be/8iZ_rSmcN0E">View Demo</a> -->
@@ -73,7 +72,10 @@ Welcome to Dream Team! This is an API-generated webpage, it is similar to seeing
 <!-- [<img src="https://www.svgrepo.com/show/331488/mongodb.svg" width="5%" height="5%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://www.mongodb.com/cloud/atlas/lp/try4?utm_source=google&utm_campaign=gs_emea_south_africa_search_core_brand_atlas_desktop&utm_term=mongodb&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=12212624560&adgroup=115749711783) -->
 
 <!-- [<img src="https://www.vectorlogo.zone/logos/expressjs/expressjs-icon.svg" width="5%" height="5%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://expressjs.com/) -->
-[<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png" width="6%" height="6%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://reactjs.org/)[<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Sass_Logo_Color.svg/800px-Sass_Logo_Color.svg.png" width="6%" height="6%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://sass-lang.com/documentation/) [<img src="https://avatars.githubusercontent.com/u/10342521?s=280&v=4" width="6%" height="6%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://www.chartjs.org/docs/latest/) [<img src="https://app.balldontlie.io/favicon.ico" width="6%" height="6%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://app.balldontlie.io/explore) 
+* [Mongo] [<img src="https://www.svgrepo.com/show/331488/mongodb.svg" width="5%" height="5%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://www.mongodb.com/cloud/atlas/lp/try4?utm_source=google&utm_campaign=gs_emea_south_africa_search_core_brand_atlas_desktop&utm_term=mongodb&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=12212624560&adgroup=115749711783)
+* [Express] [<img src="https://www.vectorlogo.zone/logos/expressjs/expressjs-icon.svg" width="5%" height="5%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://expressjs.com/)
+* [React] [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png" width="6%" height="6%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://reactjs.org/)
+* [Node] [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/590px-Node.js_logo.svg.png?20170401104355" width="7%" height="7%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://nodejs.org/en/)
 
 
 
@@ -252,12 +254,14 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 
 - [Stack Overflow](https://stackoverflow.com/)
 - [Figma](https://www.figma.com/)
+- [ChatGPT](https://chat.openai.com/)
+- [Cursor](https://cursor.sh/)
 <!-- - [Lecturer](https://github.com/MikeMaynard14) -->
 <!-- - [Freepik](https://www.freepik.com) -->
 <!-- - [Miro](https://miro.com/?utm_source=google&utm_medium=cpc&utm_campaign=S|GOO|BRN|ZA|EN-EN|Brand|Exact&utm_adgroup=&utm_custom=18259414532&utm_content=620159863882&utm_term=miro&device=c&location=1028971) -->
 <!-- - [Mongoose Docs](https://mongoosejs.com/docs/api.html) -->
 <!-- - [MockupWorld](https://www.mockupworld.co/) -->
-- [Flexy Boxes](https://the-echoplex.net/flexyboxes/)
+
 
 [image1]: src/Assets/Images/Dashboard.png
 [image2]: src/Assets/Images/Compare.png
