@@ -6,7 +6,7 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/GlenDorner221358/Whirlpool?color=lightblue)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/GlenDorner221358/Whirlpool?color=lightblue)
 
-<h5 align="center" style="padding:0;margin:0;">Christian Krahtz | Glen Doner | Tsebo Ramonyalioa </h5>
+<h5 align="center" style="padding:0;margin:0;">Christian Krahtz | Glen Dorner | Tsebo Ramonyalioa </h5>
 <h5 align="center" style="padding:0;margin:0;">221198  | 221358 | 200200</h5>
 <h6 align="center">DV200 | Term 4</h6>
 </br>
@@ -256,31 +256,11 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 - [Cursor](https://cursor.sh/)
 <!-- - [Lecturer](https://github.com/MikeMaynard14) -->
 <!-- - [Freepik](https://www.freepik.com) -->
-<!-- - [Miro](https://miro.com/?utm_source=google&utm_medium=cpc&utm_campaign=S|GOO|BRN|ZA|EN-EN|Brand|Exact&utm_adgroup=&utm_custom=18259414532&utm_content=620159863882&utm_term=miro&device=c&location=1028971) -->
-<!-- - [Mongoose Docs](https://mongoosejs.com/docs/api.html) -->
-<!-- - [MockupWorld](https://www.mockupworld.co/) -->
+
 
 
 [image1]: src/Assets/Images/Dashboard.png
 [image2]: src/Assets/Images/Compare.png
 [image3]: src/Assets/Images/Timeline.png
 
- <!-- [image1]: client/readme-assets/about-project.png -->
- <!-- [image2]: client/readme-assets/register.jpg -->
-<!-- [image3]: client/readme-assets/verify.jpg -->
-<!-- [image4]: client/readme-assets/question.jpg
-[image5]: client/readme-assets/answer.jpg
-[image6]: client/src/Assets/mockups/mockup6.jpg
-[image7]: client/src/Assets/mockups/mockup7.jpg
-[image8]: client/src/Assets/mockups/wireframes.jpg
-[image9]: client/src/Assets/mockups/moodboard.jpg
-[image10]: Images/mockup10.jpg
-[image11]: Images/mockup2.jpg
-[image12]: Images/mockup3.jpg
-[image13]: Images/mockup4.jpg
-[image14]: client/src/Assets/mockups/mockup8.jpg  -->
 
-<!-- [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
-[linkedin-url]: https://www.linkedin.com/in/tsebo-ramonyalioa-2392381b4/
-[instagram-shield]: https://img.shields.io/badge/-Instagram-black.svg?style=flat-square&logo=instagram&colorB=555
-[instagram-url]: https://www.instagram.com/wiaan.dev/ -->
