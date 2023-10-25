@@ -180,9 +180,6 @@ as each player had their own end point, thus I had to create create an array of 
 
 - overthinking somethings is my issue
 
-<!-- - Something we unfortunately could not implement because of time restrictions was Amazon's S3 Bucket's, in the end we had to drop it revert back to Multer for image uploading
-- A big challenge was the tag handling in the question's portal, with the help of the team, we were able to get it working
-- Getting the emailer to work was also a big pain point, but eventually after a lot of trial-and-error we got it working -->
 
 ### Future Implementation
 
@@ -218,8 +215,8 @@ stipulate functionality and improvements that can be implemented in the future.
 <!-- TODO Change this -->
 
 <!-- To see a run through of OpenStack, click below: -->
-
-[View Demonstration](https://drive.google.com/file/d/1NPY0j63W65k5T3B4179dxDqmp5iEE_l3/view?usp=sharing)
+<!-- Add Video Here -->
+[View Demonstration]()
 
 See the [open issues](https://github.com/GlenDorner221358/Whirlpool/issues) for a list of proposed features (and known issues).
 
