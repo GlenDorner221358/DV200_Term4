@@ -19,7 +19,7 @@
 <h3 align="center">Whirlpool</h3>
 
   <p align="center">
-    This is a basketball statistics website that compares NBA players performance.<br>
+    This is a MERN Stack Q&A .<br>
 
    <br />
    <br />
