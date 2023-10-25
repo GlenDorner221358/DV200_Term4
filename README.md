@@ -16,7 +16,7 @@
     <img src="src/Assets/Images/Dream Team Logo.svg" width="200px">
   </a>
 
-<h3 align="center">Dream Team</h3>
+<h3 align="center">Whirlpool</h3>
 
   <p align="center">
     This is a basketball statistics website that compares NBA players performance.<br>
