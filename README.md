@@ -13,7 +13,7 @@
 <p align="center">
 
   <a href="https://github.com/GlenDorner221358/Whirlpool">
-    <img src="src/Assets/Images/Dream Team Logo.svg" width="200px">
+    <img src="../Whirlpool/whirlpool/client/Assets/Whirlpool.svg" width="200px">
   </a>
 
 <h3 align="center">Whirlpool</h3>
