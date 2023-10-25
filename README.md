@@ -139,7 +139,7 @@ I went with a simple and minimalistic UI design as I wanted a dark mode type of 
 <!-- ![image1](src/Assets/Landing%20Page.jpg)
 ![image2](src/Assets/Comparison%20Page.jpg)
 ![image3](src/Assets/Timeline%20Page.jpg) -->
-![image4](/Whirlpool/Wireframes/Home.jpeg)
+![image4](../Whirlpool/Wireframes/Home.jpeg)
 
 ## Development Process
 
