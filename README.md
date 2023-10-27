@@ -13,7 +13,7 @@
 <p align="center">
 
   <a href="https://github.com/GlenDorner221358/Whirlpool">
-    <img src="../whirlpool/client/Assets/Whirlpool.svg" width="200px">
+    <img src="/whirlpool/client/Assets/Whirlpool.svg" width="200px">
   </a>
 
 <h3 align="center">Whirlpool</h3>
