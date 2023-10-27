@@ -162,23 +162,20 @@ The `Development Process` is the technical implementations and functionality don
 
 stipulated the highlight you experienced with the project
 
-- A very big high point was seeing the data from my backend being populated dynamically in my front-end.
-- Fixing all the annoying bugs will always be a plus point
-- Handing in the project on time
+- The search functionality was surprisingly easy to implement
+- Cursor with gpt4 makes the workload painlessly efficient
+- Working in a group allowed us to efficiently split the workload so no one was overwhelmed
 
 
 #### Challenges
 
 stipulated the challenges you faced with the project and why you think you faced it or how you think you'll solve it (if not solved)
 
-- The largest issue I had was manipulating the API data and formatting it to fit with the chart.js datasets
-as each player had their own end point, thus I had to create create an array of the IDs I wanted and used a for loop it within the promise whilst adding the baseUrl in the axios request 
-
-- my layout was also an issue but in most places I utilised flex boxes for the main containers in order to fixate the contents within that position on any screen
-
-- Displaying data from my API was also my largest issue but I was able to dynamically display data from the API
-
-- overthinking somethings is my issue
+- Updating all of the data entries in our database when we made a change to the models
+- The routes were a massive pain to get working
+- Image uploading was a nightmare
+- The styling was also quite a challenge, some components did not cooperate no matter the amount of css we threw at them
+- one thing we had an issue with was a Mac and Windows compatibility when addressing the node modules as we had to delete and reinstall the modules every time someone committed their changes on Github
 
 
 ### Future Implementation
@@ -187,9 +184,7 @@ as each player had their own end point, thus I had to create create an array of 
 
 stipulate functionality and improvements that can be implemented in the future.
 
-- I will ensure to populate data into the UI Card, Polaradarchart and PieChart
-
-- My Front-end needs some work as well
+- We would love to make our Front-end better than it is 
 
 <!-- - We would like to make this a fully responsive website
 - We would like to implement dark mode
