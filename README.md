@@ -139,7 +139,10 @@ I went with a simple and minimalistic UI design as I wanted a dark mode type of 
 <!-- ![image1](src/Assets/Landing%20Page.jpg)
 ![image2](src/Assets/Comparison%20Page.jpg)
 ![image3](src/Assets/Timeline%20Page.jpg) -->
-![image4](./Wireframes/Login.jpeg)
+![image1](./Wireframes/Login.jpeg)
+![image2](./Wireframes/Home.jpeg)
+![image3](./Wireframes/Question.jpeg)
+![image4](./Wireframes/Single.jpeg)
 
 ## Development Process
 
