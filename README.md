@@ -52,7 +52,7 @@
     - [Video Demonstration](#video-demonstration)
 - [Conclusion](#conclusion)
 - [License](#license)
-- [Contact](#contact)
+<!-- - [Contact](#contact) -->
 - [Acknowledgements](#acknowledgements)
 
 <!--PROJECT DESCRIPTION-->
@@ -65,8 +65,10 @@
 
 ### Project Description
 
-Welcome to Dream Team! This is an API-generated webpage, it is similar to seeing a Forex website/application which displays statistics on the currencies, well with that in mind, Dream Team displays players' statistics such as their Field Ground Points,
-3pt field ground goals made, field ground percentage ad well as more stats such as offensive rebounds. This website benefits NBA and basketball wannabes to learn more about basketball much easier with the help of Chart.js to display the content in an interesting manner. Please note that most of these NBA stats are up to 2018.
+<!-- Welcome to Dream Team! This is an API-generated webpage, it is similar to seeing a Forex website/application which displays statistics on the currencies, well with that in mind, Dream Team displays players' statistics such as their Field Ground Points,
+3pt field ground goals made, field ground percentage ad well as more stats such as offensive rebounds. This website benefits NBA and basketball wannabes to learn more about basketball much easier with the help of Chart.js to display the content in an interesting manner. Please note that most of these NBA stats are up to 2018. -->
+
+Welcome to Whirlpool! This is a developer's Q&A platform, something you probably have seen on sites like Stack Overflow. This is exactly the same thing, except we took on our own spin on it! Users can ask and answer questions, receive achievements based on user score and much, much more. This application was built with the MERN Stack
 
 ### Built With
 <!-- [<img src="https://www.svgrepo.com/show/331488/mongodb.svg" width="5%" height="5%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;](https://www.mongodb.com/cloud/atlas/lp/try4?utm_source=google&utm_campaign=gs_emea_south_africa_search_core_brand_atlas_desktop&utm_term=mongodb&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=12212624560&adgroup=115749711783) -->
@@ -121,16 +123,13 @@ Here are a couple of ways to clone this repo:
 <!-- note how you can use your gitHub link. Just make a path to your assets folder -->
 
 
-
-
 <!-- CONCEPT PROCESS -->
 <!-- Briefly eOpenStacklain your concept ideation process -->
 <!-- here you will add things like wireframing, data structure planning, anything that shows your process. You need to include images-->
 
 ## Concept Process
 
-I went with a simple and minimalistic UI design as I wanted a dark mode type of design, thus I utilised dark colours. DreamTeam is a website that is there to help users understand the sport of basketball. The process I took for this project was to explore and figure out things on my own so I took an explorative route for this one as I feel it payed of in my experience as a developer
-
+We really went with a simple and a minimalistic UI design. Whirlpool is there to be functional and helpful to any newcomer or veteran of Whirlpool. Where they can simply ask, answer and view questions in a quick, concise and effective way. We stick to a simple ydllow with accents of a baby blue palette. A UI trend that really started to rise among web apps, was rounded corners, so we also incorporated that into our design, just to round it off even further.
 
 
 ### Wireframes
@@ -193,10 +192,6 @@ stipulate functionality and improvements that can be implemented in the future.
 
 - We would love to make our Front-end better than it is 
 
-<!-- - We would like to make this a fully responsive website
-- We would like to implement dark mode
-- Implement Pagination on Questions Page -->
-
 <!-- MOCKUPS -->
 
 ## Final Outcome
@@ -239,8 +234,8 @@ Distributed under the MIT License. See `LICENSE` for more information.\
 
 <!-- LICENSE -->
 
-## Contact
-**Tsebo Ramonyalioa** - [tsebo.ramonyalioa.an@gmail.com](mailto:tsebo.ramonyalioa.an@gmail.com) - [@inspiration200200](https://www.instagram.com/inspiration__200) 
+<!-- ## Contact
+**Tsebo Ramonyalioa** - [tsebo.ramonyalioa.an@gmail.com](mailto:tsebo.ramonyalioa.an@gmail.com) - [@inspiration200200](https://www.instagram.com/inspiration__200)  -->
 
 - **Project Link** - https://github.com/GlenDorner221358/Whirlpool
 
