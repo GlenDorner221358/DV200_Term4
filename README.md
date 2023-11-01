@@ -199,16 +199,20 @@ stipulate functionality and improvements that can be implemented in the future.
 ### Mockups
 
 <!-- TODO Change this -->
-#### MockUp
-![image1](./Mockup/Mockup1.png)
+#### Profile Page
+![image5](./Mockup/Mockup1.png)
 #### Home/Landing
-![image2](./Wireframes/Home.jpeg)
+![image6](./Mockup/Mockup2.png)
 #### Question
-![image3](./Wireframes/Question.jpeg)
+![image7](./Mockup/Mockup3.png)
 #### Single Question
-![image4](./Wireframes/Single.jpeg)
-
-
+![image8](./Mockup/Mockup4.png)
+#### Single Questions Filter
+![image9](./Mockup/Mockup5.png)
+#### Login 
+![image10](./Mockup/Mockup6.png)
+#### Register 
+![image10](./Mockup/Mockup7.png)
 <br>
 
 
