@@ -199,9 +199,16 @@ stipulate functionality and improvements that can be implemented in the future.
 ### Mockups
 
 <!-- TODO Change this -->
-![image1] [image1]
-![image2][image2]
-![image3][image3]
+#### MockUp
+![image1](./Mockup/Mockup1.png)
+#### Home/Landing
+![image2](./Wireframes/Home.jpeg)
+#### Question
+![image3](./Wireframes/Question.jpeg)
+#### Single Question
+![image4](./Wireframes/Single.jpeg)
+
+
 <br>
 
 
