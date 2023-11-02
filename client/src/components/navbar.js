@@ -6,11 +6,14 @@ import { useState, useEffect } from "react";
 import Axios from 'axios'
 
 function BasicNav() {
+
+  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
+
   const [firstName, setFirstName] = useState("");
   const user = sessionStorage.getItem("username")
 
   useEffect(() => {
-    Axios.get("http://localhost:5001/api/singleUser/" + user, {
+    Axios.get(`${apiUrl}/singleUser/` + user, {
       headers: {
         "x-auth-token": localStorage.getItem("token"),
       },

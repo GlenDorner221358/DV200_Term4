@@ -5,6 +5,9 @@ import { useState } from 'react';
 import axios from 'axios'
 
 function NewComment() {
+
+    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
+
     const firstName = sessionStorage.getItem("firstName");
     const question = JSON.parse(sessionStorage.getItem("question"));
     const queTitle = question.title;
@@ -26,7 +29,7 @@ function NewComment() {
             }
 
             console.log(payload)
-            axios.post("http://localhost:5001/api/newComment/", payload)
+            axios.post(`${apiUrl}/newComment/`, payload)
             .then((res) => {
                 if (res) {
                 console.log("Comment posted");

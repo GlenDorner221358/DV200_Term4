@@ -3,6 +3,10 @@ import { Button, Modal, Form } from 'react-bootstrap';
 import axios from 'axios'
 
 const MyModal = ({ showModal, handleClose }) => {
+
+  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
+
+
   const [imageName, setImageName] = useState("Name of file")
   const [questionImage, setQuestionImage] = useState()
 
@@ -54,7 +58,7 @@ const MyModal = ({ showModal, handleClose }) => {
     payloadData.append("information", JSON.stringify(payload));
     payloadData.append("image", questionImage); // Append the image file to the payload
 
-    axios.post("http://localhost:5001/api/newQuestion", payloadData)
+    axios.post(`${apiUrl}/newQuestion`, payloadData)
       .then((res) => {
         if (res) {
           console.log("Question Added");

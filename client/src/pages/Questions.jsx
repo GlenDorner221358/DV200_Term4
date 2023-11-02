@@ -14,6 +14,9 @@ import Footer from '../components/footer';
 
 function Questions() {
 
+  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
+
+
   const [showModal, setShowModal] = useState(false);
   const [selectedTag, setSelectedTag] = useState(null);
   const [totalQuestions, setTotalQuestions] = useState(0);
@@ -27,7 +30,7 @@ function Questions() {
 
   //Read Questions
   useEffect(() => {
-    axios.get(`http://localhost:5001/api/allQuestions?tag=${selectedTag || ''}`)
+    axios.get(`${apiUrl}/allQuestions?tag=${selectedTag || ''}`)
       .then(res => {
         let QuestionData = res.data;
         setTotalQuestions(QuestionData.length); // Add this line

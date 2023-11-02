@@ -9,6 +9,10 @@ import Button from 'react-bootstrap/Button';
 import styles from '../pages/css/single.css'
 
 function SingleComment() {
+
+    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
+
+
     const question = JSON.parse(sessionStorage.getItem("question"));
     const queTitle = question.title;
     const [comments, setComments] = useState([]);
@@ -18,7 +22,7 @@ function SingleComment() {
 
     // gets comments based on the currently viewed question
     useEffect(() => {
-        axios.get("http://localhost:5001/api/comments/" + queTitle)
+        axios.get(`${apiUrl}/comments/` + queTitle)
             .then((res) => {
                 setComments(res.data);
             })
@@ -36,7 +40,7 @@ function SingleComment() {
                 likes: commentLikes
             };
 
-            axios.patch('http://localhost:5001/api/updateComment/' + commentID, payload)
+            axios.patch(`${apiUrl}/updateComment/` + commentID, payload)
                 .then(res => {
                     if (res) {
                         console.log("Like Updated " + commentID);
@@ -54,7 +58,7 @@ function SingleComment() {
                 likes: commentLikes
             };
 
-            axios.patch('http://localhost:5001/api/updateComment/' + commentID, payload)
+            axios.patch(`${apiUrl}/updateComment/` + commentID, payload)
                 .then(res => {
                     if (res) {
                         console.log("Like Updated " + commentID);
@@ -70,7 +74,7 @@ function SingleComment() {
     const handleDelete = async (commentID) => {
         if (permissions === 'true') {
             try {
-                await axios.delete('http://localhost:5001/api/deleteComment/' + commentID);
+                await axios.delete(`${apiUrl}/deleteComment/` + commentID);
                 // Update the state or redirect to reflect the deletion
                 console.log("Comment deleted")
             } catch (error) {

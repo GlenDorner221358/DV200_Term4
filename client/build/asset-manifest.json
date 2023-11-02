@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.744fc310.css",
+    "main.js": "/static/js/main.6307aa77.js",
+    "static/media/Whirlpool.svg": "/static/media/Whirlpool.7f4ba1a4a8002814f5fe.svg",
+    "static/media/thumbs-down-fill.svg": "/static/media/thumbs-down-fill.437b01fb0f09a49518413fd5bac12eec.svg",
+    "static/media/thumbs-up-fill.svg": "/static/media/thumbs-up-fill.d05625cb9a5f4f86dd7ea67e0d1d8e6e.svg",
+    "static/media/package.svg": "/static/media/package.6ff38624ffc18153bca3859f3f4fd441.svg",
+    "static/media/thumbs-down.svg": "/static/media/thumbs-down.2299277e93f7264dbf81d54e6ab03aaf.svg",
+    "static/media/thumbs-up.svg": "/static/media/thumbs-up.b0b4719e30fb6bb2c857ed887e59af26.svg",
+    "index.html": "/index.html",
+    "main.744fc310.css.map": "/static/css/main.744fc310.css.map",
+    "main.6307aa77.js.map": "/static/js/main.6307aa77.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.744fc310.css",
+    "static/js/main.6307aa77.js"
+  ]
+}

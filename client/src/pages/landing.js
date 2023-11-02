@@ -14,6 +14,10 @@ import Footer from "../components/footer";
 
 
 function Landing() {
+
+    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
+
+
     const [product, setProducts] = useState();
     const [updateProducts, setUpdateProducts] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
@@ -22,7 +26,7 @@ function Landing() {
 
     //Read Questions with search
     useEffect(() => {
-        Axios.get('http://localhost:5001/api/allQuestions')
+        Axios.get(`${apiUrl}/allQuestions`)
             .then(res => {
                 let productData = res.data;
                 let renderProducts = productData
@@ -37,7 +41,7 @@ function Landing() {
 
     //Read Questions with tags
     useEffect(() => {
-        Axios.get(`http://localhost:5001/api/allQuestions?tag=${selectedTag || ''}`)
+        Axios.get(`${apiUrl}/allQuestions?tag=${selectedTag || ''}`)
             .then(res => {
                 let productData = res.data;
                 let slicedArray = [];

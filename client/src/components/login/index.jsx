@@ -8,6 +8,10 @@ const Login = () => {
 	const [data, setData] = useState({ email: "", password: "" });
 	const [error, setError] = useState("");
 
+	const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
+	const url = `${apiUrl}/api/auth`;
+	console.log('apiUrl:', apiUrl);
+
 	const handleChange = ({ currentTarget: input }) => {
 		setData({ ...data, [input.name]: input.value });
 	};
@@ -15,22 +19,22 @@ const Login = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = "http://localhost:5001/api/auth";
-			const { data: res } = await axios.post(url, data);
-			localStorage.setItem("token", res.data);
-			sessionStorage.setItem("username", data.email)
-			window.location = "/";
+		  const url = `${apiUrl}/auth`;
+		  const { data: res } = await axios.post(url, data);
+		  localStorage.setItem("token", res.data);
+		  sessionStorage.setItem("username", data.email);
+		  window.location = "/";
 		} catch (error) {
-			if (
-				error.response &&
-				error.response.status >= 400 &&
-				error.response.status <= 500
-			) {
-				setError(error.response.data.message);
-			}
+		  if (
+			error.response &&
+			error.response.status >= 400 &&
+			error.response.status <= 500
+		  ) {
+			setError(error.response.data.message);
+		  }
 		}
 	};
-
+	  
 	
 
 	return (

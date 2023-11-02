@@ -10,6 +10,11 @@ import axios from 'axios'
 import styles from '../pages/css/single.css'
 
 function SingleQuestion() {
+
+    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
+    const imgUrl = process.env.REACT_APP_API_URL || 'http://localhost:5001/';
+
+
     const question = JSON.parse(sessionStorage.getItem('question'));
     const [wienerballs, setWienerBalls] = useState();
     const [quePic, setQuePic] = useState();
@@ -17,8 +22,8 @@ function SingleQuestion() {
     // handles question deleting
     const handleDelete = async () => {
         try {
-            await axios.delete('http://localhost:5001/api/deleteQuestion/' + question.id);
-            axios.delete('http://localhost:5001/api/deleteComments/' + question.title);
+            await axios.delete(`${apiUrl}/deleteQuestion/` + question.id);
+            axios.delete(`${apiUrl}/deleteComments/` + question.title);
             sessionStorage.removeItem('question')
             console.log("question and all comments deleted");
             window.location = "/question";
@@ -29,13 +34,13 @@ function SingleQuestion() {
 
     // gets the image of the question
     useEffect(() => {
-        axios.get('http://localhost:5001/api/singleQuestion/' + question.id)
+        axios.get(`${apiUrl}/singleQuestion/` + question.id)
             .then(res => {
                 let data = res.data;
                 setWienerBalls(data);
                 console.log(JSON.stringify(data.image));
 
-                setQuePic("http://localhost:5001/questionImages/" + data.image)
+                setQuePic(`${imgUrl}questionImages/` + data.image)
 
             })
             .catch(err => console.log(err))

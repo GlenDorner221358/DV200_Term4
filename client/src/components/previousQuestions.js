@@ -4,11 +4,14 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 
 function PreviousQuestions() {
-    const firstName = sessionStorage.getItem('firstName');
+
+    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
+
+    const username = sessionStorage.getItem('username');
     const [questions, setQuestions] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5001/api/namedQuestions/' + firstName)
+        axios.get(`${apiUrl}/namedQuestions/` + username)
             .then(response => {
                 setQuestions(response.data);
             })
