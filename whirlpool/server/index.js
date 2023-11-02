@@ -10,7 +10,7 @@ const authRoutes = require('./routes/auth')
 
 //Used with React()
 app.use(cors({
-    origin: ['https://whirlpool-mfq13h8sv-glendorner221358s-projects.vercel.app'],
+    origin: ['https://whirlpool.vercel.app'],
     methods: ["POST", "GET", "PUT", "PATCH", "DELETE"],
     credentials: true
 }))
