@@ -10,9 +10,7 @@ const authRoutes = require('./routes/auth')
 
 //Used with React()
 app.use(cors({
-    origin: ['https://whirlpool.vercel.app'],
-    methods: ["POST", "GET", "PUT", "PATCH", "DELETE"],
-    credentials: true
+    origin: 'http://localhost:3000'
 }))
 
 app.use(express.json())
