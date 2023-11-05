@@ -228,7 +228,7 @@ const HomeQuestion = (props) => {
                 </div>
                 <div className={styles.cardRight}>
                     <Card.Title>{props.title}</Card.Title>
-                    <Card.Text >
+                    <Card.Text style={{maxWidth: "90%", overflow: "hidden", textOverflow: "ellipsis"}}>
                         {props.question}
                     </Card.Text>
                     <Button style={{ float: "right" }} onClick={handleSingle}>View Question</Button>
